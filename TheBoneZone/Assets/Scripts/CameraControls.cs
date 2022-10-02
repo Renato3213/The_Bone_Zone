@@ -12,6 +12,8 @@ public class CameraControls : MonoBehaviour
 
     public GameObject northButton, southButton, westButton, eastButton;
 
+    public bool onCenter;
+
     void Start()
     {
         currentLocation = Location.Center;
@@ -25,6 +27,7 @@ public class CameraControls : MonoBehaviour
     {
         if (currentLocation == Location.Center)
         {
+            onCenter = true;
             switch (dir)
             {
                case "North":

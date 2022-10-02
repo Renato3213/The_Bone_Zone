@@ -12,6 +12,23 @@ public class GameManager : MonoBehaviour
     public List<GameObject> enemies = new List<GameObject>();
     [SerializeField] Text vidasTxt;
     [SerializeField] Text moedasTxt;
+
+
+    public int totalEsqueletos;
+    public int esqueletosTrabalhando;
+    public int esqueletosPesquisando;
+    public int esqueletosDefendendo;
+    public float totalCalcio = 0;
+    public float totalInfamia = 0;
+    public int totalOuro = 0;
+    public int quantidadeFarmers;
+    public int quantidadeKnights;
+    public int quantidadeScouts;
+    public int quantidadeCasas;
+    public int quantidadeFazendas;
+    public int quantidadeDojos;
+    public int quantidadeBibliotecas;
+    public int quantidadeBares;
     void Awake()
     {
         instance = this;

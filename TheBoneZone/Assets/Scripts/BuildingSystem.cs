@@ -15,6 +15,8 @@ public class BuildingSystem : MonoBehaviour
 
     public GameObject turret1;
     public GameObject turret2;
+    public GameObject Fazenda;
+    public GameObject Mercado;
 
     PlaceableObject objToPlace;
 
@@ -34,6 +36,14 @@ public class BuildingSystem : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.W))
         {
             InitializeWithObject(turret2);
+        }
+        else if (Input.GetKeyDown(KeyCode.E))
+        {
+            InitializeWithObject(Fazenda);
+        }
+        else if (Input.GetKeyDown(KeyCode.R))
+        {
+            InitializeWithObject(Mercado);
         }
         if (!objToPlace)
         {
