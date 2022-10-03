@@ -25,7 +25,13 @@ public class AbreInterfaces : MonoBehaviour
             {
                 if (hit.collider != null)
                 {
-                    if(interfaces != 1)
+                    hit.collider.transform.TryGetComponent<PlaceableObject>(out PlaceableObject placeable);
+                    if (!placeable.placed)
+                    {
+                        return;
+                    }
+
+                    else if(interfaces != 1)
                     {
                         if(hit.collider.gameObject.TryGetComponent(out Painel painel))
                         {

@@ -16,6 +16,7 @@ public class CameraControls : MonoBehaviour
 
     void Start()
     {
+        GameManager.instance.onCenter = true;
         currentLocation = Location.Center;
         CameraNorth.SetActive(false);
         CameraSouth.SetActive(false);
@@ -25,9 +26,9 @@ public class CameraControls : MonoBehaviour
 
     public void ChangeLocation(string dir)
     {
+
         if (currentLocation == Location.Center)
         {
-            onCenter = true;
             switch (dir)
             {
                case "North":
@@ -39,16 +40,19 @@ public class CameraControls : MonoBehaviour
                     CameraSouth.SetActive(true);
                     currentLocation = Location.South;
                     southButton.SetActive(false);
+                    onCenter = false;
                     break;
                 case "West":
                     CameraWest.SetActive(true);
                     currentLocation = Location.West;
                     westButton.SetActive(false);
+                    onCenter = false;
                     break;
                 case "East":
                     CameraEast.SetActive(true);
                     currentLocation = Location.East;
                     eastButton.SetActive(false);
+                    onCenter = false;
                     break;
             }
 
@@ -164,6 +168,16 @@ public class CameraControls : MonoBehaviour
                     eastButton.SetActive(true);
                     break;
             }
+        }
+
+        if(currentLocation == Location.Center)
+        {
+            GameManager.instance.onCenter = true;
+        }
+
+        else
+        {
+            GameManager.instance.onCenter = false;
         }
 
 

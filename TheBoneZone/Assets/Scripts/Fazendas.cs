@@ -9,7 +9,7 @@ public class Fazendas : MonoBehaviour
     public bool possuiEsqueletos = false;
     public int quantidadeEsqueletos = 0;
     public int limiteEsqueletos = 3;
-    public float producao = 0.35f;
+    public float producao = 25f;
     public float tempo = 0;
     public float estoqueCalcio = 0;
 
@@ -36,7 +36,7 @@ public class Fazendas : MonoBehaviour
             if(tempo > 1f)
             {
                 estoqueCalcio += producao * quantidadeEsqueletos;
-                GameManager.instance.totalCalcio += producao * quantidadeEsqueletos;
+                GameManager.instance.AtualizaMoedas(producao * quantidadeEsqueletos);
                 tempo = 0;
             }
         }

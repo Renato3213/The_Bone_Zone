@@ -73,8 +73,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   partToRotate: {fileID: 9033976888811007577}
-  range: 6
+  range: 4
   enemyTag: Enemy
+  fireRate: 1
 --- !u!1 &9033976888811007576
 GameObject:
   m_ObjectHideFlags: 0

@@ -29,19 +29,20 @@ public class BuildingSystem : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) && !GameManager.instance.onCenter)
         {
-            InitializeWithObject(turret1);
+            if(GameManager.instance.totalCalcio >= 10)
+            {
+                GameManager.instance.AtualizaMoedas(-10);
+                InitializeWithObject(turret1);
+            }
         }
-        else if (Input.GetKeyDown(KeyCode.W))
-        {
-            InitializeWithObject(turret2);
-        }
-        else if (Input.GetKeyDown(KeyCode.E))
+        
+        else if (Input.GetKeyDown(KeyCode.E) && GameManager.instance.onCenter)
         {
             InitializeWithObject(Fazenda);
         }
-        else if (Input.GetKeyDown(KeyCode.R))
+        else if (Input.GetKeyDown(KeyCode.R) && GameManager.instance.onCenter)
         {
             InitializeWithObject(Mercado);
         }

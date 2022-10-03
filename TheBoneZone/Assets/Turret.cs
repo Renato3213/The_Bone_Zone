@@ -7,12 +7,13 @@ public class Turret : MonoBehaviour
     Transform target;
     public Transform partToRotate;
     public float range = 15f;
+    public Transform firePoint;
 
     public string enemyTag = "Enemy";
 
     public float fireRate = 1f;
     float fireCountDown = 0f;
-
+    public GameObject bulletPrefab;
     private void Start()
     {
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
@@ -58,6 +59,24 @@ public class Turret : MonoBehaviour
         Vector3 rotation = lookRotation.eulerAngles;
 
         partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+
+        if(fireCountDown <= 0f)
+        {
+            Shoot();
+            fireCountDown = 1f / fireRate ;
+        }
+
+        fireCountDown -= Time.deltaTime;
+    }
+
+    void Shoot()
+    {
+        GameObject go = (GameObject)Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        Bullet bullet = go.GetComponent<Bullet>();
+        if(bullet != null)
+        {
+            bullet.Seek(target);
+        }
     }
 
     private void OnDrawGizmosSelected()

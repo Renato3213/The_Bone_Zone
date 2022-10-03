@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public int vidas = 100;
     public int moedas = 100;
+    public bool onCenter;
 
     public List<GameObject> enemies = new List<GameObject>();
     [SerializeField] Text vidasTxt;
@@ -41,10 +42,10 @@ public class GameManager : MonoBehaviour
         vidasTxt.text = vidas.ToString();
     }
 
-    public void AtualizaMoedas(int qnt)
+    public void AtualizaMoedas(float qnt)
     {
-        moedas += qnt;
-        moedasTxt.text = moedas.ToString();
+        totalCalcio += qnt;
+        moedasTxt.text = totalCalcio.ToString();
     }
 
 }
