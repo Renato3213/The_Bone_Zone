@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class VisaoCamera : MonoBehaviour
 {
-    public Camera camera;
+    public Camera camera; 
     public float escala;
     public float minO = 10;
     public float maxO = 20;

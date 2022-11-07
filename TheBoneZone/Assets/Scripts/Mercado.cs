@@ -10,10 +10,10 @@ public class Mercado : MonoBehaviour
 
     public void Compra()
     {
-        if(GameManager.instance.totalCalcio >= 100)
+        if(GameManager.instance.Calcio >= 100)
         {
             GameObject teste = Instantiate(esqueleto, transform.position, transform.rotation);
-            GameManager.instance.totalCalcio -= 100;
+            GameManager.instance.Calcio -= 100;
         }
     }
 }

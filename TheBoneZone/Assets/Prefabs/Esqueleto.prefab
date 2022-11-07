@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 6657091109600931357}
   - component: {fileID: 6657091109600931358}
   - component: {fileID: 6657091109600931359}
+  - component: {fileID: 2543289117140427724}
+  - component: {fileID: 7658121196828973991}
   m_Layer: 0
   m_Name: Esqueleto
   m_TagString: Esqueleto
@@ -107,7 +109,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6657091109600931344}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3cf465b1d47b91722801950c761d6ea8, type: 3}
   m_Name: 
@@ -150,3 +152,35 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &2543289117140427724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6657091109600931344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8f6466f9325a664985e700296e4897a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  happiness: 0
+  energy: 0
+  agent: {fileID: 6657091109600931359}
+  alvo: {fileID: 0}
+--- !u!54 &7658121196828973991
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6657091109600931344}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 1000
+  m_AngularDrag: 1000
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 116
+  m_CollisionDetection: 0

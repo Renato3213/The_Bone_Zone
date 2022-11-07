@@ -14,7 +14,7 @@ public class Fazendas : MonoBehaviour
     public float estoqueCalcio = 0;
 
 
-    void Start()
+    void Awake()
     {
         ControlaListas.instance.listaFazendas.Add(this.gameObject);
     }
@@ -36,7 +36,7 @@ public class Fazendas : MonoBehaviour
             if(tempo > 1f)
             {
                 estoqueCalcio += producao * quantidadeEsqueletos;
-                GameManager.instance.AtualizaMoedas(producao * quantidadeEsqueletos);
+                GameManager.instance.AtualizaCalcio(producao * quantidadeEsqueletos);
                 tempo = 0;
             }
         }

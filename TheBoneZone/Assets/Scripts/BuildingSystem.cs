@@ -12,11 +12,8 @@ public class BuildingSystem : MonoBehaviour
     [SerializeField] Tilemap mainTilemap;
     [SerializeField] TileBase whiteTile;
     static Camera myCam;
+    public GameObject BuildInterface;
 
-    public GameObject turret1;
-    public GameObject turret2;
-    public GameObject Fazenda;
-    public GameObject Mercado;
 
     PlaceableObject objToPlace;
 
@@ -29,33 +26,22 @@ public class BuildingSystem : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q) && !GameManager.instance.onCenter)
+        #region Open Building Interface
+
+        if (Input.GetKeyDown(KeyCode.B)) //B de Build
         {
-            if(GameManager.instance.totalCalcio >= 10)
-            {
-                GameManager.instance.AtualizaMoedas(-10);
-                InitializeWithObject(turret1);
-            }
-        }
-        
-        else if (Input.GetKeyDown(KeyCode.E) && GameManager.instance.onCenter)
-        {
-            InitializeWithObject(Fazenda);
-        }
-        else if (Input.GetKeyDown(KeyCode.R) && GameManager.instance.onCenter)
-        {
-            InitializeWithObject(Mercado);
-        }
-        if (!objToPlace)
-        {
-            return;
+            OpenBuidingInterface();
         }
 
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            objToPlace.Rotate();
-        }
-        else if (Input.GetKeyDown(KeyCode.Space))
+        #endregion
+        #region Place Inputs
+
+        if (!objToPlace) return;
+       
+
+        if (Input.GetKeyDown(KeyCode.Return)) objToPlace.Rotate();
+       
+        else if (Input.GetMouseButtonDown(0))
         {
             if (CanBePlaced(objToPlace))
             {
@@ -63,17 +49,32 @@ public class BuildingSystem : MonoBehaviour
                 Vector3Int start = gridLayout.WorldToCell(objToPlace.GetStartPosition());
                 TakeArea(start, objToPlace.size);
             }
-            else
-            {
-                Destroy(objToPlace.gameObject);
-            }
         }
+        else if (Input.GetMouseButtonDown(1))
+        {
+            GameManager.instance.building = false;
+            Destroy(objToPlace.gameObject);
+        }
+
+        #endregion
+
     }
 
+    public void OpenBuidingInterface()//pra eu poder chamar de um botão no jogo também
+    {
+        if (GameManager.instance.onCenter)
+        {
+            BuildInterface.transform.GetChild(0).gameObject.SetActive(true);
+        }
+        else
+        {
+            BuildInterface.transform.GetChild(1).gameObject.SetActive(true);
+        }
+    }
     public static Vector3 GetMouseWorldPosition()
     {
         Ray ray = myCam.ScreenPointToRay(Input.mousePosition);
-        if(Physics.Raycast(ray, out RaycastHit hit))
+        if (Physics.Raycast(ray, out RaycastHit hit))
         {
             return hit.point;
         }
@@ -108,16 +109,19 @@ public class BuildingSystem : MonoBehaviour
 
     public void InitializeWithObject(GameObject prefab)
     {
+        GameManager.instance.building = true;
+        if(objToPlace != null) Destroy(objToPlace.gameObject);
+
         Vector3 position = SnapCoordinateToGrid(GetMouseWorldPosition());
 
-        GameObject obj = Instantiate(prefab, position, Quaternion.identity);
+        GameObject obj = Instantiate(prefab, position, Quaternion.Euler(0, 45, 0));
         objToPlace = obj.GetComponent<PlaceableObject>();
         obj.AddComponent<ObjectDrag>();
     }
 
     bool CanBePlaced(PlaceableObject placeable)
     {
-        BoundsInt area = new BoundsInt();
+        /*BoundsInt area = new BoundsInt();
         area.position = gridLayout.WorldToCell(objToPlace.GetStartPosition());
         area.size = placeable.size;
 
@@ -131,7 +135,9 @@ public class BuildingSystem : MonoBehaviour
             }
         }
 
-        return true;
+        return true;*/
+
+        return placeable.canBePlaced;
     }
 
     public void TakeArea(Vector3Int start, Vector3Int size)

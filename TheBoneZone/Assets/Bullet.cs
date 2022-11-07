@@ -37,7 +37,7 @@ public class Bullet : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy"))
         {
             Enemy enemy = other.gameObject.GetComponent<Enemy>();
-            GameManager.instance.AtualizaMoedas(enemy.moedas);
+            GameManager.instance.AtualizaCalcio(enemy.moedas);
             Destroy(enemy.gameObject);
             Destroy(gameObject);
         }

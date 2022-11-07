@@ -5,8 +5,14 @@ using UnityEngine;
 public class PlaceableObject : MonoBehaviour
 {
     public bool placed { get; private set; }
+    [SerializeField]
+    public bool canBePlaced { get; private set; }
     public Vector3Int size { get; private set; }
     Vector3[] Vertices;
+
+    public GameObject phantom, obj;
+
+    public float custo;
 
     void GotColliderVertexPositionsLocal() 
     {
@@ -42,6 +48,22 @@ public class PlaceableObject : MonoBehaviour
         CalculateSizeInCells();
     }
 
+    private void Update()
+    {
+        if(GameManager.instance.Calcio < custo)
+        {
+            canBePlaced = false;
+            Renderer mat = phantom.GetComponent<Renderer>();
+            mat.material.color = new Color32(255, 0, 0, 180);
+        }
+        else
+        {
+            canBePlaced = true;
+            MeshRenderer mat = phantom.GetComponent<MeshRenderer>();
+            mat.material.color = new Color32(180, 255, 0, 180);
+
+        }
+    }
     public void Rotate()
     {
         transform.Rotate(new Vector3(0, 90, 0));
@@ -58,9 +80,40 @@ public class PlaceableObject : MonoBehaviour
 
     public virtual void Place()
     {
-        ObjectDrag drag = gameObject.GetComponent<ObjectDrag>();
+        GameObject place = Instantiate(gameObject, transform.position, transform.rotation);
+        
+        ObjectDrag drag = place.GetComponent<ObjectDrag>();
+        BoxCollider collider = place.GetComponent<BoxCollider>();
+        PlaceableObject placeableObj = place.GetComponent<PlaceableObject>();
         Destroy(drag);
+        collider.isTrigger = false;
 
-        placed = true;
+        placeableObj.placed = true;
+        GameManager.instance.AtualizaCalcio(-custo);
+        placeableObj.phantom.SetActive(false);
+        placeableObj.obj.SetActive(true);
+        //phantom.SetActive(false);
+        //obj.SetActive(true);
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Obstacle"))
+        {
+            canBePlaced = false;
+            Renderer mat = phantom.GetComponent<Renderer>();
+            mat.material.color = new Color32(255, 0, 0, 180);
+        }
+
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Obstacle"))
+        {
+            canBePlaced = true;
+            MeshRenderer mat = phantom.GetComponent<MeshRenderer>();
+            mat.material.color = new Color32(180, 255, 0, 180);
+        }
     }
 }

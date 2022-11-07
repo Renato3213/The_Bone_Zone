@@ -7,20 +7,26 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public int vidas = 100;
-    public int moedas = 100;
+    public float Calcio = 0;
+    public float Infamia = 0;
     public bool onCenter;
+    public bool building;
+    public bool isMouseOverInterface;
+    public int maxSkeletons;
+    public GameObject vazio;
+
+    public GameObject activeInterface;
 
     public List<GameObject> enemies = new List<GameObject>();
     [SerializeField] Text vidasTxt;
     [SerializeField] Text moedasTxt;
+    [SerializeField] Text quantiaEsqueletos;
 
+    public ControlaListas listas;
 
-    public int totalEsqueletos;
     public int esqueletosTrabalhando;
     public int esqueletosPesquisando;
     public int esqueletosDefendendo;
-    public float totalCalcio = 0;
-    public float totalInfamia = 0;
     public int totalOuro = 0;
     public int quantidadeFarmers;
     public int quantidadeKnights;
@@ -33,19 +39,38 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         instance = this;
+        listas = GetComponent<ControlaListas>();
     }
 
-
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            UpdateActiveInterface(vazio);
+        } 
+    }
     public void AtualizaVidas(int dano)
     {
         vidas -= dano;
         vidasTxt.text = vidas.ToString();
     }
 
-    public void AtualizaMoedas(float qnt)
+    public void AtualizaCalcio(float qnt)
     {
-        totalCalcio += qnt;
-        moedasTxt.text = totalCalcio.ToString();
+        Calcio += qnt;
+        moedasTxt.text = Calcio.ToString();
     }
 
+    public void UpdateActiveInterface(GameObject newInterface)
+    {
+        if (activeInterface != null) activeInterface.gameObject.GetComponent<Canvas>().enabled = false;
+
+        activeInterface = newInterface;
+        activeInterface.gameObject.GetComponent<Canvas>().enabled = true;
+    }
+
+    public void UpdateSkeletonCount()
+    {
+        quantiaEsqueletos.text = ": " + listas.listaEsqueletos.Count + "/" + maxSkeletons;
+    }
 }

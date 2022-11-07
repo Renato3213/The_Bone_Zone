@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Chegada
+  - Obstacle
   layers:
   - Default
   - TransparentFX

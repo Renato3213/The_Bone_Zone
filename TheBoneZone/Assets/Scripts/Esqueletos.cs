@@ -30,7 +30,7 @@ public class Esqueletos : MonoBehaviour
     void Start()
     {
         ControlaListas.instance.listaEsqueletos.Add(this.gameObject);
-        GameManager.instance.totalInfamia += .1f;
+        GameManager.instance.Infamia += .1f;
         agente = GetComponent<NavMeshAgent>();
         //Evita erros no começo da execução.(OBS: Se colocar ".position" para, e não sei o motivo.)
         destino = transform;
@@ -128,7 +128,7 @@ public class Esqueletos : MonoBehaviour
             felicidade = 100;
             if(atualLocal != null && local == Construcoes.Bar)
             {
-                atualLocal.GetComponent<Bares>().quantidadeEsqueletos -= 1;
+                //atualLocal.GetComponent<Bares>().quantidadeEsqueletos -= 1;
                 atualLocal = null;
             }
         }
