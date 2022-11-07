@@ -1,17 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Fazendas : MonoBehaviour
 {
-    public enum Nivel{ nivel1, nivel2, nivel3};
-    public GameObject[] aparencia;
-    public bool possuiEsqueletos = false;
     public int quantidadeEsqueletos = 0;
-    public int limiteEsqueletos = 3;
-    public float producao = 25f;
+    public int limiteEsqueletos = 5;
+    public float producao = 20f;
     public float tempo = 0;
-    public float estoqueCalcio = 0;
+   
+    public List<GameObject> trabalhandoAqui = new List<GameObject> ();
 
 
     void Awake()
@@ -20,25 +19,46 @@ public class Fazendas : MonoBehaviour
     }
 
     
-    void Update()
+    void FixedUpdate()
     {
-        if(quantidadeEsqueletos > 0)
+        if(trabalhandoAqui.Count > 0)
         {
-            possuiEsqueletos = true;
-        }
-        else{
-            possuiEsqueletos = false;
-        }
-
-        if(possuiEsqueletos == true)
-        {
-            tempo += Time.deltaTime;
+            tempo += Time.fixedDeltaTime;
             if(tempo > 1f)
             {
-                estoqueCalcio += producao * quantidadeEsqueletos;
                 GameManager.instance.AtualizaCalcio(producao * quantidadeEsqueletos);
                 tempo = 0;
             }
         }
+    }
+
+    [ContextMenu("uepa")]
+    public void ChamarEsqueleto()
+    {
+        if(GameManager.instance.listas.esqueletosLivres.Count > 0)
+        {
+            NavMeshAgent agent = GameManager.instance.listas.esqueletosLivres[quantidadeEsqueletos].gameObject.GetComponent<NavMeshAgent>();
+            agent.isStopped = false;
+            agent.destination = transform.position;
+            quantidadeEsqueletos++;
+        }
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.collider != null)
+        {
+            if (collision.transform.CompareTag("Esqueleto"))
+            {
+                NavMeshAgent agent = collision.gameObject.GetComponent<NavMeshAgent>();
+                agent.isStopped = true;
+                collision.gameObject.GetComponent<MeshRenderer>().enabled = false;
+                trabalhandoAqui.Add(collision.gameObject);
+            }
+        }
+    }
+
+    public void LiberarEsqueleto()
+    {
+
     }
 }
