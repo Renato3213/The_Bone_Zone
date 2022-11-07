@@ -7227,7 +7227,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1344258968}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8546,7 +8546,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 72145.516, y: 7956.177}
+  m_AnchoredPosition: {x: 166163.25, y: 18324.467}
   m_SizeDelta: {x: 0, y: 798.6779}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1459372560
@@ -12900,7 +12900,7 @@ GameObject:
   - component: {fileID: 9214085518334630986}
   - component: {fileID: 9214085518334630982}
   - component: {fileID: 9214085518334630989}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BaseCentro
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
