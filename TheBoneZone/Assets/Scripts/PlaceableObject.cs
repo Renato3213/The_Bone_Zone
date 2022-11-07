@@ -53,14 +53,14 @@ public class PlaceableObject : MonoBehaviour
         if(GameManager.instance.Calcio < custo)
         {
             canBePlaced = false;
-            Renderer mat = phantom.GetComponent<Renderer>();
-            mat.material.color = new Color32(255, 0, 0, 180);
+            //Renderer mat = phantom.GetComponent<Renderer>();
+            //mat.material.color = new Color32(255, 0, 0, 180);
         }
         else
         {
             canBePlaced = true;
-            MeshRenderer mat = phantom.GetComponent<MeshRenderer>();
-            mat.material.color = new Color32(180, 255, 0, 180);
+            //MeshRenderer mat = phantom.GetComponent<MeshRenderer>();
+            //mat.material.color = new Color32(180, 255, 0, 180);
 
         }
     }
