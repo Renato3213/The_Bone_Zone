@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 988971208479847103}
   - component: {fileID: 988971208479847097}
   - component: {fileID: 988971208479847096}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 988971208664156888}
   - component: {fileID: 988971208664156895}
   - component: {fileID: 988971208664156894}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Interface
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192,7 +192,7 @@ GameObject:
   - component: {fileID: 988971208707845230}
   - component: {fileID: 988971208707845229}
   - component: {fileID: 988971208707845228}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: FechaTela
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -324,7 +324,7 @@ GameObject:
   m_Component:
   - component: {fileID: 988971208884351425}
   - component: {fileID: 988971208884351426}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -416,7 +416,7 @@ GameObject:
   - component: {fileID: 988971209104026016}
   - component: {fileID: 988971209104026018}
   - component: {fileID: 988971209104026017}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -496,7 +496,7 @@ GameObject:
   - component: {fileID: 988971209119064734}
   - component: {fileID: 988971209119064728}
   - component: {fileID: 988971209119064735}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -570,7 +570,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 988971209134674265}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Handle Slide Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -609,7 +609,7 @@ GameObject:
   - component: {fileID: 988971209237715315}
   - component: {fileID: 988971209237715325}
   - component: {fileID: 988971209237715324}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -685,7 +685,7 @@ GameObject:
   - component: {fileID: 988971209426550085}
   - component: {fileID: 988971209426550087}
   - component: {fileID: 988971209426550086}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -766,7 +766,7 @@ GameObject:
   - component: {fileID: 988971209897618201}
   - component: {fileID: 988971209897618200}
   - component: {fileID: 988971209897618207}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -897,7 +897,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 988971209902513479}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -936,7 +936,7 @@ GameObject:
   - component: {fileID: 988971210096302919}
   - component: {fileID: 988971210096302913}
   - component: {fileID: 988971210096302912}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Painel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1012,7 +1012,8 @@ GameObject:
   - component: {fileID: 988971210277718811}
   - component: {fileID: 988971210277718810}
   - component: {fileID: 988971210277718809}
-  m_Layer: 7
+  - component: {fileID: 165168001658298783}
+  m_Layer: 0
   m_Name: FazendaOBJ
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1085,6 +1086,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &165168001658298783
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 988971210277718815}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &3312427149633639218
 GameObject:
   m_ObjectHideFlags: 0
@@ -1096,7 +1113,7 @@ GameObject:
   - component: {fileID: 46861281402779744}
   - component: {fileID: 2484242021083334602}
   - component: {fileID: 8156253434238786422}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: FazendaPhantom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1181,10 +1198,9 @@ GameObject:
   - component: {fileID: 1642243858561576233}
   - component: {fileID: 4779532864831126636}
   - component: {fileID: 7273951023482854181}
-  - component: {fileID: 1030199099667031577}
   - component: {fileID: 1020219288224618464}
   - component: {fileID: 8979968371831686735}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Fazenda
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -1200,7 +1216,7 @@ Transform:
   m_GameObject: {fileID: 8800772503895065944}
   m_LocalRotation: {x: 0, y: 0.38268343, z: 0, w: 0.92387956}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5.82, y: 1, z: 2}
+  m_LocalScale: {x: 2, y: 1, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 988971210277718811}
@@ -1267,22 +1283,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   solicitado: {fileID: 988971208884351426}
   min: 1
---- !u!208 &1030199099667031577
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8800772503895065944}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.75, y: 0.75, z: 0.75}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0.75, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!65 &1020219288224618464
 BoxCollider:
   m_ObjectHideFlags: 0
