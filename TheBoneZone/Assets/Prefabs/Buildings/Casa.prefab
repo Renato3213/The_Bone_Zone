@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1253960775772116884}
   - component: {fileID: 1253960775772116886}
   - component: {fileID: 1253960775772116887}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 1253960775800602278}
   - component: {fileID: 1253960775800602333}
   - component: {fileID: 5391600963760813238}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CasaOBJ
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -206,7 +206,7 @@ GameObject:
   - component: {fileID: 1253960776761659197}
   - component: {fileID: 1253960776761659138}
   - component: {fileID: 1253960776761659139}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -340,7 +340,7 @@ GameObject:
   - component: {fileID: 1253960776923947620}
   - component: {fileID: 1253960776923947621}
   - component: {fileID: 1253960776923947626}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FechaTela
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -473,7 +473,7 @@ GameObject:
   - component: {fileID: 1253960776960059192}
   - component: {fileID: 1253960776960059194}
   - component: {fileID: 1253960776960059195}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Painel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -549,7 +549,7 @@ GameObject:
   - component: {fileID: 1253960777109715425}
   - component: {fileID: 1253960777109715427}
   - component: {fileID: 1253960777109715424}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -630,7 +630,7 @@ GameObject:
   - component: {fileID: 1253960777539837282}
   - component: {fileID: 1253960777539837283}
   - component: {fileID: 1253960777539837280}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Interface
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -732,7 +732,7 @@ GameObject:
   - component: {fileID: 8345954674224447419}
   - component: {fileID: 7290548665142974030}
   - component: {fileID: 3382405666253872906}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CasaPhantom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -816,7 +816,7 @@ GameObject:
   - component: {fileID: 522425907119330226}
   - component: {fileID: 154020288693652221}
   - component: {fileID: 8498273146383098984}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Casa
   m_TagString: Obstacle
   m_Icon: {fileID: 0}

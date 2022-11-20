@@ -81,6 +81,7 @@ public class PlaceableObject : MonoBehaviour
     public virtual void Place()
     {
         GameObject place = Instantiate(gameObject, transform.position, transform.rotation);
+        
         ObjectDrag drag = place.GetComponent<ObjectDrag>();
         BoxCollider collider = place.GetComponent<BoxCollider>();
         PlaceableObject placeableObj = place.GetComponent<PlaceableObject>();
