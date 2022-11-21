@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
 
-public class BotaoTrabalho : MonoBehaviour
+/*public class BotaoTrabalho : MonoBehaviour
 {
     //public GameObject esqueletinho;
     public Slider solicitado;
@@ -50,4 +50,4 @@ public class BotaoTrabalho : MonoBehaviour
             }
         }
     }
-}
+}*/

@@ -852,6 +852,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd7aaa42fe332db4b9bf689aebdbd992, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canBePlaced: 1
   phantom: {fileID: 6188111407587076512}
   obj: {fileID: 1253960775800602276}
   custo: 750

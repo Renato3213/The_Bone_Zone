@@ -6,7 +6,7 @@ public class PlaceableObject : MonoBehaviour
 {
     public bool placed { get; private set; }
     [SerializeField]
-    public bool canBePlaced { get; private set; }
+    public bool canBePlaced; //{ get; private set; }
     public Vector3Int size { get; private set; }
     Vector3[] Vertices;
 
@@ -50,19 +50,7 @@ public class PlaceableObject : MonoBehaviour
 
     private void Update()
     {
-        if(GameManager.instance.Calcio < custo)
-        {
-            canBePlaced = false;
-            //Renderer mat = phantom.GetComponent<Renderer>();
-            //mat.material.color = new Color32(255, 0, 0, 180);
-        }
-        else
-        {
-            canBePlaced = true;
-            //MeshRenderer mat = phantom.GetComponent<MeshRenderer>();
-            //mat.material.color = new Color32(180, 255, 0, 180);
-
-        }
+       
     }
     public void Rotate()
     {
@@ -81,7 +69,6 @@ public class PlaceableObject : MonoBehaviour
     public virtual void Place()
     {
         GameObject place = Instantiate(gameObject, transform.position, transform.rotation);
-        
         ObjectDrag drag = place.GetComponent<ObjectDrag>();
         BoxCollider collider = place.GetComponent<BoxCollider>();
         PlaceableObject placeableObj = place.GetComponent<PlaceableObject>();
@@ -111,9 +98,12 @@ public class PlaceableObject : MonoBehaviour
     {
         if (other.CompareTag("Obstacle"))
         {
-            canBePlaced = true;
-            MeshRenderer mat = phantom.GetComponent<MeshRenderer>();
-            mat.material.color = new Color32(180, 255, 0, 180);
+            if(GameManager.instance.Calcio > custo)
+            {
+                canBePlaced = true;
+                MeshRenderer mat = phantom.GetComponent<MeshRenderer>();
+                mat.material.color = new Color32(180, 255, 0, 180);
+            }
         }
     }
 }

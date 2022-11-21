@@ -9,13 +9,17 @@ public class Fazendas : MonoBehaviour
     public int limiteEsqueletos = 5;
     public float producao = 20f;
     public float tempo = 0;
-   
+
+    public Transform entrada, saida;
+
     public List<GameObject> trabalhandoAqui = new List<GameObject> ();
 
-
+    [SerializeField]
+    InterfaceFazenda myInterface;
     void Awake()
     {
         ControlaListas.instance.listaFazendas.Add(this.gameObject);
+        myInterface.Atualiza();
     }
 
     
@@ -32,33 +36,38 @@ public class Fazendas : MonoBehaviour
         }
     }
 
-    [ContextMenu("uepa")]
-    public void ChamarEsqueleto()
+    private void OnMouseOver()
     {
-        if(GameManager.instance.listas.esqueletosLivres.Count > 0)
+
+        if (Input.GetMouseButtonDown(1))
         {
-            NavMeshAgent agent = GameManager.instance.listas.esqueletosLivres[quantidadeEsqueletos].gameObject.GetComponent<NavMeshAgent>();
-            agent.isStopped = false;
-            agent.destination = transform.position;
-            quantidadeEsqueletos++;
+            //ChamarEsqueletos();
         }
     }
-    private void OnCollisionEnter(Collision collision)
+    private void OnMouseDown()
     {
-        if(collision.collider != null)
-        {
-            if (collision.transform.CompareTag("Esqueleto"))
-            {
-                NavMeshAgent agent = collision.gameObject.GetComponent<NavMeshAgent>();
-                agent.isStopped = true;
-                collision.gameObject.GetComponent<MeshRenderer>().enabled = false;
-                trabalhandoAqui.Add(collision.gameObject);
-            }
-        }
     }
 
+    public void ChamarEsqueletos()
+    {
+        if (UnitSelection.Instance.unitsSelected.Count == 0) return;
+
+        int i = 0;
+        while(i < limiteEsqueletos)
+        {
+            UnitSelection.Instance.unitsSelected[i].transform.GetComponent<NavMeshAgent>().destination = entrada.position;
+            i++;
+            quantidadeEsqueletos++;
+            myInterface.Atualiza();
+        }
+    }
     public void LiberarEsqueleto()
     {
-
+        trabalhandoAqui[0].transform.position = saida.position;
+        trabalhandoAqui[0].transform.GetComponent<MeshRenderer>().enabled = true;
+        trabalhandoAqui.RemoveAt(0);
+        quantidadeEsqueletos--;
+        myInterface.Atualiza();
     }
+
 }
