@@ -1,0 +1,261 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6828767580687358752
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 479113137394752984}
+  m_Layer: 0
+  m_Name: PortaMadeiraA
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &479113137394752984
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6828767580687358752}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7386141762077016377}
+  - {fileID: 3670334801947318194}
+  - {fileID: 1640551649093890873}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &6606259522151385425
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 479113137394752984}
+    m_Modifications:
+    - target: {fileID: 5578357953226619496, guid: 19682625eeafe1e418ab6d5f20e9ee22,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5578357953226619496, guid: 19682625eeafe1e418ab6d5f20e9ee22,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5578357953226619496, guid: 19682625eeafe1e418ab6d5f20e9ee22,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5578357953226619496, guid: 19682625eeafe1e418ab6d5f20e9ee22,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5578357953226619496, guid: 19682625eeafe1e418ab6d5f20e9ee22,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5578357953226619496, guid: 19682625eeafe1e418ab6d5f20e9ee22,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5578357953226619496, guid: 19682625eeafe1e418ab6d5f20e9ee22,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5578357953226619496, guid: 19682625eeafe1e418ab6d5f20e9ee22,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5578357953226619496, guid: 19682625eeafe1e418ab6d5f20e9ee22,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5578357953226619496, guid: 19682625eeafe1e418ab6d5f20e9ee22,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5578357953226619496, guid: 19682625eeafe1e418ab6d5f20e9ee22,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5578357953226619503, guid: 19682625eeafe1e418ab6d5f20e9ee22,
+        type: 3}
+      propertyPath: m_Name
+      value: PortaContornoMadeiraA
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 19682625eeafe1e418ab6d5f20e9ee22, type: 3}
+--- !u!4 &1640551649093890873 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5578357953226619496, guid: 19682625eeafe1e418ab6d5f20e9ee22,
+    type: 3}
+  m_PrefabInstance: {fileID: 6606259522151385425}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6815229659090460194
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 479113137394752984}
+    m_Modifications:
+    - target: {fileID: 4040951010398330651, guid: e8d8e697465de934f9ef8c3beb77e29d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040951010398330651, guid: e8d8e697465de934f9ef8c3beb77e29d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.0031186342
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040951010398330651, guid: e8d8e697465de934f9ef8c3beb77e29d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.833
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040951010398330651, guid: e8d8e697465de934f9ef8c3beb77e29d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040951010398330651, guid: e8d8e697465de934f9ef8c3beb77e29d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040951010398330651, guid: e8d8e697465de934f9ef8c3beb77e29d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040951010398330651, guid: e8d8e697465de934f9ef8c3beb77e29d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040951010398330651, guid: e8d8e697465de934f9ef8c3beb77e29d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040951010398330651, guid: e8d8e697465de934f9ef8c3beb77e29d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040951010398330651, guid: e8d8e697465de934f9ef8c3beb77e29d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040951010398330651, guid: e8d8e697465de934f9ef8c3beb77e29d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040951010398330652, guid: e8d8e697465de934f9ef8c3beb77e29d,
+        type: 3}
+      propertyPath: m_Name
+      value: PortaDetalheB
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e8d8e697465de934f9ef8c3beb77e29d, type: 3}
+--- !u!4 &7386141762077016377 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4040951010398330651, guid: e8d8e697465de934f9ef8c3beb77e29d,
+    type: 3}
+  m_PrefabInstance: {fileID: 6815229659090460194}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8439902571643691988
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 479113137394752984}
+    m_Modifications:
+    - target: {fileID: 5174399175225816165, guid: 7fe6534e0fb49b346ab5fa5de5cd8662,
+        type: 3}
+      propertyPath: m_Name
+      value: FundoMadeira
+      objectReference: {fileID: 0}
+    - target: {fileID: 5174399175225816166, guid: 7fe6534e0fb49b346ab5fa5de5cd8662,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5174399175225816166, guid: 7fe6534e0fb49b346ab5fa5de5cd8662,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5174399175225816166, guid: 7fe6534e0fb49b346ab5fa5de5cd8662,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.814
+      objectReference: {fileID: 0}
+    - target: {fileID: 5174399175225816166, guid: 7fe6534e0fb49b346ab5fa5de5cd8662,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 5174399175225816166, guid: 7fe6534e0fb49b346ab5fa5de5cd8662,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5174399175225816166, guid: 7fe6534e0fb49b346ab5fa5de5cd8662,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5174399175225816166, guid: 7fe6534e0fb49b346ab5fa5de5cd8662,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5174399175225816166, guid: 7fe6534e0fb49b346ab5fa5de5cd8662,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5174399175225816166, guid: 7fe6534e0fb49b346ab5fa5de5cd8662,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5174399175225816166, guid: 7fe6534e0fb49b346ab5fa5de5cd8662,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5174399175225816166, guid: 7fe6534e0fb49b346ab5fa5de5cd8662,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7fe6534e0fb49b346ab5fa5de5cd8662, type: 3}
+--- !u!4 &3670334801947318194 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5174399175225816166, guid: 7fe6534e0fb49b346ab5fa5de5cd8662,
+    type: 3}
+  m_PrefabInstance: {fileID: 8439902571643691988}
+  m_PrefabAsset: {fileID: 0}
