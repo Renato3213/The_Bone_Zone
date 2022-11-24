@@ -114,7 +114,7 @@ public class BuildingSystem : MonoBehaviour
 
         Vector3 position = SnapCoordinateToGrid(GetMouseWorldPosition());
 
-        GameObject obj = Instantiate(prefab, position, Quaternion.Euler(0, -135, 0));
+        GameObject obj = Instantiate(prefab, position, Quaternion.Euler(0, 45, 0));
         objToPlace = obj.GetComponent<PlaceableObject>();
         obj.AddComponent<ObjectDrag>();
     }
