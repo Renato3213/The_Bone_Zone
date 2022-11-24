@@ -23,7 +23,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] Text quantiaEsqueletos;
 
     public ControlaListas listas;
-    public GameObject deposit;
 
     public int esqueletosTrabalhando;
     public int esqueletosPesquisando;
@@ -68,7 +67,6 @@ public class GameManager : MonoBehaviour
     {
         if (activeInterface != null) activeInterface.gameObject.GetComponent<Canvas>().enabled = false;
 
-        UnitSelection.Instance.DeselectAll();
         activeInterface = newInterface;
         activeInterface.gameObject.GetComponent<Canvas>().enabled = true;
     }
