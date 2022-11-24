@@ -12,23 +12,22 @@ public class Fazendas : MonoBehaviour
 
     public Transform entrada, saida;
 
-    public List<GameObject> trabalhandoAqui = new List<GameObject> ();
+    public List<GameObject> trabalhandoAqui = new List<GameObject>();
 
-    [SerializeField]
-    InterfaceFazenda myInterface;
+    public InterfaceFazenda myInterface;
     void Awake()
     {
-        ControlaListas.instance.listaFazendas.Add(this.gameObject);
+        ControlaListas.instance.fazendasLivres.Add(this);
         myInterface.Atualiza();
     }
 
-    
+
     void FixedUpdate()
     {
-        if(trabalhandoAqui.Count > 0)
+        if (trabalhandoAqui.Count > 0)
         {
             tempo += Time.fixedDeltaTime;
-            if(tempo > 1f)
+            if (tempo > 1f)
             {
                 GameManager.instance.AtualizaCalcio(producao * quantidadeEsqueletos);
                 tempo = 0;
@@ -46,7 +45,7 @@ public class Fazendas : MonoBehaviour
     }
     private void OnMouseDown()
     {
-
+        GameManager.instance.UpdateActiveInterface(myInterface.gameObject);
     }
 
     private void OnMouseExit()
@@ -56,14 +55,13 @@ public class Fazendas : MonoBehaviour
     public void ChamarEsqueletos()
     {
         if (UnitSelection.Instance.unitsSelected.Count == 0) return;
-
         int i = 0;
-        while(i < UnitSelection.Instance.unitsSelected.Count || i < limiteEsqueletos)
+        foreach (var unit in UnitSelection.Instance.unitsSelected)
         {
-            UnitSelection.Instance.unitsSelected[i].transform.GetComponent<NavMeshAgent>().destination = entrada.position;
+            unit.transform.GetComponent<NavMeshAgent>().destination = entrada.position;
+            UnitSelection.Instance.Deselect(unit.gameObject);
             i++;
-            quantidadeEsqueletos++;
-            myInterface.Atualiza();
+            if (i == limiteEsqueletos) break;
         }
     }
     public void LiberarEsqueleto()
@@ -75,4 +73,15 @@ public class Fazendas : MonoBehaviour
         myInterface.Atualiza();
     }
 
+    public bool Cheio()
+    {
+        if (trabalhandoAqui.Count == limiteEsqueletos)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
