@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 3069425547958591438}
   - component: {fileID: 3249917392852465035}
   - component: {fileID: 753105983290934665}
-  - component: {fileID: 2042314665695211792}
+  - component: {fileID: 3968973612079280094}
   m_Layer: 7
   m_Name: PubPhantom
   m_TagString: Untagged
@@ -148,22 +148,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!208 &2042314665695211792
-NavMeshObstacle:
+--- !u!65 &3968973612079280094
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4927632219072185004}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
-  m_MoveThreshold: 0.1
-  m_Carve: 0
-  m_CarveOnlyStationary: 1
+  serializedVersion: 2
+  m_Size: {x: 1.3, y: 1, z: 1.3}
   m_Center: {x: 0, y: 0, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!1 &7450597719990907514
 GameObject:
   m_ObjectHideFlags: 0
@@ -258,7 +255,7 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_Extents: {x: 0.3, y: 0.5, z: 0.3}
   m_MoveThreshold: 0.1
   m_Carve: 0
   m_CarveOnlyStationary: 1

@@ -38,22 +38,27 @@ public class Fazendas : MonoBehaviour
 
     private void OnMouseOver()
     {
-
+        GameManager.instance.mouseOverObject = true;
         if (Input.GetMouseButtonDown(1))
         {
-            //ChamarEsqueletos();
+            ChamarEsqueletos();
         }
     }
     private void OnMouseDown()
     {
+
     }
 
+    private void OnMouseExit()
+    {
+        GameManager.instance.mouseOverObject = false;
+    }
     public void ChamarEsqueletos()
     {
         if (UnitSelection.Instance.unitsSelected.Count == 0) return;
 
         int i = 0;
-        while(i < limiteEsqueletos)
+        while(i < UnitSelection.Instance.unitsSelected.Count || i < limiteEsqueletos)
         {
             UnitSelection.Instance.unitsSelected[i].transform.GetComponent<NavMeshAgent>().destination = entrada.position;
             i++;
@@ -64,7 +69,7 @@ public class Fazendas : MonoBehaviour
     public void LiberarEsqueleto()
     {
         trabalhandoAqui[0].transform.position = saida.position;
-        trabalhandoAqui[0].transform.GetComponent<MeshRenderer>().enabled = true;
+        trabalhandoAqui[0].transform.GetChild(1).gameObject.SetActive(true);
         trabalhandoAqui.RemoveAt(0);
         quantidadeEsqueletos--;
         myInterface.Atualiza();

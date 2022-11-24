@@ -24,6 +24,9 @@ public class UnitMovement : MonoBehaviour
         {
             meshAgents.Add(myAgent);
         }
+
+        if (GameManager.instance.mouseOverObject) return;
+
         if (Input.GetMouseButtonDown(1) && meshAgents.Contains(myAgent))
         {
             if (meshAgents.IndexOf(myAgent) == 0)

@@ -11,8 +11,10 @@ public class EntradaFazenda : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Esqueleto"))
         {
+            Debug.Log("");
             estaFazenda.trabalhandoAqui.Add(other.gameObject);
-            other.transform.GetComponent<MeshRenderer>().enabled = false;
+            other.gameObject.SetActive(false);
+            UnitSelection.Instance.Deselect(other.transform.parent.gameObject);
         }
     }
 }

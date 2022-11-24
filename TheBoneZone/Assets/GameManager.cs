@@ -36,6 +36,8 @@ public class GameManager : MonoBehaviour
     public int quantidadeDojos;
     public int quantidadeBibliotecas;
     public int quantidadeBares;
+
+    public bool mouseOverObject = false;
     void Awake()
     {
         instance = this;
