@@ -17,7 +17,7 @@ public class Bullet : MonoBehaviour
     }
     private void Update()
     {
-        if (target == null)
+        if(target == null)
         {
             Destroy(gameObject);
             return;
@@ -26,7 +26,7 @@ public class Bullet : MonoBehaviour
         Vector3 dir = target.position - transform.position;
         float distanceThisFrame = speed * Time.deltaTime;
 
-        if (dir.magnitude <= distanceThisFrame)
+        if(dir.magnitude <= distanceThisFrame)
         {
             //referencia o inimigo para causar dano.
             Enemy enemy = target.gameObject.GetComponent<Enemy>();
@@ -37,7 +37,7 @@ public class Bullet : MonoBehaviour
 
             Destroy(this.gameObject);
         }
-        transform.Translate(dir.normalized * distanceThisFrame, Space.World);
+        transform.Translate(dir.normalized * distanceThisFrame,Space.World);
     }
-
+    
 }
