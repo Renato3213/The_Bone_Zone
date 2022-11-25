@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
 {
     Transform target;
     public float speed = 10f;
+    public float damage;
     public void Seek(Transform _target)
     {
         target = _target;
@@ -16,7 +17,7 @@ public class Bullet : MonoBehaviour
     }
     private void Update()
     {
-        if(target == null)
+        if (target == null)
         {
             Destroy(gameObject);
             return;
@@ -25,22 +26,18 @@ public class Bullet : MonoBehaviour
         Vector3 dir = target.position - transform.position;
         float distanceThisFrame = speed * Time.deltaTime;
 
-        if(dir.magnitude <= distanceThisFrame)
+        if (dir.magnitude <= distanceThisFrame)
         {
-            return;
+            //referencia o inimigo para causar dano.
+            Enemy enemy = target.gameObject.GetComponent<Enemy>();
+            enemy.TakeDamage(damage);
+
+            //atualiza a quantidade de calcio
+            GameManager.instance.AtualizaCalcio(enemy.moedas);
+
+            Destroy(this.gameObject);
         }
-        transform.Translate(dir.normalized * distanceThisFrame,Space.World);
+        transform.Translate(dir.normalized * distanceThisFrame, Space.World);
     }
 
-    private void OnCollisionEnter(Collision other)
-    {
-        if (other.gameObject.CompareTag("Enemy"))
-        {
-            Enemy enemy = other.gameObject.GetComponent<Enemy>();
-            GameManager.instance.AtualizaCalcio(enemy.moedas);
-            Destroy(enemy.gameObject);
-            Destroy(gameObject);
-        }
-    }
-    
 }

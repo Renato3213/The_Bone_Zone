@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] Text quantiaEsqueletos;
 
     public ControlaListas listas;
+    public GameObject deposit;
+
 
     public int esqueletosTrabalhando;
     public int esqueletosPesquisando;

@@ -12,7 +12,7 @@ public class ControlaListas : MonoBehaviour
     public List<GameObject> listaPubs = new List<GameObject>();
 
     public List<GameObject> esqueletosLivres = new List<GameObject>();
-    public List<GameObject> casasLivres = new List<GameObject>();
+    public List<Casas> casasLivres = new List<Casas>();
     public List<GameObject> fazendasLivres = new List<GameObject>();
     public List<GameObject> pubsLivres = new List<GameObject>();
 

@@ -12,10 +12,12 @@ public class PlaceableObject : MonoBehaviour
 
     public GameObject phantom, obj;
 
+    public Material phantomMat;
     public float custo;
 
     void GotColliderVertexPositionsLocal() 
     {
+        phantomMat.color = new Color32(180, 255, 0, 180);
         BoxCollider b = GetComponent<BoxCollider>();
         Vertices = new Vector3[4];
         Vertices[0] = b.center + new Vector3(-b.size.x, -b.size.y, -b.size.z) * 0.5f;
@@ -88,8 +90,7 @@ public class PlaceableObject : MonoBehaviour
         if (other.CompareTag("Obstacle"))
         {
             canBePlaced = false;
-            Renderer mat = phantom.GetComponent<Renderer>();
-            mat.material.color = new Color32(255, 0, 0, 180);
+            phantomMat.color = new Color32(255, 0, 0, 180);
         }
 
     }
@@ -101,8 +102,7 @@ public class PlaceableObject : MonoBehaviour
             if(GameManager.instance.Calcio > custo)
             {
                 canBePlaced = true;
-                MeshRenderer mat = phantom.GetComponent<MeshRenderer>();
-                mat.material.color = new Color32(180, 255, 0, 180);
+                phantomMat.color = new Color32(180, 255, 0, 180);
             }
         }
     }

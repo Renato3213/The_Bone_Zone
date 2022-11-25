@@ -1,28 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class Skeleton : MonoBehaviour
 {
-    public enum State {Working, HavingFun, Resting, Idle}
+    public enum State { Working, HavingFun, Resting, Idle }
     public float happiness, energy;
     public NavMeshAgent agent;
-    public Transform alvo;
+    public bool isWorking;
+    //public GameObject alvo;
     private void Awake()
     {
         UnitSelection.Instance.unitList.Add(this.gameObject);
         //agent = GetComponent<NavMeshAgent>();
         GameManager.instance.listas.esqueletosLivres.Add(this.gameObject);
         GameManager.instance.listas.listaEsqueletos.Add(this.gameObject);
-        happiness = 50f;
-        energy = 50f;
+        happiness = 100f;
+        energy = 100f;
         //agent.destination = new Vector3(transform.position.x -0.1f, transform.position.y, transform.position.z);
     }
 
     private void OnDestroy()
     {
-        UnitSelection.Instance.unitList.Remove(this.gameObject);    
+        UnitSelection.Instance.unitList.Remove(this.gameObject);
     }
 
     /*private void FixedUpdate()
@@ -34,27 +33,28 @@ public class Skeleton : MonoBehaviour
 
     }*/
 
-    public void GoRest()
+    public void Recover()
     {
-       alvo =  GameManager.instance.listas.casasLivres[0].transform;
-       //agent.destination = alvo.position;
-    }
-
-    public void GoHaveFun()
-    {
-        alvo = GameManager.instance.listas.pubsLivres[0].transform;
-        //agent.destination = alvo.position;
-       
-    }
-
-    public void OnTriggerEnter(Collider other)
-    {
-        if (other.transform == alvo)
+        if (happiness == 0)
         {
-            Debug.Log("chegou");
-            gameObject.SetActive(false);
+            // alvo = GameManager.instance.listas.pubsLivres[0];
+
+            
         }
+        else if (energy == 0)
+        {
+            Casas casa = GameManager.instance.listas.casasLivres[0];
+
+            if (casa != null)
+            {
+                agent.destination = casa.entrada.position;
+            }
+
+        }
+
+        //agent.destination = alvo.position;
     }
+
 
 
 }

@@ -14,8 +14,8 @@ public class Fazendas : MonoBehaviour
 
     public List<GameObject> trabalhandoAqui = new List<GameObject> ();
 
-    [SerializeField]
-    InterfaceFazenda myInterface;
+    
+    public InterfaceFazenda myInterface;
     void Awake()
     {
         ControlaListas.instance.listaFazendas.Add(this.gameObject);
@@ -31,6 +31,49 @@ public class Fazendas : MonoBehaviour
             if(tempo > 1f)
             {
                 GameManager.instance.AtualizaCalcio(producao * quantidadeEsqueletos);
+                for(int i = 0; i < trabalhandoAqui.Count; i++)
+                {
+                    Skeleton skeleton = trabalhandoAqui[i].GetComponent<Skeleton>();
+
+                    if (skeleton.energy <= 0 || skeleton.happiness <= 0)
+                    {
+                        skeleton.energy = skeleton.energy < 0 ? 0 : skeleton.energy;
+                        skeleton.happiness = skeleton.happiness < 0 ? 0 : skeleton.happiness;
+                        trabalhandoAqui[i].transform.position = saida.position;
+                        trabalhandoAqui[i].transform.GetComponent<NavMeshAgent>().enabled = true;
+                        quantidadeEsqueletos--;
+                        myInterface.Atualiza();
+                        skeleton.Recover();
+                        trabalhandoAqui.Remove(trabalhandoAqui[i]);
+                    }
+                    else
+                    {
+                        skeleton.happiness -= 3;
+                        skeleton.energy -= 20;
+                    }
+                }
+
+                /*foreach (GameObject unit in trabalhandoAqui)
+                {
+                    Skeleton skeleton = unit.GetComponent<Skeleton>();
+                    
+                    if(skeleton.energy <= 0 || skeleton.happiness <= 0)
+                    {
+                        skeleton.energy = skeleton.energy < 0? 0: skeleton.energy;
+                        skeleton.happiness= skeleton.happiness < 0 ? 0 : skeleton.happiness;
+                        unit.transform.position = saida.position;
+                        unit.transform.GetComponent<NavMeshAgent>().enabled = true;
+                        quantidadeEsqueletos--;
+                        myInterface.Atualiza();
+                        skeleton.Recover();
+                        trabalhandoAqui.Remove(unit);
+                    }
+                    else
+                    {
+                        skeleton.happiness -= 3;
+                        skeleton.energy -= 5;
+                    }
+                }*/
                 tempo = 0;
             }
         }
@@ -46,7 +89,7 @@ public class Fazendas : MonoBehaviour
     }
     private void OnMouseDown()
     {
-
+        GameManager.instance.UpdateActiveInterface(myInterface.gameObject);
     }
 
     private void OnMouseExit()
@@ -58,18 +101,18 @@ public class Fazendas : MonoBehaviour
         if (UnitSelection.Instance.unitsSelected.Count == 0) return;
 
         int i = 0;
-        while(i < UnitSelection.Instance.unitsSelected.Count || i < limiteEsqueletos)
+        foreach (var unit in UnitSelection.Instance.unitsSelected)
         {
-            UnitSelection.Instance.unitsSelected[i].transform.GetComponent<NavMeshAgent>().destination = entrada.position;
+            if (i == limiteEsqueletos) break;
+            unit.transform.GetComponent<NavMeshAgent>().destination = entrada.position;
             i++;
-            quantidadeEsqueletos++;
-            myInterface.Atualiza();
+            
         }
     }
     public void LiberarEsqueleto()
     {
         trabalhandoAqui[0].transform.position = saida.position;
-        trabalhandoAqui[0].transform.GetChild(1).gameObject.SetActive(true);
+        trabalhandoAqui[0].transform.GetComponent<NavMeshAgent>().enabled= true; 
         trabalhandoAqui.RemoveAt(0);
         quantidadeEsqueletos--;
         myInterface.Atualiza();

@@ -11,6 +11,7 @@ public class Turret : MonoBehaviour
 
     public string enemyTag = "Enemy";
 
+    public float damage = 10;
     public float fireRate = 1f;
     float fireCountDown = 0f;
     public GameObject bulletPrefab;
@@ -73,8 +74,9 @@ public class Turret : MonoBehaviour
     {
         GameObject go = (GameObject)Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Bullet bullet = go.GetComponent<Bullet>();
-        if(bullet != null)
+        if (bullet != null)
         {
+            bullet.damage = damage;
             bullet.Seek(target);
         }
     }
