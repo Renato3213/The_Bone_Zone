@@ -7,16 +7,13 @@ public class Skeleton : MonoBehaviour
     public float happiness, energy;
     public NavMeshAgent agent;
     public bool isWorking;
-    //public GameObject alvo;
     private void Awake()
     {
         UnitSelection.Instance.unitList.Add(this.gameObject);
-        //agent = GetComponent<NavMeshAgent>();
         GameManager.instance.listas.esqueletosLivres.Add(this.gameObject);
         GameManager.instance.listas.listaEsqueletos.Add(this.gameObject);
         happiness = 100f;
         energy = 100f;
-        //agent.destination = new Vector3(transform.position.x -0.1f, transform.position.y, transform.position.z);
     }
 
     private void OnDestroy()
@@ -24,22 +21,13 @@ public class Skeleton : MonoBehaviour
         UnitSelection.Instance.unitList.Remove(this.gameObject);
     }
 
-    /*private void FixedUpdate()
-    {
-        if(agent.remainingDistance <= 0.05f)
-        {
-            agent.isStopped = true;
-        }
-
-    }*/
-
     public void Recover()
     {
         if (happiness == 0)
         {
             // alvo = GameManager.instance.listas.pubsLivres[0];
 
-            
+
         }
         else if (energy == 0)
         {
@@ -51,10 +39,21 @@ public class Skeleton : MonoBehaviour
             }
 
         }
+        else
+        {
+            ProcurarTrabalho();
+        }
 
-        //agent.destination = alvo.position;
     }
 
-
+    void ProcurarTrabalho()
+    {
+        Debug.Log("uepa");
+        if (ControlaListas.instance.fazendasLivres[0] != null)
+        {
+            Fazendas fazenda = ControlaListas.instance.fazendasLivres[0];
+            agent.destination = fazenda.entrada.position;
+        }
+    }
 
 }

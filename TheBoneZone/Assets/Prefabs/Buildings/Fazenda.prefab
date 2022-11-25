@@ -10,9 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 988971210277718811}
   - component: {fileID: 8005093620582033510}
+  - component: {fileID: 5911837259480372340}
+  - component: {fileID: 8046656184929877111}
   m_Layer: 7
   m_Name: FazendaOBJ
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -52,6 +54,39 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0.88, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &5911837259480372340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 988971210277718815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61a2066dae9133741bd73aa3d07fb5ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quantidadeEsqueletos: 0
+  limiteEsqueletos: 5
+  producao: 20
+  tempo: 0
+  entrada: {fileID: 645698305700556686}
+  saida: {fileID: 6364797069691154534}
+  trabalhandoAqui: []
+  myInterface: {fileID: 2644826376105724553}
+--- !u!65 &8046656184929877111
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 988971210277718815}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.6613152, y: 2.020988, z: 2.5440834}
+  m_Center: {x: 0.1250887, y: 1.0120208, z: 0.000000017965885}
 --- !u!1 &3312427149633639218
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,7 +329,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1642243858561576233}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Fazendas, Assembly-CSharp
         m_MethodName: LiberarEsqueleto
         m_Mode: 1
@@ -420,7 +455,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61931d7a768a9dd49b7f91d20b3ab039, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  estaFazenda: {fileID: 1642243858561576233}
+  estaFazenda: {fileID: 5911837259480372340}
   Slots: {fileID: 2169839860270742952}
 --- !u!1 &7175088446258302101
 GameObject:
@@ -616,7 +651,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44818b91596cf74db16007847611b79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  estaFazenda: {fileID: 1642243858561576233}
+  estaFazenda: {fileID: 5911837259480372340}
 --- !u!54 &4861079341527814612
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -856,9 +891,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8207459838287769425}
   - component: {fileID: 2158466520026492632}
-  - component: {fileID: 1642243858561576233}
-  - component: {fileID: 1020219288224618464}
   - component: {fileID: 8979968371831686735}
+  - component: {fileID: 8182499403510834769}
   m_Layer: 7
   m_Name: Fazenda
   m_TagString: Obstacle
@@ -900,39 +934,6 @@ MonoBehaviour:
   obj: {fileID: 988971210277718815}
   phantomMat: {fileID: 2100000, guid: 796cbc45764d8e74594139b9c3c7c496, type: 2}
   custo: 1000
---- !u!114 &1642243858561576233
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8800772503895065944}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61a2066dae9133741bd73aa3d07fb5ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  quantidadeEsqueletos: 0
-  limiteEsqueletos: 5
-  producao: 20
-  tempo: 0
-  entrada: {fileID: 645698305700556686}
-  saida: {fileID: 6364797069691154534}
-  trabalhandoAqui: []
-  myInterface: {fileID: 2644826376105724553}
---- !u!65 &1020219288224618464
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8800772503895065944}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 4.235624, y: 1.650685, z: 2.4602306}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &8979968371831686735
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -949,6 +950,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &8182499403510834769
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8800772503895065944}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.185775, y: 1, z: 3.6318946}
+  m_Center: {x: -0.41077918, y: 0, z: 0.46429518}
 --- !u!1001 &1046969347054235409
 PrefabInstance:
   m_ObjectHideFlags: 0

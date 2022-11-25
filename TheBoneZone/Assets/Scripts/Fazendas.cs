@@ -18,8 +18,7 @@ public class Fazendas : MonoBehaviour
     public InterfaceFazenda myInterface;
     void Awake()
     {
-        ControlaListas.instance.listaFazendas.Add(this.gameObject);
-        myInterface.Atualiza();
+        ControlaListas.instance.fazendasLivres.Add(this);
     }
 
     

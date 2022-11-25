@@ -30,7 +30,7 @@ public class BuildingSystem : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.B)) //B de Build
         {
-            OpenBuidingInterface();
+            GameManager.instance.UpdateActiveInterface(BuildInterface);
         }
 
         #endregion

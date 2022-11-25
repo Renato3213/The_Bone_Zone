@@ -1,9 +1,10 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Casas : MonoBehaviour
+public class Bares : MonoBehaviour
 {
     public TextMeshProUGUI slots;
     List<GameObject> descansandoAqui = new List<GameObject>();
@@ -13,7 +14,7 @@ public class Casas : MonoBehaviour
     public float multiplier = 5;
     void Awake()
     {
-        ControlaListas.instance.casasLivres.Add(this);
+        ControlaListas.instance.pubsLivres.Add(this);
         GameManager.instance.maxSkeletons += limiteEsqueletos;
         GameManager.instance.UpdateSkeletonCount();
     }
@@ -27,9 +28,9 @@ public class Casas : MonoBehaviour
         {
             Skeleton skeleton = descansandoAqui[i].GetComponent<Skeleton>();
 
-            if (skeleton.energy >= 100)
+            if (skeleton.happiness >= 100)
             {
-                skeleton.energy = skeleton.energy > 100 ? 100 : skeleton.energy;
+                skeleton.happiness = skeleton.happiness > 100 ? 100 : skeleton.happiness;
                 descansandoAqui[i].transform.position = saida.position;
                 descansandoAqui[i].transform.GetComponent<NavMeshAgent>().enabled = true;
                 descansandoAqui.Remove(descansandoAqui[i]);
@@ -37,32 +38,15 @@ public class Casas : MonoBehaviour
             }
             else
             {
-                skeleton.energy += Time.fixedDeltaTime * multiplier;
+                skeleton.happiness += Time.fixedDeltaTime * multiplier;
             }
         }
-        /*foreach (var unit in descansandoAqui)
-        {
-            Skeleton skeleton = unit.GetComponent<Skeleton>();
-
-            if (skeleton.energy >= 100)
-            {
-                skeleton.energy = skeleton.energy > 100 ? 100 : skeleton.energy;
-                unit.transform.position = saida.position;
-                unit.transform.GetComponent<NavMeshAgent>().enabled = true;
-                descansandoAqui.Remove(unit);
-                AtualizaInterface();
-            }
-            else
-            {
-                skeleton.energy += Time.fixedDeltaTime * multiplier;
-            }
-        }*/
+       
     }
 
     void AtualizaInterface()
     {
-        Debug.Log("a");
-        slots.text = ""+descansandoAqui.Count + "/" + limiteEsqueletos;
+        slots.text = "" + descansandoAqui.Count + "/" + limiteEsqueletos;
     }
 
     void LiberaEsqueleto(GameObject esqueleto)
@@ -79,7 +63,7 @@ public class Casas : MonoBehaviour
         if (other.CompareTag("Esqueleto"))
         {
             Debug.Log("opa");
-            if(descansandoAqui.Count == limiteEsqueletos)
+            if (descansandoAqui.Count == limiteEsqueletos)
             {
                 other.transform.GetComponent<Skeleton>().Recover();
                 return;
@@ -92,7 +76,7 @@ public class Casas : MonoBehaviour
 
             if (descansandoAqui.Count == limiteEsqueletos)
             {
-                ControlaListas.instance.casasLivres.Remove(this);
+                ControlaListas.instance.pubsLivres.Remove(this);
             }
         }
     }
