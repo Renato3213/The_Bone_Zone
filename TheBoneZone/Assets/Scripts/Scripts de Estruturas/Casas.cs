@@ -32,6 +32,7 @@ public class Casas : MonoBehaviour
                 skeleton.energy = skeleton.energy > 100 ? 100 : skeleton.energy;
                 descansandoAqui[i].transform.position = saida.position;
                 descansandoAqui[i].transform.GetComponent<NavMeshAgent>().enabled = true;
+                descansandoAqui[i].GetComponent<Skeleton>().Recover();
                 descansandoAqui.Remove(descansandoAqui[i]);
                 AtualizaInterface();
             }

@@ -46,8 +46,6 @@ public class BuildingSystem : MonoBehaviour
             if (CanBePlaced(objToPlace))
             {
                 objToPlace.Place();
-                Vector3Int start = gridLayout.WorldToCell(objToPlace.GetStartPosition());
-                TakeArea(start, objToPlace.size);
             }
         }
         else if (Input.GetMouseButtonDown(1))
@@ -92,21 +90,6 @@ public class BuildingSystem : MonoBehaviour
         return position;
     }
 
-    static TileBase[] GetTilesBlock(BoundsInt area, Tilemap tilemap)
-    {
-        TileBase[] array = new TileBase[area.size.x * area.size.y * area.size.z];
-        int counter = 0;
-
-        foreach (var v in area.allPositionsWithin)
-        {
-            Vector3Int pos = new Vector3Int(v.x, v.y, 0);
-            array[counter] = tilemap.GetTile(pos);
-            counter++;
-        }
-
-        return array;
-    }
-
     public void InitializeWithObject(GameObject prefab)
     {
         GameManager.instance.building = true;
@@ -114,34 +97,16 @@ public class BuildingSystem : MonoBehaviour
 
         Vector3 position = SnapCoordinateToGrid(GetMouseWorldPosition());
 
-        GameObject obj = Instantiate(prefab, position, Quaternion.Euler(0, 45, 0));
+        GameObject obj = Instantiate(prefab, position, prefab.transform.rotation);
         objToPlace = obj.GetComponent<PlaceableObject>();
         obj.AddComponent<ObjectDrag>();
     }
 
     bool CanBePlaced(PlaceableObject placeable)
     {
-        /*BoundsInt area = new BoundsInt();
-        area.position = gridLayout.WorldToCell(objToPlace.GetStartPosition());
-        area.size = placeable.size;
-
-        TileBase[] baseArray = GetTilesBlock(area, mainTilemap);
-
-        foreach (var b in baseArray)
-        {
-            if(b == whiteTile)
-            {
-                return false;
-            }
-        }
-
-        return true;*/
+        
 
         return placeable.canBePlaced;
     }
 
-    public void TakeArea(Vector3Int start, Vector3Int size)
-    {
-        mainTilemap.BoxFill(start, whiteTile, start.x, start.y, start.x + size.x, start.y + size.y);
-    }
 }

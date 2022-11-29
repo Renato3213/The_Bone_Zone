@@ -14,75 +14,36 @@ public class PlaceableObject : MonoBehaviour
 
     public Material phantomMat;
     public float custo;
-
-    void GotColliderVertexPositionsLocal() 
-    {
-        phantomMat.color = new Color32(180, 255, 0, 180);
-        BoxCollider b = GetComponent<BoxCollider>();
-        Vertices = new Vector3[4];
-        Vertices[0] = b.center + new Vector3(-b.size.x, -b.size.y, -b.size.z) * 0.5f;
-        Vertices[1] = b.center + new Vector3(b.size.x, -b.size.y, -b.size.z) * 0.5f;
-        Vertices[2] = b.center + new Vector3(b.size.x, -b.size.y, b.size.z) * 0.5f;
-        Vertices[3] = b.center + new Vector3(-b.size.x, -b.size.y, b.size.z) * 0.5f;
-    }
-
-    void CalculateSizeInCells()
-    {
-        Vector3Int[] vertices = new Vector3Int[Vertices.Length];
-
-        for(int i = 0; i < vertices.Length; i++)
-        {
-            Vector3 worldPos = transform.TransformPoint(vertices[i]);
-            vertices[i] = BuildingSystem.instance.gridLayout.WorldToCell(worldPos);
-        }
-
-        size = new Vector3Int(Mathf.Abs((vertices[0] - vertices[1]).x), Mathf.Abs((vertices[0] - vertices[3]).y), 1);
-    }
-
-    public Vector3 GetStartPosition()
-    {
-        return transform.TransformPoint(Vertices[0]);
-    }
+   
 
     void Start()
     {
-        GotColliderVertexPositionsLocal();
-        CalculateSizeInCells();
+        phantomMat.color = new Color32(180, 255, 0, 180);
     }
 
-    private void Update()
-    {
-       
-    }
     public void Rotate()
     {
         transform.Rotate(new Vector3(0, 90, 0));
-        size = new Vector3Int(size.y, size.x, 1);
-
-        Vector3[] vertices = new Vector3[Vertices.Length];
-        for(int i = 0; i < vertices.Length; i++)
-        {
-            vertices[i] = vertices[(i + 1) % Vertices.Length];
-        }
-
-        Vertices = vertices;
     }
 
     public virtual void Place()
     {
         GameObject place = Instantiate(gameObject, transform.position, transform.rotation);
-        ObjectDrag drag = place.GetComponent<ObjectDrag>();
-        BoxCollider collider = place.GetComponent<BoxCollider>();
         PlaceableObject placeableObj = place.GetComponent<PlaceableObject>();
+
+        ObjectDrag drag = place.GetComponent<ObjectDrag>();
+        BoxCollider box = place.GetComponent<BoxCollider>();
+        Rigidbody rb = place.GetComponent<Rigidbody>();
+
+        Destroy(rb);
+        Destroy(box);
         Destroy(drag);
-        collider.isTrigger = false;
 
         placeableObj.placed = true;
         GameManager.instance.AtualizaCalcio(-custo);
         placeableObj.phantom.SetActive(false);
         placeableObj.obj.SetActive(true);
-        //phantom.SetActive(false);
-        //obj.SetActive(true);
+        
     }
 
     private void OnTriggerStay(Collider other)

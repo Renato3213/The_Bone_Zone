@@ -20,32 +20,39 @@ public class Skeleton : MonoBehaviour
     {
         UnitSelection.Instance.unitList.Remove(this.gameObject);
     }
-
+    [ContextMenu("descansa")]
     public void Recover()
     {
-        if (happiness == 0)
-        {
-            // alvo = GameManager.instance.listas.pubsLivres[0];
-
-
-        }
-        else if (energy == 0)
-        {
-            Casas casa = GameManager.instance.listas.casasLivres[0];
-
-            if (casa != null)
-            {
-                agent.destination = casa.entrada.position;
-            }
-
-        }
-        else
+        if (happiness > 0 && energy > 0)
         {
             ProcurarTrabalho();
         }
+        else if (energy == 0)
+        {
+            if (GameManager.instance.listas.casasLivres.Count == 0) return;
+
+            else
+            {
+                Casas casa = GameManager.instance.listas.casasLivres[0];
+                agent.destination = casa.entrada.position;
+            }
+
+
+        }
+        else if (happiness == 0)
+        {
+
+            if (GameManager.instance.listas.pubsLivres.Count == 0) return;
+            
+            else
+            {
+                Bares bar = GameManager.instance.listas.pubsLivres[0];
+                agent.destination = bar.entrada.position;
+            }
+        }
 
     }
-
+    [ContextMenu("trabalho")]
     void ProcurarTrabalho()
     {
         Debug.Log("uepa");
