@@ -19,7 +19,6 @@ public class ObjectDrag : MonoBehaviour
 
     private void FixedUpdate()
     {
-
         Vector3 pos = BuildingSystem.GetMouseWorldPosition();
         transform.position = BuildingSystem.instance.SnapCoordinateToGrid(pos);
     }

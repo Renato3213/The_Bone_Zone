@@ -124,6 +124,7 @@ MonoBehaviour:
   entrada: {fileID: 6186642522725893134}
   saida: {fileID: 1704306344802195716}
   limiteEsqueletos: 5
+  infamy: 5
   multiplier: 5
 --- !u!65 &5862483516905924644
 BoxCollider:

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     Transform target;
-    public float speed = 10f;
+    public float speed = 30f;
     public float damage;
     public void Seek(Transform _target)
     {
@@ -32,8 +32,6 @@ public class Bullet : MonoBehaviour
             Enemy enemy = target.gameObject.GetComponent<Enemy>();
             enemy.TakeDamage(damage);
 
-            //atualiza a quantidade de calcio
-            GameManager.instance.AtualizaCalcio(enemy.moedas);
 
             Destroy(this.gameObject);
         }

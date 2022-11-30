@@ -2306,6 +2306,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6962562410687783847, guid: cfa7c30a1fcd3e24da38ecf2085e3a19,
         type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6962562410687783847, guid: cfa7c30a1fcd3e24da38ecf2085e3a19,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -2542,7 +2547,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   m_LocalRotation: {x: 0.46174863, y: 0, z: 0, w: 0.8870109}
-  m_LocalPosition: {x: 0, y: 10, z: -6}
+  m_LocalPosition: {x: 0, y: 11.5, z: -6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3402,7 +3407,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 408673074}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5, z: -27.58}
+  m_LocalPosition: {x: 0, y: -0.47, z: -27.58}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3716,6 +3721,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cliff (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6962562410687783847, guid: cfa7c30a1fcd3e24da38ecf2085e3a19,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6962562410687783847, guid: cfa7c30a1fcd3e24da38ecf2085e3a19,
         type: 3}
@@ -4153,7 +4163,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 1
-  m_FillAmount: 0.77
+  m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -4417,7 +4427,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 625251938}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.010009766, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5213,7 +5223,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 775280207}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cliffs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5427,7 +5437,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 1
-  m_FillAmount: 0.75
+  m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -6649,6 +6659,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6962562410687783847, guid: cfa7c30a1fcd3e24da38ecf2085e3a19,
         type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6962562410687783847, guid: cfa7c30a1fcd3e24da38ecf2085e3a19,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -7638,6 +7653,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cliff (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6962562410687783847, guid: cfa7c30a1fcd3e24da38ecf2085e3a19,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6962562410687783847, guid: cfa7c30a1fcd3e24da38ecf2085e3a19,
         type: 3}
@@ -10551,14 +10571,18 @@ MonoBehaviour:
   building: 0
   isMouseOverInterface: 0
   maxSkeletons: 0
+  invasionCountdown: 0
   vazio: {fileID: 1158874554}
   activeInterface: {fileID: 0}
   enemies: []
   vidasTxt: {fileID: 929064379}
+  infamiaTxt: {fileID: 1722660026}
   moedasTxt: {fileID: 1607691206}
   quantiaEsqueletos: {fileID: 1892588390}
   listas: {fileID: 1406748975}
   deposit: {fileID: 1878011600}
+  hpImage: {fileID: 702147379}
+  infamyImage: {fileID: 1837119102}
   esqueletosTrabalhando: 0
   esqueletosPesquisando: 0
   esqueletosDefendendo: 0
@@ -11133,7 +11157,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 1478133}
+  m_AnchoredPosition: {x: 0, y: 1649294.2}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1459372560
@@ -12544,7 +12568,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1645988066}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -12894,9 +12918,10 @@ MonoBehaviour:
   enemyPrefab: {fileID: 3104039768698636365, guid: 018b705fcae709b49a26b0a3907434ff,
     type: 3}
   spawnPoint: {fileID: 1065271629}
-  countDowntxt: {fileID: 320286050}
   WaypointsSouth: {fileID: 115001187}
-  time: 20
+  hourglassTop: {fileID: 807890987}
+  hourglassBot: {fileID: 876005490}
+  hourglass: {fileID: 1692046620}
 --- !u!1 &1714853829
 GameObject:
   m_ObjectHideFlags: 0
@@ -13030,7 +13055,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '45
+  m_Text: '0
 
 '
 --- !u!222 &1722660027
@@ -14184,7 +14209,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 1
-  m_FillAmount: 0.394
+  m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -16254,6 +16279,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6962562410687783847, guid: cfa7c30a1fcd3e24da38ecf2085e3a19,
         type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6962562410687783847, guid: cfa7c30a1fcd3e24da38ecf2085e3a19,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -16311,6 +16341,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8907840717077332594, guid: cfa7c30a1fcd3e24da38ecf2085e3a19,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cfa7c30a1fcd3e24da38ecf2085e3a19, type: 3}

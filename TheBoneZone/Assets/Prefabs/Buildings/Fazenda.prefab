@@ -71,6 +71,7 @@ MonoBehaviour:
   limiteEsqueletos: 5
   producao: 20
   tempo: 0
+  infamy: 10
   entrada: {fileID: 645698305700556686}
   saida: {fileID: 6364797069691154534}
   trabalhandoAqui: []

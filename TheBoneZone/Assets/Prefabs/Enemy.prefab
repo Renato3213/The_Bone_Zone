@@ -114,7 +114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Points: {fileID: 0}
   waypoints: {fileID: 0}
-  speed: 4
+  speed: 0
   damage: 1
 --- !u!114 &-2278219152174209346
 MonoBehaviour:
@@ -128,3 +128,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 025111aa351f3584e97568a737becd27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vida: 0
+  moedas: 0

@@ -13,6 +13,7 @@ public class Turret : MonoBehaviour
 
     public float damage = 10;
     public float fireRate = 1f;
+    public int infamy;
     float fireCountDown = 0f;
     public GameObject bulletPrefab;
     private void Start()
@@ -21,7 +22,7 @@ public class Turret : MonoBehaviour
     }
     private void Awake()
     {
-       
+        GameManager.instance.UpdateInfamy(infamy);
     }
     void UpdateTarget()
     {

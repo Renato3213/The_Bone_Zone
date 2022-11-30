@@ -95,7 +95,8 @@ public class BuildingSystem : MonoBehaviour
         GameManager.instance.building = true;
         if(objToPlace != null) Destroy(objToPlace.gameObject);
 
-        Vector3 position = SnapCoordinateToGrid(GetMouseWorldPosition());
+        Vector3 position = new Vector3(0, 0, 0);
+            //SnapCoordinateToGrid(GetMouseWorldPosition());
 
         GameObject obj = Instantiate(prefab, position, prefab.transform.rotation);
         objToPlace = obj.GetComponent<PlaceableObject>();
@@ -104,8 +105,6 @@ public class BuildingSystem : MonoBehaviour
 
     bool CanBePlaced(PlaceableObject placeable)
     {
-        
-
         return placeable.canBePlaced;
     }
 

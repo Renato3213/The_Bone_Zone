@@ -9,7 +9,7 @@ public class EnemyMovement : MonoBehaviour
 
     [SerializeField] float speed;
 
-    public int damage = 1;
+    public float damage = 1;
 
     Transform target;
     int pointIndex = 0;
@@ -18,7 +18,12 @@ public class EnemyMovement : MonoBehaviour
     {
         waypoints = Points.GetComponent<Waypoints>();
         target = waypoints.points[0];
+    }
 
+    private void Awake()
+    {
+        damage = 1 + (9 * (GameManager.instance.Infamia / 100));
+        speed = 5 + (5 * (GameManager.instance.Infamia / 100));
     }
 
     void Update()

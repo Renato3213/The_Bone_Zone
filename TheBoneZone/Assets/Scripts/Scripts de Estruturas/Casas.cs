@@ -9,6 +9,7 @@ public class Casas : MonoBehaviour
     List<GameObject> descansandoAqui = new List<GameObject>();
     public Transform entrada, saida;
     public int limiteEsqueletos = 5;
+    public int infamy;
 
     public float multiplier = 5;
     void Awake()
@@ -16,6 +17,7 @@ public class Casas : MonoBehaviour
         ControlaListas.instance.casasLivres.Add(this);
         GameManager.instance.maxSkeletons += limiteEsqueletos;
         GameManager.instance.UpdateSkeletonCount();
+        GameManager.instance.UpdateInfamy(infamy);
     }
 
     private void FixedUpdate()

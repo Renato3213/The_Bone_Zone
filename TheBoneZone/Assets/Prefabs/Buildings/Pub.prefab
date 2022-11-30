@@ -502,6 +502,7 @@ MonoBehaviour:
   entrada: {fileID: 5136708135241802030}
   saida: {fileID: 1152488742899844660}
   limiteEsqueletos: 5
+  infamy: 5
   multiplier: 5
 --- !u!54 &1365990099352740558
 Rigidbody:

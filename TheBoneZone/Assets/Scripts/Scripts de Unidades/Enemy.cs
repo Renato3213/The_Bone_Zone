@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public float vida = 10;
-    public int moedas = 10;
+    public float vida;
+    public float moedas;
     void Awake()
     {
+        vida = 10 + (10 * (GameManager.instance.Infamia / 100));
+        moedas = 10 + (10 * (GameManager.instance.Infamia / 100));
         GameManager.instance.enemies.Add(this.gameObject);
     }
 
     private void OnDestroy()
     {
+        GameManager.instance.AtualizaCalcio(moedas);
         GameManager.instance.enemies.Remove(this.gameObject);
     }
 
