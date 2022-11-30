@@ -67,6 +67,11 @@ public class GameManager : MonoBehaviour
         vidas -= dano;
         vidasTxt.text = vidas.ToString();
         hpImage.fillAmount = vidas / 100f;
+
+        if(vidas <= 0)
+        {
+            //insira codigo de derrota aqui;
+        }
     }
 
     public void AtualizaCalcio(float qnt)
