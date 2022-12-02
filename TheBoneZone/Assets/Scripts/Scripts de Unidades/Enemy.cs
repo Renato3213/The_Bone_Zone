@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
     void Awake()
     {
         vida = 10 + (10 * (GameManager.instance.Infamia / 100));
-        moedas = 10 + (10 * (GameManager.instance.Infamia / 100));
+        moedas = 10 + Mathf.Abs((10 * (GameManager.instance.Infamia / 100)));
         GameManager.instance.enemies.Add(this.gameObject);
     }
 

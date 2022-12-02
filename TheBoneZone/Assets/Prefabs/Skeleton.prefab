@@ -139,7 +139,7 @@ MonoBehaviour:
   happiness: 100
   energy: 100
   agent: {fileID: 2418320608228780321}
-  alvo: {fileID: 0}
+  isWorking: 0
 --- !u!114 &7170077619588653352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,6 +155,8 @@ MonoBehaviour:
   ground:
     serializedVersion: 2
     m_Bits: 256
+  clickMesh: {fileID: 5172951342982694304, guid: ec5bd118565daf044b4e950ecc05f191,
+    type: 3}
 --- !u!195 &2418320608228780321
 NavMeshAgent:
   m_ObjectHideFlags: 0

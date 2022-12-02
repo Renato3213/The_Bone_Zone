@@ -39,7 +39,7 @@ public class BuildingSystem : MonoBehaviour
         if (!objToPlace) return;
        
 
-        if (Input.GetKeyDown(KeyCode.Return)) objToPlace.Rotate();
+        if (Input.GetKeyDown(KeyCode.R)) objToPlace.Rotate();
        
         else if (Input.GetMouseButtonDown(0))
         {

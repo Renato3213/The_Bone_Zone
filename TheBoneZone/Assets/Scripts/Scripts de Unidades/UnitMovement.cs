@@ -8,6 +8,7 @@ public class UnitMovement : MonoBehaviour
     NavMeshAgent myAgent;
     public LayerMask ground;
     public static List<NavMeshAgent> meshAgents = new List<NavMeshAgent>();
+    [SerializeField] GameObject clickMesh;
 
     void Start()
     {
@@ -29,6 +30,7 @@ public class UnitMovement : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1) && meshAgents.Contains(myAgent))
         {
+            
             if (meshAgents.IndexOf(myAgent) == 0)
             {
                 RaycastHit hit;
@@ -36,6 +38,7 @@ public class UnitMovement : MonoBehaviour
 
                 if (Physics.Raycast(ray, out hit, Mathf.Infinity, ground))
                 {
+                    Instantiate(clickMesh, hit.point, Quaternion.identity);
                     myAgent.SetDestination(hit.point);
                 }
 

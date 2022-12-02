@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class GameManager : MonoBehaviour
     public float invasionCountdown;
 
     public GameObject vazio;
+    public GameObject pauseMenu;
+    Camera myCam;
 
     public GameObject activeInterface;
 
@@ -33,22 +36,12 @@ public class GameManager : MonoBehaviour
 
     WaveManager waveManager;
 
-    public int esqueletosTrabalhando;
-    public int esqueletosPesquisando;
-    public int esqueletosDefendendo;
-    public int totalOuro = 0;
-    public int quantidadeFarmers;
-    public int quantidadeKnights;
-    public int quantidadeScouts;
-    public int quantidadeCasas;
-    public int quantidadeFazendas;
-    public int quantidadeDojos;
-    public int quantidadeBibliotecas;
-    public int quantidadeBares;
+    public bool isPause = false;
 
     public bool mouseOverObject = false;
     void Awake()
     {
+        myCam = Camera.main;
         invasionCountdown = 30f;
         instance = this;
         listas = GetComponent<ControlaListas>();
@@ -57,32 +50,64 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetMouseButtonDown(0))
+        {
+            RaycastHit hit;
+            Ray ray = myCam.ScreenPointToRay(Input.mousePosition);
+            bool isOverUI = UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject();
+            if (Physics.Raycast(ray, out hit) && !isOverUI)
+            {
+                if (hit.collider.CompareTag("ground"))
+                {
+                    UpdateActiveInterface(vazio);
+                }
+            }
+
+        }
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            Pause();
+        }
+    }
+
+    public void Pause()
+    {
+        if(Time.timeScale == 1f)
+        {
+            Time.timeScale = 0f;
+            UpdateActiveInterface(pauseMenu);
+        }
+        else if(Time.timeScale == 0)
+        {
+            Time.timeScale = 1f;
             UpdateActiveInterface(vazio);
-        } 
+        }
+
+        
     }
     public void AtualizaVidas(float dano)
     {
-        vidas -= dano;
+        vidas = Mathf.Abs(vidas - dano);
+        UpdateInfamy(dano * 2);
         vidasTxt.text = vidas.ToString();
         hpImage.fillAmount = vidas / 100f;
 
         if(vidas <= 0)
         {
-            //insira codigo de derrota aqui;
+            SceneManager.LoadScene("TelaDerrota");
         }
     }
 
     public void AtualizaCalcio(float qnt)
     {
-        Calcio += qnt;
+        Calcio = Mathf.Abs(Calcio + qnt);
         moedasTxt.text = Calcio.ToString();
     }
 
     public void UpdateInfamy(float amount)
     {
-        Infamia += amount;
+        Infamia = Mathf.Abs(Infamia + amount);
         infamiaTxt.text = Infamia.ToString();
         infamyImage.fillAmount = Infamia / 100f;
 
@@ -102,4 +127,16 @@ public class GameManager : MonoBehaviour
         quantiaEsqueletos.text = ": " + listas.listaEsqueletos.Count + "/" + maxSkeletons;
     }
 
+    public void SetPause(bool p)
+    {
+        isPause = p;
+        if (isPause)
+        {
+            Time.timeScale = 0.0f;
+        }
+        else
+        {
+            Time.timeScale = 1.0f;
+        }
+    }
 }

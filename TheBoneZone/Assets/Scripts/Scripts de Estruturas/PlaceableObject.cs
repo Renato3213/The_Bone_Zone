@@ -28,6 +28,10 @@ public class PlaceableObject : MonoBehaviour
 
     public virtual void Place()
     {
+        bool isOverUI = UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject();
+
+        if (isOverUI) return;
+
         GameObject place = Instantiate(gameObject, transform.position, transform.rotation);
         PlaceableObject placeableObj = place.GetComponent<PlaceableObject>();
 

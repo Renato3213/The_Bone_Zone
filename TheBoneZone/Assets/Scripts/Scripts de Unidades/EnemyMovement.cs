@@ -23,7 +23,7 @@ public class EnemyMovement : MonoBehaviour
     private void Awake()
     {
         damage = 1 + (9 * (GameManager.instance.Infamia / 100));
-        speed = 5 + (5 * (GameManager.instance.Infamia / 100));
+        speed = 5 + (4 * (GameManager.instance.Infamia / 100));
     }
 
     void Update()
