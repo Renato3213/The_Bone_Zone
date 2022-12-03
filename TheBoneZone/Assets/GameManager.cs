@@ -88,7 +88,7 @@ public class GameManager : MonoBehaviour
     }
     public void AtualizaVidas(float dano)
     {
-        vidas = Mathf.Abs(vidas - dano);
+        vidas = (int)(vidas - dano);
         UpdateInfamy(dano * 2);
         vidasTxt.text = vidas.ToString();
         hpImage.fillAmount = vidas / 100f;
@@ -101,13 +101,13 @@ public class GameManager : MonoBehaviour
 
     public void AtualizaCalcio(float qnt)
     {
-        Calcio = Mathf.Abs(Calcio + qnt);
+        Calcio = (int)(Calcio + qnt);
         moedasTxt.text = Calcio.ToString();
     }
 
     public void UpdateInfamy(float amount)
     {
-        Infamia = Mathf.Abs(Infamia + amount);
+        Infamia = (int)(Infamia + amount);
         infamiaTxt.text = Infamia.ToString();
         infamyImage.fillAmount = Infamia / 100f;
 
