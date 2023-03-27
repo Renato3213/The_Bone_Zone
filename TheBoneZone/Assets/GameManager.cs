@@ -7,9 +7,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public float vidas = 100;
     public float Calcio = 0;
-    public float Infamia = 0;
     public bool onCenter;
     public bool building;
     public bool isMouseOverInterface;
@@ -22,9 +20,7 @@ public class GameManager : MonoBehaviour
     Camera myCam;
 
     public GameObject activeInterface;
-
-    public List<GameObject> enemies = new List<GameObject>();
-    [SerializeField] Text vidasTxt, infamiaTxt;
+    
     [SerializeField] Text moedasTxt;
     [SerializeField] Text quantiaEsqueletos;
 
@@ -32,9 +28,6 @@ public class GameManager : MonoBehaviour
     public GameObject deposit;
 
     public Image hpImage;
-    public Image infamyImage;
-
-    WaveManager waveManager;
 
     public bool isPause = false;
 
@@ -45,7 +38,6 @@ public class GameManager : MonoBehaviour
         invasionCountdown = 30f;
         instance = this;
         listas = GetComponent<ControlaListas>();
-        waveManager = GetComponentInChildren<WaveManager>();
     }
 
     private void Update()
@@ -83,35 +75,12 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 1f;
             UpdateActiveInterface(vazio);
         }
-
-        
-    }
-    public void AtualizaVidas(float dano)
-    {
-        vidas = (int)(vidas - dano);
-        UpdateInfamy(dano * 2);
-        vidasTxt.text = vidas.ToString();
-        hpImage.fillAmount = vidas / 100f;
-
-        if(vidas <= 0)
-        {
-            SceneManager.LoadScene("TelaDerrota");
-        }
     }
 
     public void AtualizaCalcio(float qnt)
     {
         Calcio = (int)(Calcio + qnt);
         moedasTxt.text = Calcio.ToString();
-    }
-
-    public void UpdateInfamy(float amount)
-    {
-        Infamia = (int)(Infamia + amount);
-        infamiaTxt.text = Infamia.ToString();
-        infamyImage.fillAmount = Infamia / 100f;
-
-        invasionCountdown = ((30 * (100 - Infamia)) / 100f) < 1? 1 : ((30 * (100 - Infamia)) / 100f);
     }
 
     public void UpdateActiveInterface(GameObject newInterface)

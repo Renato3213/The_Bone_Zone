@@ -10,12 +10,10 @@ public class Bares : MonoBehaviour
     List<GameObject> descansandoAqui = new List<GameObject>();
     public Transform entrada, saida;
     public int limiteEsqueletos = 5;
-    public int infamy;
 
     public float multiplier = 5;
     void Awake()
     {
-        GameManager.instance.UpdateInfamy(infamy);
         ControlaListas.instance.pubsLivres.Add(this);
         GameManager.instance.maxSkeletons += limiteEsqueletos;
         GameManager.instance.UpdateSkeletonCount();

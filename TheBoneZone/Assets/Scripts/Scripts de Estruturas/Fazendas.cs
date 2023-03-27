@@ -9,7 +9,6 @@ public class Fazendas : MonoBehaviour
     public int limiteEsqueletos;
     public float producao;
     public float tempo;
-    public int infamy;
 
     public Transform entrada, saida;
 
@@ -20,7 +19,6 @@ public class Fazendas : MonoBehaviour
     void Awake()
     {
         ControlaListas.instance.fazendasLivres.Add(this);
-        GameManager.instance.UpdateInfamy(infamy);
     }
 
     void OnMouseOver()

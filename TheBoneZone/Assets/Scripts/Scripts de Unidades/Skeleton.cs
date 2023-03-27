@@ -12,7 +12,6 @@ public class Skeleton : MonoBehaviour
         UnitSelection.Instance.unitList.Add(this.gameObject);
         GameManager.instance.listas.esqueletosLivres.Add(this.gameObject);
         GameManager.instance.listas.listaEsqueletos.Add(this.gameObject);
-        GameManager.instance.UpdateInfamy(1);
         happiness = 100f;
         energy = 100f;
     }
