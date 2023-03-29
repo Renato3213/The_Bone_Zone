@@ -19,8 +19,8 @@ public class UnitMovement : MonoBehaviour
 
     void Update()
     {
-        if (meshAgents.Contains(myAgent)) {  }
-         
+        if (meshAgents.Contains(myAgent)) { }
+
         else
         {
             meshAgents.Add(myAgent);
@@ -30,7 +30,7 @@ public class UnitMovement : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1) && meshAgents.Contains(myAgent))
         {
-            
+
             if (meshAgents.IndexOf(myAgent) == 0)
             {
                 RaycastHit hit;
@@ -68,7 +68,11 @@ public class UnitMovement : MonoBehaviour
 
             }
         }
+
+        
     }
+
+    
 
     void OnDisable()
     {

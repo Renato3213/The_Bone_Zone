@@ -3,17 +3,45 @@ using UnityEngine.AI;
 
 public class Skeleton : MonoBehaviour
 {
-    public enum State { Working, HavingFun, Resting, Idle }
+    public enum State { Working, HavingFun, Resting, Idle, Walking }
     public float happiness, energy;
     public NavMeshAgent agent;
     public bool isWorking;
+
+    public Animator myAnimator;
+    public bool walking = false;
+
     private void Awake()
     {
+        
         UnitSelection.Instance.unitList.Add(this.gameObject);
         GameManager.instance.listas.esqueletosLivres.Add(this.gameObject);
         GameManager.instance.listas.listaEsqueletos.Add(this.gameObject);
         happiness = 100f;
         energy = 100f;
+
+    }
+    void Update()
+    {
+        CheckWalking();
+        
+    }
+    public void CheckWalking()
+    {
+        if(walking == false && agent.hasPath)
+        {
+            ChangeAnimationState("Walk");
+            walking = true;
+        }
+        if (agent.pathPending) return;
+
+        if (agent.remainingDistance > agent.stoppingDistance) return;
+
+        if (!agent.hasPath || agent.velocity.sqrMagnitude == 0)
+        {
+            ChangeAnimationState("Idle");
+            walking = false;
+        }
     }
 
     private void OnDestroy()
@@ -61,6 +89,12 @@ public class Skeleton : MonoBehaviour
             Fazendas fazenda = ControlaListas.instance.fazendasLivres[0];
             agent.destination = fazenda.entrada.position;
         }
+    }
+
+    public void ChangeAnimationState(string State)
+    {
+        myAnimator.StopPlayback();
+        myAnimator.Play(State);
     }
 
 }
