@@ -18,7 +18,7 @@ public class EmFila : MonoBehaviour
     }
     public IEnumerator Prepara()
     {
-        while(MainBuilding.instance.skeletonListContainer.transform.GetChild(0).gameObject != this.gameObject)
+        while(MainBuilding.instance.skeletonFactory.skeletonListContainer.transform.GetChild(0).gameObject != this.gameObject)
         {
             yield return null;
         }
@@ -29,12 +29,16 @@ public class EmFila : MonoBehaviour
             fill.fillAmount = Mathf.Lerp(0, 1, percent);
             yield return null;
         }
-        MainBuilding.instance.InstantiateSkeleton();
-        Destroy(this.gameObject);
-        if(MainBuilding.instance.skeletonListContainer.transform.childCount == 0)
+
+        if(MainBuilding.instance.skeletonFactory.skeletonListContainer.transform.childCount <= 1)
         {
-            MainBuilding.instance.skeletonList.SetActive(false);
+            MainBuilding.instance.skeletonFactory.skeletonList.SetActive(false);
         }
+
+        MainBuilding.instance.skeletonFactory.InstantiateSkeleton();
+
+        Destroy(this.gameObject);
+
         yield break;
     }
 
