@@ -7,6 +7,8 @@ public class Combat : MonoBehaviour
     public ISpell selectedSpell;
     //Turno de ataque.
     [SerializeField] bool attackTurn = false;
+    //Variável de controle da quantidade de dados por esqueletos.
+    const int skeletonGroup = 5;
 
     [Header("Player Variables")]
     //Quantidade de dados do jogador.
@@ -29,11 +31,11 @@ public class Combat : MonoBehaviour
         //Atribui a quantidade de esqueletos do jogador
         amountPlayerSkeletons = targetedSkeletons;
         //Calcula e indica a quantidade de dados do jogador;
-        amountPlayerDice = targetedSkeletons / 5;
+        amountPlayerDice = targetedSkeletons / skeletonGroup;
         //Atribui a mesma quantidade de dados do jogador para a máquina.
         amountNpcDice = amountPlayerDice;
         //Verifica se jogador e máquina tem dados disponíveis.
-        if(GetDice() == true)
+        if(GetDice())
         {
             //Chama o método que inicia o combate.
             NewTurn();
@@ -43,14 +45,7 @@ public class Combat : MonoBehaviour
     //Método que faz a verificação se ambos tem dados.
     bool GetDice()
     {
-        if(amountNpcDice != 0 && amountPlayerDice != 0)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return(amountNpcDice > 0 && amountPlayerDice > 0);
     }
 
     //Método responsável por chama a mudança de turno e o sorteio dos números nos dados.
@@ -87,7 +82,7 @@ public class Combat : MonoBehaviour
         if(npcDiceNumber == playerDiceNumber)
         {
             //Se dá empate no turno de ataque remove o dado do jogador, caso seja o turno de defesa remove o dado da máquina.
-            if(attackTurn == true)
+            if(attackTurn)
             {
                 amountPlayerDice -= 1;
             }
@@ -117,7 +112,7 @@ public class Combat : MonoBehaviour
         //AtualizaHUD
 
         //Verifica se jogador e máquina tem dados disponíveis.
-        if(GetDice() == true)
+        if(GetDice())
         {
             //Inicia um novo turno caso jogador e máquina tenham dados disponíveis.
             NewTurn();
