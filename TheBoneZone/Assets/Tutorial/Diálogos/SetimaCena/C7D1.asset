@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 104327e258b440b4d9ef5da2acbec2ff, type: 3}
-  m_Name: C6D8
+  m_Name: C7D1
   m_EditorClassIdentifier: 
   dialogo:
-    text: 
-    sprite: {fileID: 0}
+    text: Droga!
+    sprite: {fileID: 21300000, guid: 9ae626b5dcfcfcb4897eda0a277e5e65, type: 3}
     personagem: 0
-    trigger: Fim
+    trigger: 

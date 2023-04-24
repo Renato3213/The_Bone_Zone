@@ -17,4 +17,4 @@ MonoBehaviour:
       ser rei dos mago, argoz dos fraco, sinh\xF4 dos morto vivo e do submundo."
     sprite: {fileID: 21300000, guid: d98294640634a96428e0c7322bbf2984, type: 3}
     personagem: 1
-    trigger: Abre dialogo
+    trigger: 

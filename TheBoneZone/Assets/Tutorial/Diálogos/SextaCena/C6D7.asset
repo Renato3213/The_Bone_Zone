@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: C6D7
   m_EditorClassIdentifier: 
   dialogo:
-    text: "\"Traga-me o c\xE9rebro, Igor!\""
+    text: "Eu mere\xE7o..."
     sprite: {fileID: 21300000, guid: 9ae626b5dcfcfcb4897eda0a277e5e65, type: 3}
     personagem: 0
     trigger: 
