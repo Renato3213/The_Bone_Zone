@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: C2D11
   m_EditorClassIdentifier: 
   dialogo:
-    text: eguir mestre!
+    text: Seguir mestre!
     sprite: {fileID: 21300000, guid: e938c2330bdba3b4cbb007febf604b3b, type: 3}
     personagem: 1
     trigger: 

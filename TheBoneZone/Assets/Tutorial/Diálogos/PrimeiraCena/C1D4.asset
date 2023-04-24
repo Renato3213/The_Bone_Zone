@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: C1D4
   m_EditorClassIdentifier: 
   dialogo:
-    text: "Igor aqui ''sinh\xF4'', oque senhor querer de Igor? Igor promovido? Igor
+    text: "Igor aqui \"sinh\xF4\", oque senhor querer de Igor? Igor promovido? Igor
       n\xE3o ter mais que lavar latrina fedorenta de chefe?"
     sprite: {fileID: 21300000, guid: d98294640634a96428e0c7322bbf2984, type: 3}
     personagem: 1
