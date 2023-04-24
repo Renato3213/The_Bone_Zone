@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 104327e258b440b4d9ef5da2acbec2ff, type: 3}
+  m_Name: C3D9
+  m_EditorClassIdentifier: 
+  dialogo:
+    text: "\xC9... \xC9 apenas uma... Uma refer\xEAncia cultural, Igor. Voc\xEA n\xE3o
+      entenderia!"
+    sprite: {fileID: 21300000, guid: 9ae626b5dcfcfcb4897eda0a277e5e65, type: 3}
+    personagem: 0
+    trigger: 
