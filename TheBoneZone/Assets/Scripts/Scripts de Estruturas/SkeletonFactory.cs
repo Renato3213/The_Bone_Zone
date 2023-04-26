@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class SkeletonFactory : MonoBehaviour
 {
@@ -13,9 +14,17 @@ public class SkeletonFactory : MonoBehaviour
     [SerializeField] 
     GameObject skeletonOnListPrefab;
 
-    public void InstantiateSkeleton()//instancia o obj do esqueleto
+
+    GameObject skeletonBeingSpawnedObj;
+    Skeleton skeletonBeingSpawnedClass;
+
+    public void ActivateSkeleton()//ativa o obj do esqueleto
     {
-        Instantiate(skeletonPrefab, spawnPoint.position, Quaternion.identity);
+        skeletonBeingSpawnedObj.GetComponent<UnitMovement>().enabled = true;
+        skeletonBeingSpawnedObj.GetComponent<NavMeshAgent>().enabled = true;
+        skeletonBeingSpawnedObj.GetComponent<CapsuleCollider>().enabled = true;
+        skeletonBeingSpawnedClass.currentState = skeletonBeingSpawnedClass.idleState;
+        Destroy(skeletonBeingSpawnedClass.spawningCircle);
         GameManager.instance.UpdateSkeletonCount();
     }
 
@@ -25,6 +34,12 @@ public class SkeletonFactory : MonoBehaviour
         else if (GameManager.instance.listas.listaEsqueletos.Count + skeletonListContainer.transform.childCount
             < GameManager.instance.maxSkeletons)
         {
+            skeletonBeingSpawnedObj = Instantiate(skeletonPrefab, spawnPoint.position, Quaternion.Euler(0,180,0));
+
+            skeletonBeingSpawnedClass = skeletonBeingSpawnedObj.GetComponent<Skeleton>();
+            skeletonBeingSpawnedClass.currentState = skeletonBeingSpawnedClass.spawningState;
+
+            DeactivateSkeleton(skeletonBeingSpawnedObj);
             GameManager.instance.AtualizaCalcio(-100);
             Instantiate(skeletonOnListPrefab, skeletonListContainer.transform);
 
@@ -33,5 +48,18 @@ public class SkeletonFactory : MonoBehaviour
                 skeletonList.SetActive(true);
             }
         }
+    }
+
+    public void CancelSpawn()
+    {
+        Destroy(skeletonBeingSpawnedObj);
+        skeletonBeingSpawnedObj = null;
+    }
+
+    void DeactivateSkeleton(GameObject skeleton)
+    {
+        skeleton.GetComponent<UnitMovement>().enabled = false;
+        skeleton.GetComponent<NavMeshAgent>().enabled = false;
+        skeleton.GetComponent<CapsuleCollider>().enabled = false;
     }
 }

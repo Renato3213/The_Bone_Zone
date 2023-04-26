@@ -10,7 +10,7 @@ public class EmFila : MonoBehaviour
     float percent;
     public void Awake()
     {
-        tweenTime = 1;
+        tweenTime = 5.5f;
         StartCoroutine(Prepara());
         fill.fillAmount = 0;
         progress = 0;
@@ -35,7 +35,7 @@ public class EmFila : MonoBehaviour
             MainBuilding.instance.skeletonFactory.skeletonList.SetActive(false);
         }
 
-        MainBuilding.instance.skeletonFactory.InstantiateSkeleton();
+        MainBuilding.instance.skeletonFactory.ActivateSkeleton();
 
         Destroy(this.gameObject);
 
@@ -44,6 +44,8 @@ public class EmFila : MonoBehaviour
 
     public void Cancelar()
     {
+        GameManager.instance.AtualizaCalcio(100);
+        MainBuilding.instance.skeletonFactory.CancelSpawn();
         Destroy(this.gameObject);
     }
 }

@@ -6,25 +6,29 @@ public class Skeleton : MonoBehaviour
     public enum State { Working, HavingFun, Resting, Idle, Walking }
     public float happiness, energy;
     public NavMeshAgent agent;
-    public bool isWorking;
+    public GameObject spawningCircle;
 
 
+    #region flyweight
     public SkeletonState idleState = new IdleState();
     public SkeletonState farmingState = new FarmingState();
     public SkeletonState buildingState = new BuildingState();
     public SkeletonState walkingState = new WalkingState();
+    public SkeletonState spawningState = new SpawningState();
+    public AnimationClip[] spawnAnimations;
+    public float buildingSpeed;
+    #endregion
+
 
     public SkeletonState currentState;
     public UnderConstruction buildingTarget;
     public bool doingTask;
-    public float buildingSpeed;
 
     public Animator myAnimator;
     public bool walking = false;
 
     private void Awake()
     {
-        currentState = idleState;
         UnitSelection.Instance.unitList.Add(this);
         GameManager.instance.listas.esqueletosLivres.Add(this.gameObject);
         GameManager.instance.listas.listaEsqueletos.Add(this.gameObject);
@@ -36,25 +40,6 @@ public class Skeleton : MonoBehaviour
     {
         CheckWalking();
 
-
-        if (UnitSelection.Instance.unitsSelected.Contains(this))
-        {
-
-
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                currentState = farmingState;
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                currentState = buildingState;
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha3))
-            {
-                currentState = idleState;
-            }
-        }
-
         currentState.DoState(this);
     }
 
@@ -64,6 +49,7 @@ public class Skeleton : MonoBehaviour
     }
     public void CheckWalking()
     {
+        if (!agent.enabled) return;
         if(walking == false && agent.hasPath)
         {
             ChangeAnimationState("Walk");

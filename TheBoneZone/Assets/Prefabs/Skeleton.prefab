@@ -145,7 +145,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3104039768698636362}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: -10, y: 0, z: -29}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -155,7 +155,7 @@ Transform:
   - {fileID: 6777476890145148784}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &284306028944478602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,10 +171,14 @@ MonoBehaviour:
   happiness: 100
   energy: 100
   agent: {fileID: 2418320608228780321}
-  isWorking: 0
+  spawningCircle: {fileID: 7824704829064486379}
+  spawnAnimations:
+  - {fileID: 8541318541649889271, guid: abbe0032ceb05dd499936c64dc7cf70b, type: 3}
+  - {fileID: 4626172680514080261, guid: abbe0032ceb05dd499936c64dc7cf70b, type: 3}
+  - {fileID: 3049220365477327339, guid: abbe0032ceb05dd499936c64dc7cf70b, type: 3}
+  buildingSpeed: 10
   buildingTarget: {fileID: 0}
   doingTask: 0
-  buildingSpeed: 10
   myAnimator: {fileID: 6432122497555998306}
   walking: 0
 --- !u!114 &7170077619588653352
@@ -469,7 +473,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 0}
+      maxColor: {r: 1, g: 0.35283017, b: 0.9785067, a: 0}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -531,7 +535,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.03
+      scalar: 0.05
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -5007,7 +5011,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a39c17e7aec00aa4db7dca5631430276, type: 2}
+  - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
   - {fileID: 2100000, guid: a39c17e7aec00aa4db7dca5631430276, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -5078,7 +5082,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6777476890145148784
 Transform:
   m_ObjectHideFlags: 0
