@@ -4,8 +4,8 @@ using UnityEngine;
 public class UnitSelection : MonoBehaviour
 {
 
-    public List<GameObject> unitList = new List<GameObject>();
-    public List<GameObject> unitsSelected = new List<GameObject>();
+    public List<Skeleton> unitList = new List<Skeleton>();
+    public List<Skeleton> unitsSelected = new List<Skeleton>();
 
     static UnitSelection _instance;
     public static UnitSelection Instance { get { return _instance; } }
@@ -22,7 +22,7 @@ public class UnitSelection : MonoBehaviour
         }
     }
 
-    public void ClickSelect(GameObject unitToAdd)
+    public void ClickSelect(Skeleton unitToAdd)
     {
         DeselectAll();
         unitsSelected.Add(unitToAdd);
@@ -30,7 +30,7 @@ public class UnitSelection : MonoBehaviour
         unitToAdd.GetComponent<UnitMovement>().enabled = true;
     }
 
-    public void ShiftClickSelect(GameObject unitToAdd)
+    public void ShiftClickSelect(Skeleton unitToAdd)
     {
         if (!unitsSelected.Contains(unitToAdd))
         {
@@ -46,7 +46,7 @@ public class UnitSelection : MonoBehaviour
         }
     }
 
-    public void DragSelect(GameObject unitToAdd)
+    public void DragSelect(Skeleton unitToAdd)
     {
         if (!unitsSelected.Contains(unitToAdd))
         {
@@ -66,7 +66,7 @@ public class UnitSelection : MonoBehaviour
         unitsSelected.Clear();
     }
 
-    public void Deselect(GameObject unitToDeselect)
+    public void Deselect(Skeleton unitToDeselect)
     {
         unitToDeselect.transform.GetChild(0).gameObject.SetActive(false);
         unitToDeselect.GetComponent<UnitMovement>().enabled = false;

@@ -26,7 +26,7 @@ public class UnitMovement : MonoBehaviour
             meshAgents.Add(myAgent);
         }
 
-        if (GameManager.instance.mouseOverObject) return;
+        if (GameManager.instance.IsMouseOverObject()) return;
 
         if (Input.GetMouseButtonDown(1) && meshAgents.Contains(myAgent))
         {
@@ -38,6 +38,7 @@ public class UnitMovement : MonoBehaviour
 
                 if (Physics.Raycast(ray, out hit, Mathf.Infinity, ground))
                 {
+                    CancelTask();
                     Instantiate(clickMesh, hit.point, Quaternion.identity);
                     myAgent.SetDestination(hit.point);
                 }
@@ -45,14 +46,14 @@ public class UnitMovement : MonoBehaviour
                 float angle = 60;
                 int countOnCircle = (int)(360 / angle);
                 int count = meshAgents.Count;
-                float step = 0.5f;
+                float step = 0.75f;
                 int i = 1;
                 float randomizeAngle = Random.Range(0, angle);
                 while (count > 1)
                 {
                     var vec = Vector3.forward;
                     vec = Quaternion.Euler(0, angle * (countOnCircle - 1) + randomizeAngle, 0) * vec;
-                    meshAgents[i].SetDestination(myAgent.destination + vec * (myAgent.radius + meshAgents[i].radius + 0.5f) * step);
+                    meshAgents[i].SetDestination(myAgent.destination + vec * (myAgent.radius + meshAgents[i].radius + 0.75f) * step);
                     countOnCircle--;
                     count--;
                     i++;
@@ -61,7 +62,7 @@ public class UnitMovement : MonoBehaviour
                         if (step != 3 && step != 4 && step < 6 || step == 10) { angle /= 2f; }
 
                         countOnCircle = (int)(360 / angle);
-                        step += 0.5f;
+                        step += 0.75f;
                         randomizeAngle = Random.Range(0, angle);
                     }
                 }
@@ -72,7 +73,18 @@ public class UnitMovement : MonoBehaviour
         
     }
 
-    
+    void CancelTask()
+    {
+        foreach(Skeleton skeleton in UnitSelection.Instance.unitsSelected)
+        {
+            skeleton.StopAllCoroutines();
+            skeleton.walking = false;
+            skeleton.currentState = skeleton.idleState;
+            skeleton.ChangeAnimationState("Idle");
+            skeleton.agent.isStopped = false;
+            skeleton.doingTask = false;
+        }
+    }
 
     void OnDisable()
     {

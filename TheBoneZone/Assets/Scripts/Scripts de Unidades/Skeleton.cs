@@ -8,13 +8,24 @@ public class Skeleton : MonoBehaviour
     public NavMeshAgent agent;
     public bool isWorking;
 
+
+    public SkeletonState idleState = new IdleState();
+    public SkeletonState farmingState = new FarmingState();
+    public SkeletonState buildingState = new BuildingState();
+    public SkeletonState walkingState = new WalkingState();
+
+    public SkeletonState currentState;
+    public UnderConstruction buildingTarget;
+    public bool doingTask;
+    public float buildingSpeed;
+
     public Animator myAnimator;
     public bool walking = false;
 
     private void Awake()
     {
-        
-        UnitSelection.Instance.unitList.Add(this.gameObject);
+        currentState = idleState;
+        UnitSelection.Instance.unitList.Add(this);
         GameManager.instance.listas.esqueletosLivres.Add(this.gameObject);
         GameManager.instance.listas.listaEsqueletos.Add(this.gameObject);
         happiness = 100f;
@@ -24,7 +35,32 @@ public class Skeleton : MonoBehaviour
     void Update()
     {
         CheckWalking();
-        
+
+
+        if (UnitSelection.Instance.unitsSelected.Contains(this))
+        {
+
+
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                currentState = farmingState;
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                currentState = buildingState;
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                currentState = idleState;
+            }
+        }
+
+        currentState.DoState(this);
+    }
+
+    public void MoveTo(Vector3 position)
+    {
+        agent.destination = position;
     }
     public void CheckWalking()
     {
@@ -32,6 +68,7 @@ public class Skeleton : MonoBehaviour
         {
             ChangeAnimationState("Walk");
             walking = true;
+            if(!doingTask) currentState = walkingState;
         }
         if (agent.pathPending) return;
 
@@ -39,14 +76,13 @@ public class Skeleton : MonoBehaviour
 
         if (!agent.hasPath || agent.velocity.sqrMagnitude == 0)
         {
-            ChangeAnimationState("Idle");
             walking = false;
         }
     }
 
     private void OnDestroy()
     {
-        UnitSelection.Instance.unitList.Remove(this.gameObject);
+        UnitSelection.Instance.unitList.Remove(this);
     }
     [ContextMenu("descansa")]
     public void Recover()

@@ -64,10 +64,6 @@ public class BuildingSystem : MonoBehaviour
         {
             BuildInterface.transform.GetChild(0).gameObject.SetActive(true);
         }
-        else
-        {
-            BuildInterface.transform.GetChild(1).gameObject.SetActive(true);
-        }
     }
     public static Vector3 GetMouseWorldPosition()
     {

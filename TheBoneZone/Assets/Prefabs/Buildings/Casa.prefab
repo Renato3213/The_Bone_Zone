@@ -124,7 +124,6 @@ MonoBehaviour:
   entrada: {fileID: 6186642522725893134}
   saida: {fileID: 1704306344802195716}
   limiteEsqueletos: 5
-  infamy: 5
   multiplier: 5
 --- !u!65 &5862483516905924644
 BoxCollider:
@@ -525,6 +524,7 @@ GameObject:
   - component: {fileID: 522425907119330226}
   - component: {fileID: 1495865447536429664}
   - component: {fileID: 6821810908138747252}
+  - component: {fileID: 1596649612720536290}
   m_Layer: 7
   m_Name: Casa
   m_TagString: Obstacle
@@ -595,6 +595,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1596649612720536290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7748180686468439064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bea7ba5b01176e743b7563f07cde8569, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  phantom: {fileID: 6188111407587076512}
+  finishedObj: {fileID: 1253960775800602276}
+  progress: 0
+  radius: 2.5
 --- !u!1001 &483785859551679716
 PrefabInstance:
   m_ObjectHideFlags: 0

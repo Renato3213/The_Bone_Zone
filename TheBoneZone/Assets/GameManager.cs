@@ -31,7 +31,9 @@ public class GameManager : MonoBehaviour
 
     public bool isPause = false;
 
-    public bool mouseOverObject = false;
+    public LayerMask ground;
+
+    public bool isMouseOverObject;
     void Awake()
     {
         myCam = Camera.main;
@@ -42,6 +44,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        isMouseOverObject = IsMouseOverObject();
         if (Input.GetMouseButtonDown(0))
         {
             RaycastHit hit;
@@ -61,6 +64,22 @@ public class GameManager : MonoBehaviour
         {
             Pause();
         }
+    }
+
+    public bool IsMouseOverObject()
+    {
+        RaycastHit hit;
+        Ray ray = myCam.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+        {
+            if (hit.collider.CompareTag("ground"))
+            {
+                return false;
+            }
+            else return true;
+        }
+        return false;
     }
 
     public void Pause()

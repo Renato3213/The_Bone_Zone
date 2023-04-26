@@ -23,7 +23,7 @@ public class Fazendas : MonoBehaviour
 
     void OnMouseOver()
     {
-        GameManager.instance.mouseOverObject = true;
+        //GameManager.instance.mouseOverObject = true;
         if (Input.GetMouseButtonDown(1))
         {
             ChamarEsqueletos();
@@ -34,10 +34,10 @@ public class Fazendas : MonoBehaviour
         GameManager.instance.UpdateActiveInterface(myInterface.gameObject);
     }
 
-    void OnMouseExit()
-    {
-        GameManager.instance.mouseOverObject = false;
-    }
+    //void OnMouseExit()
+    //{
+    //    GameManager.instance.mouseOverObject = false;
+    //}
     void FixedUpdate()
     {
         if (trabalhandoAqui.Count > 0)

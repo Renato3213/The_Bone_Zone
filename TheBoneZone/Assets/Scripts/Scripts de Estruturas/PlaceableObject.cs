@@ -6,9 +6,7 @@ public class PlaceableObject : MonoBehaviour
 {
     public bool placed { get; private set; }
     [SerializeField]
-    public bool canBePlaced; //{ get; private set; }
-    public Vector3Int size { get; private set; }
-    Vector3[] Vertices;
+    public bool canBePlaced; 
 
     public GameObject phantom, obj;
 
@@ -19,6 +17,7 @@ public class PlaceableObject : MonoBehaviour
     void Start()
     {
         phantomMat.color = new Color32(180, 255, 0, 180);
+        GetComponent<UnderConstruction>().enabled = false;
     }
 
     public void Rotate()
@@ -36,19 +35,20 @@ public class PlaceableObject : MonoBehaviour
         PlaceableObject placeableObj = place.GetComponent<PlaceableObject>();
 
         ObjectDrag drag = place.GetComponent<ObjectDrag>();
-        BoxCollider box = place.GetComponent<BoxCollider>();
-        Rigidbody rb = place.GetComponent<Rigidbody>();
-
-        Destroy(rb);
-        Destroy(box);
         Destroy(drag);
+
+        place.GetComponent<UnderConstruction>().enabled = true;
 
         placeableObj.placed = true;
         GameManager.instance.AtualizaCalcio(-custo);
-        placeableObj.phantom.SetActive(false);
-        placeableObj.obj.SetActive(true);
         
     }
+
+    public void CancelBuilding()
+    {
+        Destroy(this.gameObject);
+    }
+
 
     private void OnTriggerStay(Collider other)
     {

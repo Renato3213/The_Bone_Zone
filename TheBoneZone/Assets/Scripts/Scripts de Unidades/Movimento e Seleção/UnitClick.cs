@@ -22,11 +22,11 @@ public class UnitClick : MonoBehaviour
             {
                 if (Input.GetKey(KeyCode.LeftShift))
                 {
-                    UnitSelection.Instance.ShiftClickSelect(hit.collider.gameObject);
+                    UnitSelection.Instance.ShiftClickSelect(hit.collider.gameObject.GetComponent<Skeleton>());
                 }
                 else
                 {
-                    UnitSelection.Instance.ClickSelect(hit.collider.gameObject);
+                    UnitSelection.Instance.ClickSelect(hit.collider.gameObject.GetComponent<Skeleton>());
                 }
             }
             else

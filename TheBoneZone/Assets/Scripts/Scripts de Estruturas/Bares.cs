@@ -73,7 +73,7 @@ public class Bares : MonoBehaviour
             AtualizaInterface();
             other.transform.GetComponent<NavMeshAgent>().enabled = false;
             other.transform.position = GameManager.instance.deposit.transform.position;
-            UnitSelection.Instance.Deselect(other.gameObject);
+            UnitSelection.Instance.Deselect(other.gameObject.GetComponent<Skeleton>());
 
             if (descansandoAqui.Count == limiteEsqueletos)
             {
