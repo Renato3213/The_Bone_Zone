@@ -15,21 +15,30 @@ public class Skeleton : MonoBehaviour
     public SkeletonState buildingState = new BuildingState();
     public SkeletonState walkingState = new WalkingState();
     public SkeletonState spawningState = new SpawningState();
+    public SkeletonState deliveringState = new DeliveringState();
+    public SkeletonState grindingState = new GrindingState();
     public AnimationClip[] spawnAnimations;
     public float buildingSpeed;
+    public float maxBagCapacity;
+    public float farmingSpeed;
+    public float grindingSpeed;
     #endregion
 
 
     public SkeletonState currentState;
     public UnderConstruction buildingTarget;
+    public FarmingSpot farmingSpot;
+    public Fazendas grinderTarget;
     public bool doingTask;
+    public float amountInBag;
 
     public Animator myAnimator;
     public bool walking = false;
 
     private void Awake()
     {
-        UnitSelection.Instance.unitList.Add(this);
+        //UnitSelection.Instance.unitList.Add(this);
+        //UnitSelection.Instance.Deselect(this);
         GameManager.instance.listas.esqueletosLivres.Add(this.gameObject);
         GameManager.instance.listas.listaEsqueletos.Add(this.gameObject);
         happiness = 100f;
@@ -50,6 +59,7 @@ public class Skeleton : MonoBehaviour
     public void CheckWalking()
     {
         if (!agent.enabled) return;
+        //if (doingTask) return;
         if(walking == false && agent.hasPath)
         {
             ChangeAnimationState("Walk");
@@ -106,11 +116,16 @@ public class Skeleton : MonoBehaviour
     void ProcurarTrabalho()
     {
         Debug.Log("uepa");
-        if (ControlaListas.instance.fazendasLivres[0] != null)
+        if (ControlaListas.instance.grindersList[0] != null)
         {
-            Fazendas fazenda = ControlaListas.instance.fazendasLivres[0];
+            Fazendas fazenda = ControlaListas.instance.grindersList[0];
             agent.destination = fazenda.entrada.position;
         }
+    }
+
+    public void GoToGrinder(Fazendas grinder)
+    {
+
     }
 
     public void ChangeAnimationState(string State)

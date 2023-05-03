@@ -9,7 +9,17 @@ public class UnderConstruction : MonoBehaviour
     public float progress;
 
     public float radius;
+    public LayerMask buildingLayer;
 
+    private void Awake()
+    {
+        ControlaListas.instance.beingConstructedList.Add(this);
+    }
+
+    private void OnDestroy()
+    {
+        ControlaListas.instance.beingConstructedList.Remove(this);
+    }
     private void OnMouseOver()
     {
         if (UnitSelection.Instance.unitsSelected.Count == 0) return;
@@ -36,15 +46,22 @@ public class UnderConstruction : MonoBehaviour
         }
     }
 
-    private void OnMouseDown()
-    {
-        Debug.DrawRay(transform.position, RandomPointAroundBuilding(), Color.blue, 3f);
-    }
-
     public Vector3 RandomPointAroundBuilding()
     {
         float angle = Random.Range(0, 2f * Mathf.PI);
-        return transform.position + new Vector3 (Mathf.Cos(angle), 0, Mathf.Sin(angle)) * radius;
+        Vector3 pos = transform.position + new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)) * radius;
+
+        if (CheckFreeSpaceAroundPos(pos)) //se estiver livre
+        {
+            return pos;
+        }
+        else return RandomPointAroundBuilding();
+    }
+
+    bool CheckFreeSpaceAroundPos(Vector3 pos)
+    {
+        Collider[] colliders = Physics.OverlapSphere(pos, 0.4f, buildingLayer);
+        return colliders.Length == 0;
     }
 
     public void FinishConstruction()

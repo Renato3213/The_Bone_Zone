@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4647204687941539306}
   - component: {fileID: -8456701726534804456}
+  - component: {fileID: -8336377504974704731}
   - component: {fileID: 8797024351467654922}
   - component: {fileID: 7972837219944218307}
   m_Layer: 7
@@ -26,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3241609963622971263}
-  m_LocalRotation: {x: 0, y: -0.9396926, z: 0, w: 0.34202018}
+  m_LocalRotation: {x: 0, y: -0.92387956, z: 0, w: 0.38268343}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -35,7 +36,7 @@ Transform:
   - {fileID: 3069425547958591438}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -140, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -135, z: 0}
 --- !u!114 &-8456701726534804456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53,6 +54,25 @@ MonoBehaviour:
   obj: {fileID: 7450597719990907514}
   phantomMat: {fileID: 2100000, guid: 796cbc45764d8e74594139b9c3c7c496, type: 2}
   custo: 1300
+--- !u!114 &-8336377504974704731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3241609963622971263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bea7ba5b01176e743b7563f07cde8569, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  phantom: {fileID: 4927632219072185004}
+  finishedObj: {fileID: 7450597719990907514}
+  progress: 0
+  radius: 3
+  buildingLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!65 &8797024351467654922
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -64,8 +84,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.172492, y: 3.3997576, z: 3.510282}
-  m_Center: {x: -0.000000001742994, y: 1.6998788, z: -0.051927626}
+  m_Size: {x: 2.172492, y: 3.3997576, z: 2.9705718}
+  m_Center: {x: 0.000000015666396, y: 1.6998788, z: 0.2179274}
 --- !u!54 &7972837219944218307
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -467,11 +487,11 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 1.086246, y: 1.699879, z: 1.755141}
+  m_Extents: {x: 0.5, y: 1.699879, z: 1}
   m_MoveThreshold: 0.1
   m_Carve: 0
   m_CarveOnlyStationary: 1
-  m_Center: {x: -0.000000001742994, y: 1.699879, z: -0.05192763}
+  m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
 --- !u!65 &6443105367449363918
 BoxCollider:
@@ -502,7 +522,6 @@ MonoBehaviour:
   entrada: {fileID: 5136708135241802030}
   saida: {fileID: 1152488742899844660}
   limiteEsqueletos: 5
-  infamy: 5
   multiplier: 5
 --- !u!54 &1365990099352740558
 Rigidbody:

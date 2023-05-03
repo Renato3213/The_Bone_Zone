@@ -12,11 +12,11 @@ public class EntradaFazenda : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Esqueleto"))
         {
-            estaFazenda.trabalhandoAqui.Add(other.gameObject);
+            //estaFazenda.trabalhandoAqui.Add(other.gameObject);
             other.transform.GetComponent<NavMeshAgent>().enabled = false;
             other.transform.position = GameManager.instance.deposit.transform.position;
             UnitSelection.Instance.Deselect(other.gameObject.GetComponent<Skeleton>());
-            estaFazenda.quantidadeEsqueletos++;
+            //estaFazenda.quantidadeEsqueletos++;
             estaFazenda.myInterface.Atualiza();
         }
     }

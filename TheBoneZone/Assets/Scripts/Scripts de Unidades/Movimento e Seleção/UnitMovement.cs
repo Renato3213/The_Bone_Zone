@@ -9,24 +9,30 @@ public class UnitMovement : MonoBehaviour
     public LayerMask ground;
     public static List<NavMeshAgent> meshAgents = new List<NavMeshAgent>();
     [SerializeField] GameObject clickMesh;
+    Skeleton thisSkeleton;
 
     void Start()
     {
         cam = Camera.main;
         myAgent = GetComponent<NavMeshAgent>();
         meshAgents.Add(myAgent);
+        thisSkeleton= GetComponent<Skeleton>();
     }
 
     void Update()
     {
-        if (meshAgents.Contains(myAgent)) { }
-
-        else
+        if (!meshAgents.Contains(myAgent)) 
         {
             meshAgents.Add(myAgent);
         }
 
+        //else
+        //{
+        //    meshAgents.Add(myAgent);
+        //}
+
         if (GameManager.instance.IsMouseOverObject()) return;
+        if (!UnitSelection.Instance.unitsSelected.Contains(thisSkeleton)) return;
 
         if (Input.GetMouseButtonDown(1) && meshAgents.Contains(myAgent))
         {

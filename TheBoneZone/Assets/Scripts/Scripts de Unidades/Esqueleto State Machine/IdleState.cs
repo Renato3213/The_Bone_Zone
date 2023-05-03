@@ -7,6 +7,6 @@ public class IdleState : SkeletonState
     public override void DoState(Skeleton skeleton)
     {
         //nada
-        Debug.Log("idle");
     }
+
 }

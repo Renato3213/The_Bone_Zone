@@ -102,7 +102,7 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.780829, y: 0.9485725, z: 0.810704}
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
@@ -165,8 +165,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.7563857, y: 0.522451, z: 1.5961616}
-  m_Center: {x: 0.000000020329807, y: 0.1852833, z: 0.29808018}
+  m_Size: {x: 0.7563857, y: 0.522451, z: 1.0176537}
+  m_Center: {x: 0.00000023889314, y: 0.1852833, z: 0.008825629}
 --- !u!1 &1253960777539837286
 GameObject:
   m_ObjectHideFlags: 0
@@ -433,7 +433,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1704306344802195716
 Transform:
   m_ObjectHideFlags: 0
@@ -496,7 +496,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6186642522725893134
 Transform:
   m_ObjectHideFlags: 0
@@ -522,9 +522,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5205787648536186616}
   - component: {fileID: 522425907119330226}
+  - component: {fileID: 1596649612720536290}
   - component: {fileID: 1495865447536429664}
   - component: {fileID: 6821810908138747252}
-  - component: {fileID: 1596649612720536290}
   m_Layer: 7
   m_Name: Casa
   m_TagString: Obstacle
@@ -539,7 +539,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7748180686468439064}
-  m_LocalRotation: {x: 0, y: -0.9396926, z: 0, w: 0.34202018}
+  m_LocalRotation: {x: 0, y: -0.92387956, z: 0, w: 0.38268343}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -548,7 +548,7 @@ Transform:
   - {fileID: 8345954674224447419}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -140, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -135, z: 0}
 --- !u!114 &522425907119330226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -566,6 +566,25 @@ MonoBehaviour:
   obj: {fileID: 1253960775800602276}
   phantomMat: {fileID: 2100000, guid: 796cbc45764d8e74594139b9c3c7c496, type: 2}
   custo: 750
+--- !u!114 &1596649612720536290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7748180686468439064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bea7ba5b01176e743b7563f07cde8569, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  phantom: {fileID: 6188111407587076512}
+  finishedObj: {fileID: 1253960775800602276}
+  progress: 0
+  radius: 2.5
+  buildingLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!65 &1495865447536429664
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -595,22 +614,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1596649612720536290
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7748180686468439064}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bea7ba5b01176e743b7563f07cde8569, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  phantom: {fileID: 6188111407587076512}
-  finishedObj: {fileID: 1253960775800602276}
-  progress: 0
-  radius: 2.5
 --- !u!1001 &483785859551679716
 PrefabInstance:
   m_ObjectHideFlags: 0

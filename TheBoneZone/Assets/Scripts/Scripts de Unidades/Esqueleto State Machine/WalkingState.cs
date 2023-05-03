@@ -26,4 +26,5 @@ public class WalkingState : SkeletonState
             skeleton.currentState = skeleton.idleState;
         }
     }
+
 }

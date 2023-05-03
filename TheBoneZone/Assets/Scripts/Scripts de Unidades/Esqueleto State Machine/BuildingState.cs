@@ -9,10 +9,9 @@ public class BuildingState : SkeletonState
     float timeInterval = 1.5f;
     public override void DoState(Skeleton skeleton)
     {
-        Debug.Log("building");
-        if(skeleton.walking == true)
+
+        if (skeleton.walking == true)
         {
-            Debug.Log("ainda não chegou");
             initiated = false;
             return;
         }
@@ -23,7 +22,6 @@ public class BuildingState : SkeletonState
             skeleton.walking = false;
             buildingTarget = skeleton.buildingTarget;
             skeleton.StartCoroutine(Build(skeleton, buildingTarget));
-            Debug.Log("chegou");
         }
     }
 
@@ -51,14 +49,35 @@ public class BuildingState : SkeletonState
         yield return null;
     }
 
+    bool IsThereMoreToBuild()
+    {
+        if (ControlaListas.instance.beingConstructedList.Count > 0)
+        {
+            return true;
+        }
+        else return false;
+    }
+
     void ReturnToIdle(Skeleton skeleton)
     {
-        skeleton.doingTask = false;
         skeleton.agent.isStopped = false;
         skeleton.walking = false;
-        skeleton.currentState = skeleton.idleState;
-        skeleton.ChangeAnimationState("Idle");
-        skeleton.MoveTo(skeleton.transform.position);
+
+        if (ControlaListas.instance.beingConstructedList.Count > 0)
+        {
+            skeleton.StopAllCoroutines();
+            initiated = false;
+            skeleton.buildingTarget = ControlaListas.instance.beingConstructedList[0];
+            skeleton.MoveTo(skeleton.buildingTarget.RandomPointAroundBuilding());
+            skeleton.currentState = skeleton.buildingState;
+        }
+        else
+        {
+            skeleton.doingTask = false;
+            skeleton.currentState = skeleton.idleState;
+            skeleton.ChangeAnimationState("Idle");
+            skeleton.MoveTo(skeleton.transform.position);
+        }
     }
 
     bool IsBuildingDone(UnderConstruction building)
@@ -66,4 +85,5 @@ public class BuildingState : SkeletonState
         if (building.progress >= 1 || building == null) return true;
         else return false;
     }
+
 }

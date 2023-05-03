@@ -11,49 +11,45 @@ public class SkeletonFactory : MonoBehaviour
     Transform spawnPoint;
 
     public GameObject skeletonList, skeletonListContainer;
-    [SerializeField] 
+    [SerializeField]
     GameObject skeletonOnListPrefab;
 
 
-    GameObject skeletonBeingSpawnedObj;
-    Skeleton skeletonBeingSpawnedClass;
-
-    public void ActivateSkeleton()//ativa o obj do esqueleto
-    {
-        skeletonBeingSpawnedObj.GetComponent<UnitMovement>().enabled = true;
-        skeletonBeingSpawnedObj.GetComponent<NavMeshAgent>().enabled = true;
-        skeletonBeingSpawnedObj.GetComponent<CapsuleCollider>().enabled = true;
-        skeletonBeingSpawnedClass.currentState = skeletonBeingSpawnedClass.idleState;
-        Destroy(skeletonBeingSpawnedClass.spawningCircle);
-        GameManager.instance.UpdateSkeletonCount();
-    }
-
-    public void CreateSkeleton()//adiciona um esqueleto na fila de criação
+    public void EnqueueSkeleton()//adiciona um esqueleto na fila de criação
     {
         if (GameManager.instance.Calcio < 100) return;
-        else if (GameManager.instance.listas.listaEsqueletos.Count + skeletonListContainer.transform.childCount
+
+        if (GameManager.instance.listas.listaEsqueletos.Count + skeletonListContainer.transform.childCount
             < GameManager.instance.maxSkeletons)
         {
-            skeletonBeingSpawnedObj = Instantiate(skeletonPrefab, spawnPoint.position, Quaternion.Euler(0,180,0));
-
-            skeletonBeingSpawnedClass = skeletonBeingSpawnedObj.GetComponent<Skeleton>();
-            skeletonBeingSpawnedClass.currentState = skeletonBeingSpawnedClass.spawningState;
-
-            DeactivateSkeleton(skeletonBeingSpawnedObj);
             GameManager.instance.AtualizaCalcio(-100);
             Instantiate(skeletonOnListPrefab, skeletonListContainer.transform);
-
-            if (skeletonListContainer.transform.childCount == 1)
-            {
-                skeletonList.SetActive(true);
-            }
+        }
+        if (skeletonListContainer.transform.childCount == 1)
+        {
+            skeletonList.SetActive(true);
         }
     }
 
-    public void CancelSpawn()
+    public GameObject CreateSkeleton()
     {
-        Destroy(skeletonBeingSpawnedObj);
-        skeletonBeingSpawnedObj = null;
+        GameObject skeletonBeingSpawnedObj = Instantiate(skeletonPrefab, spawnPoint.position, Quaternion.Euler(0, 180, 0));
+
+        Skeleton skeletonClass = skeletonBeingSpawnedObj.GetComponent<Skeleton>();
+        skeletonClass.currentState = skeletonClass.spawningState;
+
+        return skeletonBeingSpawnedObj;
+    }
+
+    public void ActivateSkeleton(GameObject skeletonToActivate, Skeleton skeletonClass)//ativa o obj do esqueleto
+    {
+        skeletonToActivate.GetComponent<UnitMovement>().enabled = true;
+        skeletonToActivate.GetComponent<NavMeshAgent>().enabled = true;
+        skeletonToActivate.GetComponent<CapsuleCollider>().enabled = true;
+        skeletonClass.currentState = skeletonClass.idleState;
+        UnitSelection.Instance.unitList.Add(skeletonClass);
+        Destroy(skeletonClass.spawningCircle);
+        GameManager.instance.UpdateSkeletonCount();
     }
 
     void DeactivateSkeleton(GameObject skeleton)

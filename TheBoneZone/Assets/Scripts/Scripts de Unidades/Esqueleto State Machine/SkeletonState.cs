@@ -5,5 +5,9 @@ using UnityEngine;
 
 public abstract class SkeletonState
 {
-    public abstract void DoState(Skeleton skeleton);
+    public virtual void DoState(Skeleton skeleton)
+    {
+
+    }
+    
 }

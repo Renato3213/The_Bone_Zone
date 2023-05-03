@@ -8,6 +8,8 @@ public class EmFila : MonoBehaviour
     public float tweenTime;
     float progress;
     float percent;
+
+    GameObject skeletonBeingSpawned;
     public void Awake()
     {
         tweenTime = 5.5f;
@@ -22,6 +24,9 @@ public class EmFila : MonoBehaviour
         {
             yield return null;
         }
+
+        skeletonBeingSpawned = MainBuilding.instance.skeletonFactory.CreateSkeleton();
+        Skeleton skeletonClass = skeletonBeingSpawned.GetComponent<Skeleton>();
         while (percent < 1)
         {
             progress += Time.deltaTime;
@@ -29,23 +34,23 @@ public class EmFila : MonoBehaviour
             fill.fillAmount = Mathf.Lerp(0, 1, percent);
             yield return null;
         }
+        MainBuilding.instance.skeletonFactory.ActivateSkeleton(skeletonBeingSpawned, skeletonClass);
 
         if(MainBuilding.instance.skeletonFactory.skeletonListContainer.transform.childCount <= 1)
         {
             MainBuilding.instance.skeletonFactory.skeletonList.SetActive(false);
         }
 
-        MainBuilding.instance.skeletonFactory.ActivateSkeleton();
 
         Destroy(this.gameObject);
 
         yield break;
     }
 
-    public void Cancelar()
+    public void Cancelar(GameObject skeletonToCancel)
     {
         GameManager.instance.AtualizaCalcio(100);
-        MainBuilding.instance.skeletonFactory.CancelSpawn();
+        Destroy(skeletonBeingSpawned);
         Destroy(this.gameObject);
     }
 }
