@@ -21,8 +21,8 @@ public class FarmingState : SkeletonState
             skeleton.walking = false;
             myFarmingSpot = skeleton.farmingSpot;
             skeleton.StartCoroutine(Farm(skeleton, myFarmingSpot));
+            Debug.Log("farming");
         }
-        Debug.Log("farming");
     }
 
     IEnumerator Farm(Skeleton skeleton, FarmingSpot farmingSpot)
@@ -30,9 +30,8 @@ public class FarmingState : SkeletonState
         skeleton.ChangeAnimationState("Building");
         while (skeleton.amountInBag < skeleton.maxBagCapacity)
         {
-            Debug.Log("uepa");
             skeleton.agent.isStopped = true;
-            skeleton.amountInBag += Time.deltaTime;
+            skeleton.amountInBag += Time.deltaTime * skeleton.farmingSpeed;
             yield return null;
         }
         if(skeleton.amountInBag > skeleton.maxBagCapacity)
@@ -47,10 +46,8 @@ public class FarmingState : SkeletonState
 
     void Deliver(Skeleton skeleton)
     {
-        Debug.Log("entrega la");
         skeleton.doingTask= false;
         skeleton.agent.isStopped = false;
-        skeleton.walking = false;
         skeleton.ChangeAnimationState("Idle");
         skeleton.MoveTo(skeleton.transform.position);
         skeleton.doingTask = true;

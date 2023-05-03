@@ -98,8 +98,9 @@ public class GameManager : MonoBehaviour
 
     public void AtualizaCalcio(float qnt)
     {
-        Calcio = (int)(Calcio + qnt);
-        moedasTxt.text = Calcio.ToString();
+        Calcio += qnt;
+        int CalcioText = (int)Calcio;
+        moedasTxt.text = CalcioText.ToString();
     }
 
     public void UpdateActiveInterface(GameObject newInterface)
