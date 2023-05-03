@@ -45,13 +45,13 @@ public class DeliveringState : SkeletonState
             }
             yield return null;
         }
-        skeleton.transform.LookAt(grinder.transform, Vector3.up);
 
         while (grinder.bonesStored >= grinder.storageLimit)
         {
             yield return null;
         }
 
+        skeleton.transform.LookAt(grinder.transform, Vector3.up);
         skeleton.ChangeAnimationState("Building");
         grinder.bonesStored += skeleton.amountInBag;
 

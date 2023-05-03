@@ -67,7 +67,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61a2066dae9133741bd73aa3d07fb5ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  limiteEsqueletos: 4
+  limiteEsqueletos: 1
   producao: 20
   tempo: 0
   storageLimit: 1000

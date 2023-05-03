@@ -27,13 +27,17 @@ public class FarmingState : SkeletonState
 
     IEnumerator Farm(Skeleton skeleton, FarmingSpot farmingSpot)
     {
-        Debug.Log("uepa");
         skeleton.ChangeAnimationState("Building");
         while (skeleton.amountInBag < skeleton.maxBagCapacity)
         {
+            Debug.Log("uepa");
             skeleton.agent.isStopped = true;
-            skeleton.amountInBag = skeleton.amountInBag + (skeleton.farmingSpeed / Time.deltaTime) > skeleton.maxBagCapacity ? skeleton.maxBagCapacity : skeleton.amountInBag + (skeleton.farmingSpeed / Time.deltaTime);
+            skeleton.amountInBag += Time.deltaTime;
             yield return null;
+        }
+        if(skeleton.amountInBag > skeleton.maxBagCapacity)
+        {
+            skeleton.amountInBag = skeleton.maxBagCapacity;
         }
         //the bag is now full
         Deliver(skeleton);
