@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class SpawningState : SkeletonState
 {
-    bool initialized = false;
+    
     public override void DoState(Skeleton skeleton)
     {
-        if (!initialized)
+
+        if (!skeleton.stateInitialized)
         {
-            initialized = true;
+            skeleton.stateInitialized = true;
             ChooseRandomAnimation(skeleton);
         }
     }
@@ -17,6 +18,6 @@ public class SpawningState : SkeletonState
     void ChooseRandomAnimation(Skeleton skeleton)
     {
         int i = Random.Range(0, 3);
-        skeleton.ChangeAnimationState(skeleton.spawnAnimations[i].name);
+        skeleton.ChangeAnimationState(skeleton.myStats.spawnAnimations[i].name);
     }
 }

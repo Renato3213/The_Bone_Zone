@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class VisaoCamera : MonoBehaviour
 {
-    public Camera camera; 
+    public Camera myCamera; 
     public float escala;
     public float minO = 10;
     public float maxO = 20;
@@ -19,35 +19,35 @@ public class VisaoCamera : MonoBehaviour
     void Update()
     {
         //Camera pespectiva.
-        if(camera.fieldOfView < minP)
+        if(myCamera.fieldOfView < minP)
         {
-            camera.fieldOfView = minP;
+            myCamera.fieldOfView = minP;
         }
 
-        if(camera.fieldOfView > maxP)
+        if(myCamera.fieldOfView > maxP)
         {
-            camera.fieldOfView = maxP;
+            myCamera.fieldOfView = maxP;
         }
 
-        if(camera.fieldOfView >= minP && camera.fieldOfView <= maxP)
+        if(myCamera.fieldOfView >= minP && myCamera.fieldOfView <= maxP)
         {
-            camera.fieldOfView += Input.mouseScrollDelta.y * escala * -1;
+            myCamera.fieldOfView += Input.mouseScrollDelta.y * escala * -1;
         }
 
         //Camera ortogonal.
-        if(camera.orthographicSize < minO)
+        if(myCamera.orthographicSize < minO)
         {
-            camera.orthographicSize = minO;
+            myCamera.orthographicSize = minO;
         }
 
-        if(camera.orthographicSize > maxO)
+        if(myCamera.orthographicSize > maxO)
         {
-            camera.orthographicSize = maxO;
+            myCamera.orthographicSize = maxO;
         }
 
-        if(camera.orthographicSize >= minO && camera.orthographicSize <= maxO)
+        if(myCamera.orthographicSize >= minO && myCamera.orthographicSize <= maxO)
         {
-            camera.orthographicSize += Input.mouseScrollDelta.y * escala * -1;
+            myCamera.orthographicSize += Input.mouseScrollDelta.y * escala * -1;
         }
     }
 

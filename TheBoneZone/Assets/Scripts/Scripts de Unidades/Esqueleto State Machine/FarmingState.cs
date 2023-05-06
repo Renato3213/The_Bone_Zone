@@ -4,39 +4,46 @@ using UnityEngine;
 
 public class FarmingState : SkeletonState
 {
-    bool initiated;
+
     FarmingSpot myFarmingSpot;
     
     public override void DoState(Skeleton skeleton)
     {
         if (skeleton.walking == true)
         {
-            initiated = false;
+            skeleton.stateInitialized = false;
             return;
         }
 
-        if (!initiated)
+        if (!skeleton.stateInitialized)
         {
-            initiated = true;
+            skeleton.stateInitialized = true;
             skeleton.walking = false;
             myFarmingSpot = skeleton.farmingSpot;
             skeleton.StartCoroutine(Farm(skeleton, myFarmingSpot));
-            Debug.Log("farming");
         }
+        GetTired(skeleton);
+
     }
 
+    void GetTired(Skeleton skeleton)
+    {
+        skeleton.energy -= Time.deltaTime / skeleton.myStats.workTime < 0 ? 0 : Time.deltaTime / skeleton.myStats.workTime;
+
+        if (skeleton.energy == 0) skeleton.tirednessCoefficient = 0.25f;
+    }
     IEnumerator Farm(Skeleton skeleton, FarmingSpot farmingSpot)
     {
         skeleton.ChangeAnimationState("Building");
-        while (skeleton.amountInBag < skeleton.maxBagCapacity)
+        while (skeleton.amountInBag < skeleton.myStats.maxBagCapacity)
         {
             skeleton.agent.isStopped = true;
-            skeleton.amountInBag += Time.deltaTime * skeleton.farmingSpeed;
+            skeleton.amountInBag += Time.deltaTime * skeleton.myStats.farmingSpeed ;
             yield return null;
         }
-        if(skeleton.amountInBag > skeleton.maxBagCapacity)
+        if(skeleton.amountInBag > skeleton.myStats.maxBagCapacity)
         {
-            skeleton.amountInBag = skeleton.maxBagCapacity;
+            skeleton.amountInBag = skeleton.myStats.maxBagCapacity;
         }
         //the bag is now full
         Deliver(skeleton);
@@ -51,7 +58,7 @@ public class FarmingState : SkeletonState
         skeleton.ChangeAnimationState("Idle");
         skeleton.MoveTo(skeleton.transform.position);
         skeleton.doingTask = true;
-        skeleton.currentState = skeleton.deliveringState;
+        skeleton.ChangeState(skeleton.myStats.deliveringState);
     }
 
 }

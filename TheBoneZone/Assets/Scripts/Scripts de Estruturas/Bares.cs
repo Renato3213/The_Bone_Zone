@@ -7,9 +7,12 @@ using UnityEngine.AI;
 public class Bares : MonoBehaviour
 {
     public TextMeshProUGUI slots;
-    List<GameObject> descansandoAqui = new List<GameObject>();
+    List<Skeleton> descansandoAqui = new List<Skeleton>();
     public Transform entrada, saida;
     public int limiteEsqueletos = 5;
+
+    [SerializeField]
+    StructureFlyweight myStats;
 
     public float multiplier = 5;
     void Awake()
@@ -19,66 +22,52 @@ public class Bares : MonoBehaviour
         GameManager.instance.UpdateSkeletonCount();
     }
 
-    private void FixedUpdate()
+    void OnMouseOver()
     {
-        if (descansandoAqui.Count == 0) return;
-
-
-        for (int i = 0; i < descansandoAqui.Count; i++)
+        if (UnitSelection.Instance.unitsSelected.Count == 0) return;
+        if (Input.GetMouseButtonDown(1))
         {
-            Skeleton skeleton = descansandoAqui[i].GetComponent<Skeleton>();
-
-            if (skeleton.happiness >= 100)
-            {
-                skeleton.happiness = skeleton.happiness > 100 ? 100 : skeleton.happiness;
-                descansandoAqui[i].transform.position = saida.position;
-                descansandoAqui[i].transform.GetComponent<NavMeshAgent>().enabled = true;
-                descansandoAqui[i].GetComponent<Skeleton>().Recover();
-                descansandoAqui.Remove(descansandoAqui[i]);
-                AtualizaInterface();
-            }
-            else
-            {
-                skeleton.happiness += Time.fixedDeltaTime * multiplier;
-            }
+            ChamarEsqueletos();
         }
-       
     }
+
+    void ChamarEsqueletos()
+    {
+        if (UnitSelection.Instance.unitsSelected.Count == 0) return;
+
+
+        if (descansandoAqui.Count < myStats.grinderSkeletonLimit)
+        {
+            SendSkeletonToPub();
+
+            ChamarEsqueletos();
+        }
+
+    }
+
+    void SendSkeletonToPub()
+    {
+        Skeleton skeleton = UnitSelection.Instance.unitsSelected[0];
+
+        skeleton.MoveTo(entrada.position);
+        skeleton.pubTarget = this;
+        skeleton.doingTask = true;
+        skeleton.ChangeState(skeleton.myStats.restingState);
+        UnitSelection.Instance.Deselect(skeleton);
+        descansandoAqui.Add(skeleton);
+    }
+
 
     void AtualizaInterface()
     {
         slots.text = "" + descansandoAqui.Count + "/" + limiteEsqueletos;
     }
 
-    void LiberaEsqueleto(GameObject esqueleto)
+    public void LiberaEsqueleto(Skeleton esqueleto)
     {
-        esqueleto.transform.position = saida.position;
-        esqueleto.transform.GetComponent<NavMeshAgent>().enabled = true;
-        esqueleto.GetComponent<Skeleton>().Recover();
-        descansandoAqui.Remove(esqueleto);
-        AtualizaInterface();
+        descansandoAqui[0].transform.position = saida.position;
+        descansandoAqui[0].ResetSkeleton();
+        descansandoAqui.RemoveAt(0);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Esqueleto"))
-        {
-            Debug.Log("opa");
-            if (descansandoAqui.Count == limiteEsqueletos)
-            {
-                other.transform.GetComponent<Skeleton>().Recover();
-                return;
-            }
-            descansandoAqui.Add(other.gameObject);
-            AtualizaInterface();
-            other.transform.GetComponent<NavMeshAgent>().enabled = false;
-            other.transform.position = GameManager.instance.deposit.transform.position;
-            UnitSelection.Instance.Deselect(other.gameObject.GetComponent<Skeleton>());
-
-            if (descansandoAqui.Count == limiteEsqueletos)
-            {
-                ControlaListas.instance.pubsLivres.Remove(this);
-            }
-        }
-    }
 }

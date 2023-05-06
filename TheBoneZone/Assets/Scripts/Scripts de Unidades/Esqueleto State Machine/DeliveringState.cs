@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class DeliveringState : SkeletonState
 {
-    bool initiated = false;
     Vector3 closestGrinderPosition;
     Fazendas closestGrinder;
     FarmingSpot mySpot;
@@ -16,14 +15,21 @@ public class DeliveringState : SkeletonState
         //    return;
         //}
 
-        if (!initiated)
+        if (!skeleton.stateInitialized)
         {
-            initiated = true;
+            skeleton.stateInitialized = true;
             FindClosestGrinder(skeleton);
-            Debug.Log("inicia");
         }
+        GetTired(skeleton);
+
     }
 
+    void GetTired(Skeleton skeleton)
+    {
+        skeleton.energy -= Time.deltaTime / skeleton.myStats.workTime < 0 ? 0 : Time.deltaTime / skeleton.myStats.workTime;
+
+        if (skeleton.energy == 0) skeleton.tirednessCoefficient = 0.25f;
+    }
     void FindClosestGrinder(Skeleton skeleton)
     {
         closestGrinderPosition = Vector3.positiveInfinity;
@@ -38,16 +44,13 @@ public class DeliveringState : SkeletonState
             }
         }
         skeleton.StartCoroutine(Deliver(skeleton, closestGrinder));
-        Debug.Log("found");
     }
 
     public IEnumerator Deliver(Skeleton skeleton, Fazendas grinder)
     {
-        Debug.Log("vai la porras");
         skeleton.MoveTo(closestGrinderPosition);
         while (Vector3.Distance(skeleton.transform.position, closestGrinderPosition) > 2.5f)
         {
-                Debug.Log("chego n");
             //if(Vector3.Distance(skeleton.transform.position, closestGrinderPosition) <= 1.5f)
             //{
             //    skeleton.agent.isStopped = true;
@@ -56,11 +59,10 @@ public class DeliveringState : SkeletonState
             //}
             yield return null;
         }
-        Debug.Log("chego");
         skeleton.MoveTo(skeleton.transform.position);
         skeleton.agent.isStopped = true;
         skeleton.walking = false;
-        while (grinder.bonesStored >= grinder.storageLimit)
+        while (grinder.bonesStored >= grinder.myStats.grinderStorageLimit)
         {
             yield return null;
         }
@@ -69,16 +71,15 @@ public class DeliveringState : SkeletonState
         skeleton.ChangeAnimationState("Building");
         grinder.bonesStored += skeleton.amountInBag;
 
-        skeleton.amountInBag = grinder.bonesStored - grinder.storageLimit < 0? 0 
-                                : grinder.bonesStored - grinder.storageLimit;
+        skeleton.amountInBag = grinder.bonesStored - grinder.myStats.grinderStorageLimit < 0? 0 
+                                : grinder.bonesStored - grinder.myStats.grinderStorageLimit;
 
-        if (grinder.bonesStored > grinder.storageLimit)
+        if (grinder.bonesStored > grinder.myStats.grinderStorageLimit)
         {
-            grinder.bonesStored = grinder.storageLimit;
+            grinder.bonesStored = grinder.myStats.grinderStorageLimit;
         }
 
         yield return new WaitForSeconds(1f);
-        Debug.Log("!");
         ReturnToFarming(skeleton);
         yield return null;
     }
@@ -88,8 +89,8 @@ public class DeliveringState : SkeletonState
         skeleton.ChangeAnimationState("Walk");
         skeleton.agent.isStopped = false;
         skeleton.MoveTo(skeleton.farmingSpot.transform.position);
-        initiated = false;
-        skeleton.currentState = skeleton.farmingState;
+        skeleton.stateInitialized = false;
+        skeleton.ChangeState(skeleton.myStats.farmingState);
 
     }
 

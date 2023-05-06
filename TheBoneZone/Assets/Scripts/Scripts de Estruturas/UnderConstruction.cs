@@ -26,13 +26,12 @@ public class UnderConstruction : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1))
         {
-            Debug.Log("a");
             foreach(Skeleton skeleton in UnitSelection.Instance.unitsSelected)
             {
                 skeleton.MoveTo(RandomPointAroundBuilding());
                 skeleton.buildingTarget = this;
                 skeleton.doingTask = true;
-                skeleton.currentState = skeleton.buildingState;
+                skeleton.ChangeState(skeleton.myStats.buildingState);
             }
         }
     }

@@ -6,22 +6,28 @@ using UnityEngine.AI;
 public class Fazendas : MonoBehaviour
 {
     //public int quantidadeEsqueletos;
-    public int limiteEsqueletos;
-    public float producao;
-    public float tempo;
+    //public float producao;
+    //public float tempo;
+    [Header("Status")]
+    [Space]
+    public StructureFlyweight myStats;
 
-    public float storageLimit;
     public float bonesStored;
 
     public Transform entrada, saida;
 
+    [Space]
+    [Header("Interface Related")]
+    [Space]
+    public InterfaceFazenda myInterface;
+
+
+    [HideInInspector]
     public List<Skeleton> trabalhandoAqui = new List<Skeleton>();
 
-
-    public InterfaceFazenda myInterface;
     void Awake()
     {
-        GameManager.instance.listas.grindersList.Add(this);
+        GameManager.instance.ListManager.grindersList.Add(this);
     }
 
     void OnMouseOver()
@@ -37,95 +43,56 @@ public class Fazendas : MonoBehaviour
         GameManager.instance.UpdateActiveInterface(myInterface.gameObject);
     }
 
-    void FixedUpdate()
-    {
-
-
-        //if (trabalhandoAqui.Count > 0)
-        //{
-        //    tempo += Time.fixedDeltaTime;
-        //    if (tempo > 1f)
-        //    {
-        //        GameManager.instance.AtualizaCalcio(producao * quantidadeEsqueletos);
-        //        for (int i = 0; i < trabalhandoAqui.Count; i++)
-        //        {
-        //            Skeleton skeleton = trabalhandoAqui[i].GetComponent<Skeleton>();
-
-        //            if (skeleton.energy <= 0 || skeleton.happiness <= 0)
-        //            {
-        //                skeleton.energy = skeleton.energy < 0 ? 0 : skeleton.energy;
-        //                skeleton.happiness = skeleton.happiness < 0 ? 0 : skeleton.happiness;
-        //                trabalhandoAqui[i].transform.position = saida.position;
-        //                trabalhandoAqui[i].transform.GetComponent<NavMeshAgent>().enabled = true;
-        //                //quantidadeEsqueletos--;
-        //                myInterface.Atualiza();
-        //                skeleton.Recover();
-        //                trabalhandoAqui.Remove(trabalhandoAqui[i]);
-        //            }
-        //            else
-        //            {
-        //                skeleton.happiness -= 3;
-        //                skeleton.energy -= 20;
-        //            }
-        //        }
-        //        tempo = 0;
-        //    }
-        //}
-    }
-
-    public bool IsFull()
-    {
-        return trabalhandoAqui.Count >= limiteEsqueletos;
-    }
-
     public void ChamarEsqueletos()
     {
         if (UnitSelection.Instance.unitsSelected.Count == 0) return;
 
-        //int i = 0;
-        //foreach (var unit in UnitSelection.Instance.unitsSelected)
-        //{
-        //    if (i == limiteEsqueletos) break;
-        //    unit.transform.GetComponent<NavMeshAgent>().destination = entrada.position; 
-        //    i++;
 
-        //}
-
-        if(trabalhandoAqui.Count < limiteEsqueletos)
+        if(trabalhandoAqui.Count < myStats.grinderSkeletonLimit)
         {
-            Debug.Log("upe");
-            Skeleton skeleton = UnitSelection.Instance.unitsSelected[0];
 
-            skeleton.MoveTo(entrada.position);
-            skeleton.grinderTarget = this;
-            skeleton.doingTask = true;
-            skeleton.currentState = skeleton.grindingState;
-            UnitSelection.Instance.Deselect(skeleton);
-            trabalhandoAqui.Add(skeleton);
+            GrindCommand();
             ChamarEsqueletos();
         }
         else
         {
             if (ControlaListas.instance.farmingSpotList.Count == 0) return;
 
-            Skeleton skeleton = UnitSelection.Instance.unitsSelected[0];
-            FarmingSpot farmingSpot = ControlaListas.instance.farmingSpotList[0];
-
-            skeleton.farmingSpot = farmingSpot;
-            skeleton.doingTask = true;
-            skeleton.MoveTo(farmingSpot.transform.position);
-            skeleton.currentState = skeleton.farmingState;
-            UnitSelection.Instance.Deselect(skeleton);
-            farmingSpot.Ocupar();
+            FarmCommand();
             ChamarEsqueletos();
         }
     }
+
+    public void GrindCommand() //sends skeleton to grind on that farm
+    {
+        Skeleton skeleton = UnitSelection.Instance.unitsSelected[0];
+
+        skeleton.MoveTo(entrada.position);
+        skeleton.grinderTarget = this;
+        skeleton.doingTask = true;
+        skeleton.ChangeState(skeleton.myStats.grindingState);
+        UnitSelection.Instance.Deselect(skeleton);
+        trabalhandoAqui.Add(skeleton);
+    }
+
+    public void FarmCommand() //sends skeleton to farm on a free farming spots, if any
+    {
+        Skeleton skeleton = UnitSelection.Instance.unitsSelected[0];
+        FarmingSpot farmingSpot = ControlaListas.instance.farmingSpotList[0];
+
+        skeleton.farmingSpot = farmingSpot;
+        skeleton.doingTask = true;
+        skeleton.MoveTo(farmingSpot.transform.position);
+        skeleton.ChangeState(skeleton.myStats.farmingState);
+        UnitSelection.Instance.Deselect(skeleton);
+        farmingSpot.Ocupar();
+    }
+
     public void LiberarEsqueleto()
     {
         trabalhandoAqui[0].transform.position = saida.position;
-        trabalhandoAqui[0].transform.GetComponent<NavMeshAgent>().enabled = true;
+        trabalhandoAqui[0].ResetSkeleton();
         trabalhandoAqui.RemoveAt(0);
-        //quantidadeEsqueletos--;
         myInterface.Atualiza();
     }
 

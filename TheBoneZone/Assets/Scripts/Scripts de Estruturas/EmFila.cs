@@ -49,7 +49,7 @@ public class EmFila : MonoBehaviour
 
     public void Cancelar(GameObject skeletonToCancel)
     {
-        GameManager.instance.AtualizaCalcio(100);
+        GameManager.instance.UpdateCalcium(100);
         Destroy(skeletonBeingSpawned);
         Destroy(this.gameObject);
     }

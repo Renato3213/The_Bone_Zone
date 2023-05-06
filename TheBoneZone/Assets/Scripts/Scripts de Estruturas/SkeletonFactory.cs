@@ -19,10 +19,10 @@ public class SkeletonFactory : MonoBehaviour
     {
         if (GameManager.instance.Calcio < 100) return;
 
-        if (GameManager.instance.listas.listaEsqueletos.Count + skeletonListContainer.transform.childCount
+        if (GameManager.instance.ListManager.listaEsqueletos.Count + skeletonListContainer.transform.childCount
             < GameManager.instance.maxSkeletons)
         {
-            GameManager.instance.AtualizaCalcio(-100);
+            GameManager.instance.UpdateCalcium(-100);
             Instantiate(skeletonOnListPrefab, skeletonListContainer.transform);
         }
         if (skeletonListContainer.transform.childCount == 1)
@@ -36,26 +36,19 @@ public class SkeletonFactory : MonoBehaviour
         GameObject skeletonBeingSpawnedObj = Instantiate(skeletonPrefab, spawnPoint.position, Quaternion.Euler(0, 180, 0));
 
         Skeleton skeletonClass = skeletonBeingSpawnedObj.GetComponent<Skeleton>();
-        skeletonClass.currentState = skeletonClass.spawningState;
+        skeletonClass.ChangeState(skeletonClass.myStats.spawningState);
 
         return skeletonBeingSpawnedObj;
     }
 
     public void ActivateSkeleton(GameObject skeletonToActivate, Skeleton skeletonClass)//ativa o obj do esqueleto
     {
-        skeletonToActivate.GetComponent<UnitMovement>().enabled = true;
         skeletonToActivate.GetComponent<NavMeshAgent>().enabled = true;
         skeletonToActivate.GetComponent<CapsuleCollider>().enabled = true;
-        skeletonClass.currentState = skeletonClass.idleState;
+        skeletonClass.ChangeState(skeletonClass.myStats.idleState);
         UnitSelection.Instance.unitList.Add(skeletonClass);
         Destroy(skeletonClass.spawningCircle);
         GameManager.instance.UpdateSkeletonCount();
     }
 
-    void DeactivateSkeleton(GameObject skeleton)
-    {
-        skeleton.GetComponent<UnitMovement>().enabled = false;
-        skeleton.GetComponent<NavMeshAgent>().enabled = false;
-        skeleton.GetComponent<CapsuleCollider>().enabled = false;
-    }
 }

@@ -4,26 +4,25 @@ using UnityEngine;
 
 public class WalkingState : SkeletonState
 {
-    bool initiated;
     public override void DoState(Skeleton skeleton)
     {
-        Debug.Log("walking");
         if (skeleton.walking)
         {
-            initiated = false;
+            skeleton.stateInitialized = false;
+            skeleton.agent.speed = skeleton.myStats.maxMovespeed * (skeleton.tirednessCoefficient * 2);
             return;
         }
         if (skeleton.doingTask)
         {
-            initiated = false;
+            skeleton.stateInitialized = false;
             return;
         }
 
-        if (!initiated)
+        if (!skeleton.stateInitialized)
         {
-            initiated = true;
+            skeleton.stateInitialized = true;
             skeleton.ChangeAnimationState("Idle");
-            skeleton.currentState = skeleton.idleState;
+            skeleton.ChangeState(skeleton.myStats.idleState);
         }
     }
 

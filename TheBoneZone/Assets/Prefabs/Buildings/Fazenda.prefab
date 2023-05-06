@@ -67,15 +67,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61a2066dae9133741bd73aa3d07fb5ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  limiteEsqueletos: 1
-  producao: 20
-  tempo: 0
-  storageLimit: 1000
+  myStats: {fileID: 11400000, guid: 6ffc9023e9fe90949accec4e200d4b78, type: 2}
   bonesStored: 0
   entrada: {fileID: 645698305700556686}
   saida: {fileID: 6364797069691154534}
-  trabalhandoAqui: []
   myInterface: {fileID: 2644826376105724553}
+  trabalhandoAqui: []
 --- !u!65 &8046656184929877111
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -290,7 +287,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 6362909407006008578}
         m_TargetAssemblyTypeName: Fazendas, Assembly-CSharp
         m_MethodName: LiberarEsqueleto
         m_Mode: 1

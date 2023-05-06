@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 769b0e33a89014a4c9703a6f9602c3bc, type: 3}
+  m_Name: SkeletonStats
+  m_EditorClassIdentifier: 
+  spawnAnimations:
+  - {fileID: 8541318541649889271, guid: abbe0032ceb05dd499936c64dc7cf70b, type: 3}
+  - {fileID: 4626172680514080261, guid: abbe0032ceb05dd499936c64dc7cf70b, type: 3}
+  - {fileID: 3049220365477327339, guid: abbe0032ceb05dd499936c64dc7cf70b, type: 3}
+  buildingSpeed: 5
+  maxBagCapacity: 35
+  farmingSpeed: 5
+  grindingSpeed: 2
+  minimumWage: 5
+  maxMovespeed: 4
+  happinessCoefficient: 0.5

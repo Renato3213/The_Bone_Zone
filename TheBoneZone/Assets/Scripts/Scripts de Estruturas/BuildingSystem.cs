@@ -37,10 +37,10 @@ public class BuildingSystem : MonoBehaviour
         #region Place Inputs
 
         if (!objToPlace) return;
-       
+
 
         if (Input.GetKeyDown(KeyCode.R)) objToPlace.Rotate();
-       
+
         else if (Input.GetMouseButtonDown(0))
         {
             if (CanBePlaced(objToPlace))
@@ -50,7 +50,6 @@ public class BuildingSystem : MonoBehaviour
         }
         else if (Input.GetMouseButtonDown(1))
         {
-            GameManager.instance.building = false;
             Destroy(objToPlace.gameObject);
         }
 
@@ -58,12 +57,11 @@ public class BuildingSystem : MonoBehaviour
 
     }
 
-    public void OpenBuidingInterface()//pra eu poder chamar de um botão no jogo também
+    public void OpenBuidingInterface()
     {
-        if (GameManager.instance.onCenter)
-        {
-            BuildInterface.transform.GetChild(0).gameObject.SetActive(true);
-        }
+
+        BuildInterface.transform.GetChild(0).gameObject.SetActive(true);
+
     }
     public static Vector3 GetMouseWorldPosition()
     {
@@ -88,11 +86,10 @@ public class BuildingSystem : MonoBehaviour
 
     public void InitializeWithObject(GameObject prefab)
     {
-        GameManager.instance.building = true;
-        if(objToPlace != null) Destroy(objToPlace.gameObject);
+        if (objToPlace != null) Destroy(objToPlace.gameObject);
 
         Vector3 position = new Vector3(0, 0, 0);
-            //SnapCoordinateToGrid(GetMouseWorldPosition());
+        //SnapCoordinateToGrid(GetMouseWorldPosition());
 
         GameObject obj = Instantiate(prefab, position, prefab.transform.rotation);
         objToPlace = obj.GetComponent<PlaceableObject>();

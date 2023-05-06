@@ -120,11 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 118c4ec16af1c9b27988caf8dd442818, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slots: {fileID: 4151338466249369121}
-  entrada: {fileID: 6186642522725893134}
-  saida: {fileID: 1704306344802195716}
-  limiteEsqueletos: 5
-  multiplier: 5
+  myStats: {fileID: 11400000, guid: 6ffc9023e9fe90949accec4e200d4b78, type: 2}
 --- !u!65 &5862483516905924644
 BoxCollider:
   m_ObjectHideFlags: 0

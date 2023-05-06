@@ -7,14 +7,26 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    
+    [Header("Manager References")]
+    [Space]
+    public ResourceManager resourceManager;
+    public InterfaceManager interfaceManager;
+    public ControlaListas ListManager;
+
+
+    [Header("Other")]
+
     public float Calcio = 0;
-    public bool onCenter;
     public bool building;
     public bool isMouseOverInterface;
     public int maxSkeletons;
 
-    public float invasionCountdown;
+    //public float invasionCountdown;
 
+    public StructureFlyweight structureStats { get; }
+
+    [HideInInspector]
     public GameObject vazio;
     public GameObject pauseMenu;
     Camera myCam;
@@ -24,10 +36,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] Text moedasTxt;
     [SerializeField] Text quantiaEsqueletos;
 
-    public ControlaListas listas;
     public GameObject deposit;
-
-    public Image hpImage;
 
     public bool isPause = false;
 
@@ -37,9 +46,7 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         myCam = Camera.main;
-        invasionCountdown = 30f;
         instance = this;
-        listas = GetComponent<ControlaListas>();
     }
 
     private void Update()
@@ -49,8 +56,7 @@ public class GameManager : MonoBehaviour
         {
             RaycastHit hit;
             Ray ray = myCam.ScreenPointToRay(Input.mousePosition);
-            bool isOverUI = UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject();
-            if (Physics.Raycast(ray, out hit) && !isOverUI)
+            if (Physics.Raycast(ray, out hit) && !IsMouseOverUI())
             {
                 if (hit.collider.CompareTag("ground"))
                 {
@@ -66,6 +72,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public bool IsMouseOverUI()
+    {
+        return UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject();
+    }
     public bool IsMouseOverObject()
     {
         RaycastHit hit;
@@ -96,12 +106,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void AtualizaCalcio(float qnt)
-    {
-        Calcio += qnt;
-        int CalcioText = (int)Calcio;
-        moedasTxt.text = CalcioText.ToString();
-    }
 
     public void UpdateActiveInterface(GameObject newInterface)
     {
@@ -110,22 +114,18 @@ public class GameManager : MonoBehaviour
         activeInterface = newInterface;
         activeInterface.gameObject.GetComponent<Canvas>().enabled = true;
     }
+    public void UpdateCalcium(float amount)
+    {
+        resourceManager.UpdateCalcium(amount);
+    }
+
+    public void UpdateGold(float amount)
+    {
+        resourceManager.UpdateGold(amount);
+    }
 
     public void UpdateSkeletonCount()
     {
-        quantiaEsqueletos.text = ": " + listas.listaEsqueletos.Count + "/" + maxSkeletons;
-    }
-
-    public void SetPause(bool p)
-    {
-        isPause = p;
-        if (isPause)
-        {
-            Time.timeScale = 0.0f;
-        }
-        else
-        {
-            Time.timeScale = 1.0f;
-        }
+        resourceManager.UpdateSkeletonCount();
     }
 }

@@ -21,6 +21,7 @@ public class UnitMovement : MonoBehaviour
 
     void Update()
     {
+        if (!UnitSelection.Instance.unitsSelected.Contains(thisSkeleton)) return;
         if (!meshAgents.Contains(myAgent)) 
         {
             meshAgents.Add(myAgent);
@@ -32,7 +33,6 @@ public class UnitMovement : MonoBehaviour
         //}
 
         if (GameManager.instance.IsMouseOverObject()) return;
-        if (!UnitSelection.Instance.unitsSelected.Contains(thisSkeleton)) return;
 
         if (Input.GetMouseButtonDown(1) && meshAgents.Contains(myAgent))
         {
@@ -83,12 +83,7 @@ public class UnitMovement : MonoBehaviour
     {
         foreach(Skeleton skeleton in UnitSelection.Instance.unitsSelected)
         {
-            skeleton.StopAllCoroutines();
-            skeleton.walking = false;
-            skeleton.currentState = skeleton.idleState;
-            skeleton.ChangeAnimationState("Idle");
-            skeleton.agent.isStopped = false;
-            skeleton.doingTask = false;
+            skeleton.ResetSkeleton();
         }
     }
 

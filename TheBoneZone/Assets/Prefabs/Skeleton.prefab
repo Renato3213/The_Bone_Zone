@@ -173,14 +173,7 @@ MonoBehaviour:
   energy: 100
   agent: {fileID: 2418320608228780321}
   spawningCircle: {fileID: 7824704829064486379}
-  spawnAnimations:
-  - {fileID: 8541318541649889271, guid: abbe0032ceb05dd499936c64dc7cf70b, type: 3}
-  - {fileID: 4626172680514080261, guid: abbe0032ceb05dd499936c64dc7cf70b, type: 3}
-  - {fileID: 3049220365477327339, guid: abbe0032ceb05dd499936c64dc7cf70b, type: 3}
-  buildingSpeed: 2
-  maxBagCapacity: 5
-  farmingSpeed: 1
-  grindingSpeed: 1
+  myStats: {fileID: 11400000, guid: ff7fd5d22e447f44e9073dd995350c36, type: 2}
   buildingTarget: {fileID: 0}
   farmingSpot: {fileID: 0}
   grinderTarget: {fileID: 0}

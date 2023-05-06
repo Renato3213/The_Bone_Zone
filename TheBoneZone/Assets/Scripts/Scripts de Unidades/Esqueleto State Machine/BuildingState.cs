@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BuildingState : SkeletonState
 {
-    bool initiated;
     UnderConstruction buildingTarget;
     float timeInterval = 1.5f;
     public override void DoState(Skeleton skeleton)
@@ -12,17 +11,26 @@ public class BuildingState : SkeletonState
 
         if (skeleton.walking == true)
         {
-            initiated = false;
+            skeleton.stateInitialized = false;
             return;
         }
 
-        if (!initiated)
+        if (!skeleton.stateInitialized)
         {
-            initiated = true;
+            skeleton.stateInitialized = true;
             skeleton.walking = false;
             buildingTarget = skeleton.buildingTarget;
             skeleton.StartCoroutine(Build(skeleton, buildingTarget));
         }
+        GetTired(skeleton);
+
+    }
+
+    void GetTired(Skeleton skeleton)
+    {
+        skeleton.energy -= Time.deltaTime / skeleton.myStats.workTime < 0? 0 : Time.deltaTime / skeleton.myStats.workTime;
+
+        if (skeleton.energy == 0) skeleton.tirednessCoefficient = 0.25f;
     }
 
     IEnumerator Build(Skeleton skeleton, UnderConstruction building)
@@ -39,7 +47,7 @@ public class BuildingState : SkeletonState
                 skeleton.transform.position = building.RandomPointAroundBuilding();
                 interval = timeInterval;
             }
-            building.Build(Time.deltaTime / skeleton.buildingSpeed);
+            building.Build(Time.deltaTime / skeleton.myStats.buildingSpeed);
             interval -= Time.deltaTime;
             yield return null;
         }
@@ -47,15 +55,6 @@ public class BuildingState : SkeletonState
         ReturnToIdle(skeleton);
 
         yield return null;
-    }
-
-    bool IsThereMoreToBuild()
-    {
-        if (ControlaListas.instance.beingConstructedList.Count > 0)
-        {
-            return true;
-        }
-        else return false;
     }
 
     void ReturnToIdle(Skeleton skeleton)
@@ -66,15 +65,15 @@ public class BuildingState : SkeletonState
         if (ControlaListas.instance.beingConstructedList.Count > 0)
         {
             skeleton.StopAllCoroutines();
-            initiated = false;
+            skeleton.stateInitialized = false;
             skeleton.buildingTarget = ControlaListas.instance.beingConstructedList[0];
             skeleton.MoveTo(skeleton.buildingTarget.RandomPointAroundBuilding());
-            skeleton.currentState = skeleton.buildingState;
+            skeleton.ChangeState(skeleton.myStats.buildingState);
         }
         else
         {
             skeleton.doingTask = false;
-            skeleton.currentState = skeleton.idleState;
+            skeleton.ChangeState(skeleton.myStats.idleState);
             skeleton.ChangeAnimationState("Idle");
             skeleton.MoveTo(skeleton.transform.position);
         }

@@ -3,46 +3,56 @@ using UnityEngine.AI;
 
 public class Skeleton : MonoBehaviour
 {
-    public enum State { Working, HavingFun, Resting, Idle, Walking }
-    public float happiness, energy;
-    public NavMeshAgent agent;
+    [Header("Status")]
+    [Space]
+    public float energy;
+    public float tirednessCoefficient;
+    public float efficiency = 1f;
+    public float goldPocket;
+    public SkeletonFlyweight myStats;
+
+    [Header("Spawning")]
+    [Space]
     public GameObject spawningCircle;
 
 
-    #region flyweight
-    public SkeletonState idleState = new IdleState();
-    public SkeletonState farmingState = new FarmingState();
-    public SkeletonState buildingState = new BuildingState();
-    public SkeletonState walkingState = new WalkingState();
-    public SkeletonState spawningState = new SpawningState();
-    public SkeletonState deliveringState = new DeliveringState();
-    public SkeletonState grindingState = new GrindingState();
-    public AnimationClip[] spawnAnimations;
-    public float buildingSpeed;
-    public float maxBagCapacity;
-    public float farmingSpeed;
-    public float grindingSpeed;
-    #endregion
-
+    #region State Related
 
     public SkeletonState currentState;
     public UnderConstruction buildingTarget;
     public FarmingSpot farmingSpot;
     public Fazendas grinderTarget;
-    public bool doingTask;
-    public float amountInBag;
+    public Bares pubTarget;
 
-    public Animator myAnimator;
+    #endregion
+
+    #region Hide In Inspector
+
+    [HideInInspector]
     public bool walking = false;
+    [HideInInspector]
+    public bool doingTask;
+    [HideInInspector]
+    public bool stateInitialized;
+    [HideInInspector]
+    public NavMeshAgent agent;
+    [HideInInspector]
+    public float amountInBag;
+    [HideInInspector]
+    public Animator myAnimator;
+
+    #endregion
 
     private void Awake()
     {
+        GameManager.instance.resourceManager.amountToPay += myStats.minimumWage;
         //UnitSelection.Instance.unitList.Add(this);
         //UnitSelection.Instance.Deselect(this);
-        GameManager.instance.listas.esqueletosLivres.Add(this.gameObject);
-        GameManager.instance.listas.listaEsqueletos.Add(this.gameObject);
-        happiness = 100f;
-        energy = 100f;
+        //GameManager.instance.listas.esqueletosLivres.Add(this.gameObject);
+        //GameManager.instance.listas.listaEsqueletos.Add(this.gameObject);
+        stateInitialized = false;
+        energy = 1f;
+        tirednessCoefficient = 0.5f;
 
     }
     void Update()
@@ -52,6 +62,12 @@ public class Skeleton : MonoBehaviour
         currentState.DoState(this);
     }
 
+    public void ChangeState(SkeletonState state)
+    {
+        stateInitialized = false;
+        currentState = state;
+    }
+     
     public void MoveTo(Vector3 position)
     {
         agent.destination = position;
@@ -60,11 +76,11 @@ public class Skeleton : MonoBehaviour
     {
         if (!agent.enabled) return;
         //if (doingTask) return;
-        if(walking == false && agent.hasPath)
+        if (walking == false && agent.hasPath)
         {
             ChangeAnimationState("Walk");
             walking = true;
-            if(!doingTask) currentState = walkingState;
+            if (!doingTask) ChangeState(myStats.walkingState);
         }
         if (agent.pathPending) return;
 
@@ -76,62 +92,41 @@ public class Skeleton : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
+
+    public void UpdateEfficiency()
     {
-        UnitSelection.Instance.unitList.Remove(this);
-    }
-    [ContextMenu("descansa")]
-    public void Recover()
-    {
-        if (happiness > 0 && energy > 0)
-        {
-            ProcurarTrabalho();
-        }
-        else if (energy == 0)
-        {
-            if (GameManager.instance.listas.casasLivres.Count == 0) return;
-
-            else
-            {
-                Casas casa = GameManager.instance.listas.casasLivres[0];
-                agent.destination = casa.entrada.position;
-            }
-
-
-        }
-        else if (happiness == 0)
-        {
-
-            if (GameManager.instance.listas.pubsLivres.Count == 0) return;
-            
-            else
-            {
-                Bares bar = GameManager.instance.listas.pubsLivres[0];
-                agent.destination = bar.entrada.position;
-            }
-        }
-
-    }
-    [ContextMenu("trabalho")]
-    void ProcurarTrabalho()
-    {
-        Debug.Log("uepa");
-        if (ControlaListas.instance.grindersList[0] != null)
-        {
-            Fazendas fazenda = ControlaListas.instance.grindersList[0];
-            agent.destination = fazenda.entrada.position;
-        }
+        efficiency = myStats.happinessCoefficient + tirednessCoefficient;
     }
 
-    public void GoToGrinder(Fazendas grinder)
+    public void ResetSkeleton()
     {
+        StopAllCoroutines();
+        walking = false;
+        ChangeState(myStats.idleState);
+        ChangeAnimationState("Idle");
+        agent.enabled = true;
+        agent.isStopped = false;
+        doingTask = false;
 
+
+        buildingTarget = null;
+
+        farmingSpot?.Desocupar();
+        farmingSpot = null;
+
+        grinderTarget = null;
+        pubTarget = null;
     }
 
     public void ChangeAnimationState(string State)
     {
         myAnimator.StopPlayback();
         myAnimator.Play(State);
+        myAnimator.speed = tirednessCoefficient * 2;
+    }
+    private void OnDestroy()
+    {
+        UnitSelection.Instance.unitList.Remove(this);
     }
 
 }

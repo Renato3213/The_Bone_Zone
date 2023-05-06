@@ -11,6 +11,6 @@ public class InterfaceFazenda : MonoBehaviour
     TextMeshProUGUI Slots;
     public void Atualiza()
     {
-        Slots.text = estaFazenda.trabalhandoAqui.Count + "/" + estaFazenda.limiteEsqueletos;
+        Slots.text = estaFazenda.trabalhandoAqui.Count + "/" + estaFazenda.myStats.grinderSkeletonLimit;
     }
 }

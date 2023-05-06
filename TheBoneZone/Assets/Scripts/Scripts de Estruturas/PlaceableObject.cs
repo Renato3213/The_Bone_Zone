@@ -40,7 +40,7 @@ public class PlaceableObject : MonoBehaviour
         place.GetComponent<UnderConstruction>().enabled = true;
 
         placeableObj.placed = true;
-        GameManager.instance.AtualizaCalcio(-custo);
+        GameManager.instance.UpdateCalcium(-custo);
         
     }
 
