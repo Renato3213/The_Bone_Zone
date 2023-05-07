@@ -22,4 +22,5 @@ MonoBehaviour:
   grindingSpeed: 2
   minimumWage: 5
   maxMovespeed: 4
+  workTime: 60
   happinessCoefficient: 0.5
