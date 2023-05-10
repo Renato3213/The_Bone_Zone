@@ -106,6 +106,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void SwitchScreen()
+    {
+
+    }
 
     public void UpdateActiveInterface(GameObject newInterface)
     {

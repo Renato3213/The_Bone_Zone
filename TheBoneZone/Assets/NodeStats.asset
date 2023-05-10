@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62996769695e5214bab532f16825a2a0, type: 3}
+  m_Name: NodeStats
+  m_EditorClassIdentifier: 
+  conqueredSprite: {fileID: 21300000, guid: e2b20d8a39ee004418df150c0142d5d3, type: 3}
+  battleSprite: {fileID: 21300000, guid: 9c6e18c0f4a544a4693fb72527f22db3, type: 3}
+  upgradeSprite: {fileID: 21300000, guid: 8d1779146a0c9d347bb65c59820436d6, type: 3}
+  spellSprite: {fileID: 21300000, guid: 68dd5b9fa14bdcf4fabf458865e261b5, type: 3}

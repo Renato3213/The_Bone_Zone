@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class SpellsTree
+public abstract class SpellsTree : MonoBehaviour
 {
     /*
     [SerializeField] bool spellAbruptDecay;

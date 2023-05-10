@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class TechTree
+public abstract class TechTree : MonoBehaviour 
 {
     /*
     [SerializeField] bool researchAdvancedNecromancy;

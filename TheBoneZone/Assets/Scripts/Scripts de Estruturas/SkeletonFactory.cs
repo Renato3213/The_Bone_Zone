@@ -17,7 +17,7 @@ public class SkeletonFactory : MonoBehaviour
 
     public void EnqueueSkeleton()//adiciona um esqueleto na fila de criação
     {
-        if (GameManager.instance.Calcio < 100) return;
+        if (GameManager.instance.resourceManager.calcium < 100) return;
 
         if (GameManager.instance.ListManager.listaEsqueletos.Count + skeletonListContainer.transform.childCount
             < GameManager.instance.maxSkeletons)
