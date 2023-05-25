@@ -169,18 +169,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8f6466f9325a664985e700296e4897a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  happiness: 100
   energy: 100
-  agent: {fileID: 2418320608228780321}
-  spawningCircle: {fileID: 7824704829064486379}
+  tirednessCoefficient: 0
+  efficiency: 1
+  goldPocket: 0
   myStats: {fileID: 11400000, guid: ff7fd5d22e447f44e9073dd995350c36, type: 2}
+  spawningCircle: {fileID: 7824704829064486379}
   buildingTarget: {fileID: 0}
   farmingSpot: {fileID: 0}
   grinderTarget: {fileID: 0}
+  pubTarget: {fileID: 0}
+  walking: 0
   doingTask: 0
+  stateInitialized: 0
+  agent: {fileID: 2418320608228780321}
   amountInBag: 0
   myAnimator: {fileID: 6432122497555998306}
-  walking: 0
 --- !u!114 &7170077619588653352
 MonoBehaviour:
   m_ObjectHideFlags: 0
