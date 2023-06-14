@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class ResourceManager : MonoBehaviour
 {
-    public float calcium;
-    public float gold;
+    
+    public ResourceFlyweight resourceFlyweight;
 
     [SerializeField]
     TextMeshProUGUI calciumText;
@@ -25,23 +25,27 @@ public class ResourceManager : MonoBehaviour
 
     void Start()
     {
-        InvokeRepeating("PaySkeletons", 10f, 10f);
+        if(skeletonsText != null)
+            InvokeRepeating("PaySkeletons", 10f, 10f);
+
+        if(skeletonStats != null)
+            UpdateSkeletonCount();
+
         UpdateCalcium(0);
         UpdateGold(0);
-        UpdateSkeletonCount();
     }
 
     public void UpdateCalcium(float amount)
     {
-        calcium += amount;
-        _calciumToText = (int)calcium;
+        resourceFlyweight.calcium += amount;
+        _calciumToText = (int)resourceFlyweight.calcium;
         calciumText.text = _calciumToText.ToString();
     }
 
     public void UpdateGold(float amount)
     {
-        gold += amount;
-        _goldToText = (int)gold;
+        resourceFlyweight.gold += amount;
+        _goldToText = (int)resourceFlyweight.gold;
         goldText.text = _goldToText.ToString();
     }
 
@@ -57,7 +61,7 @@ public class ResourceManager : MonoBehaviour
         UpdateGold(-amountToPay);
 
 
-        if (gold > amountToPay)
+        if (resourceFlyweight.gold > amountToPay)
         {
             skeletonStats.happinessCoefficient = 0.5f;
             foreach (Skeleton skeleton in UnitSelection.Instance.unitList)
@@ -70,7 +74,7 @@ public class ResourceManager : MonoBehaviour
             skeletonStats.happinessCoefficient = 0.25f;
             foreach (Skeleton skeleton in UnitSelection.Instance.unitList)
             {
-                skeleton.goldPocket += gold/ UnitSelection.Instance.unitList.Count;
+                skeleton.goldPocket += resourceFlyweight.gold / UnitSelection.Instance.unitList.Count;
             }
         } 
     }

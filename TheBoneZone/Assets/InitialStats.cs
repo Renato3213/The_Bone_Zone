@@ -10,4 +10,26 @@ public class InitialStats : MonoBehaviour
 
     public SpellsTree spellToUnlock;
     public TechTree upgradeToUnlock;
+
+    public bool Conquered = false;
+
+    [SerializeField]
+    GameObject spellSprite;
+    [SerializeField]
+    GameObject upgradeSprite;
+
+    void Victory()
+    {
+        GameManager.instance.UpdateGold(goldReward);
+        //MyBase.instance.skeletonAmount = 0;
+        //MyBase.instance.ResetTroops();
+        //Destroy(battleState);
+        Conquered = true;
+        //unlock spells, if any
+        //unlock upgrades, if any
+        //do animations
+
+        Debug.Log("Victory");
+        
+    }
 }

@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class UnitDrag : MonoBehaviour
 {
+    [SerializeField]
     Camera myCam;
 
     [SerializeField]
@@ -13,7 +14,6 @@ public class UnitDrag : MonoBehaviour
     Vector2 endPosition;
     void Start()
     {
-        myCam = Camera.main;
         startPosition = Vector2.zero;
         endPosition = Vector2.zero;
         DrawVisual();

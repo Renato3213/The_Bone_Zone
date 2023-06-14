@@ -5,70 +5,32 @@ using UnityEngine;
 
 public class CameraControls : MonoBehaviour
 {
-    //variaveis necessárias para o funcionamento da função ChangeLocation
-    #region ChangeLocation Variables
-    //public enum Location { Center, North, South, West, East }
-
-    //public Location currentLocation;
-
-    //public GameObject CameraNorth, CameraSouth, CameraWest, CameraEast;
-
-    //public GameObject northButton, southButton, westButton, eastButton;
-
-    //public GameObject InterfaceTowerDefense, InterfaceCity;
-    #endregion 
-
     //variaveis necessárias para mover a camera com o mouse
     #region Camera Movement Variables
     public float panSpeed = 20f;
     public float panBorderThickness = 10f;
-    public float panLimitMinY, panLimitMaxY, panLimitX;
-
     public float scrollSpeed = 20f;
-    public float minY = 20f;
-    public float maxY = 120f;
 
-    float zoomAmount = 5f;
+    float zoomAmount;
     CinemachineVirtualCamera zoom;
 
-    public GameObject CenterCamera;
+    public GameObject currentCamera;
+
+    public CameraStats[] cameras;
+    public int activeCameraIndex = 0;
     #endregion
 
 
     void Start()
     {
-        zoom = CenterCamera.GetComponent<CinemachineVirtualCamera>();
-        //GameManager.instance.onCenter = true;
-        //currentLocation = Location.Center;
-        //CameraNorth.SetActive(false);
-        //CameraSouth.SetActive(false);
-        //CameraWest.SetActive(false);
-        //CameraEast.SetActive(false);
+        zoom = currentCamera.GetComponent<CinemachineVirtualCamera>();
+        zoom.m_Lens.OrthographicSize = cameras[activeCameraIndex].initialZoom;
     }
 
     private void Update()
     {
-        #region Keyboard ChangeLocation Inputs
-        //if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
-        //{
-        //    ChangeLocation("North");
-        //}
-        //else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
-        //{
-        //    ChangeLocation("South");
-        //}
-        //if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
-        //{
-        //    ChangeLocation("West");
-        //}
-        //if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
-        //{
-        //    ChangeLocation("East");
-        //}
-        #endregion
-
         #region Move Camera Mouse Inputs
-        Vector3 pos = CenterCamera.transform.position;
+        Vector3 pos = currentCamera.transform.position;
 
         if (Input.mousePosition.y >= Screen.height - panBorderThickness)
         {
@@ -92,14 +54,14 @@ public class CameraControls : MonoBehaviour
 
         float scroll = Input.GetAxis("Mouse ScrollWheel");
         zoomAmount -= scroll * scrollSpeed * 100f * Time.deltaTime;
-        zoomAmount = Mathf.Clamp(zoomAmount, minY, maxY);
+        zoomAmount = Mathf.Clamp(zoomAmount, cameras[activeCameraIndex].minZoom, cameras[activeCameraIndex].maxZoom);
         zoom.m_Lens.OrthographicSize = zoomAmount;
 
 
-        pos.x = Mathf.Clamp(pos.x, -panLimitX, panLimitX);
-        pos.z = Mathf.Clamp(pos.z, panLimitMinY, panLimitMaxY);
+        pos.x = Mathf.Clamp(pos.x, cameras[activeCameraIndex].panLimitMinX, cameras[activeCameraIndex].panLimitMaxX);
+        pos.z = Mathf.Clamp(pos.z, cameras[activeCameraIndex].panLimitMinY, cameras[activeCameraIndex].panLimitMaxY);
 
-        CenterCamera.transform.position = pos;
+        currentCamera.transform.position = pos;
         #endregion
     }
 
@@ -107,6 +69,18 @@ public class CameraControls : MonoBehaviour
 
     public void ToggleLocation()
     {
-        gameObject.SetActive(!gameObject.activeSelf);
+        cameras[activeCameraIndex].gameObject.SetActive(false);
+
+        activeCameraIndex = activeCameraIndex == 1 ? 0 : 1;
+
+        ChangeCamera(cameras[activeCameraIndex]);
+
+        cameras[activeCameraIndex].gameObject.SetActive(true);
+    }
+
+    public void ChangeCamera(CameraStats camera)
+    {
+        zoom = camera.GetComponent<CinemachineVirtualCamera>();
+        currentCamera = camera.gameObject;
     }
 }

@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    
+
     [Header("Manager References")]
     [Space]
     public ResourceManager resourceManager;
@@ -26,13 +26,14 @@ public class GameManager : MonoBehaviour
 
     public StructureFlyweight structureStats { get; }
 
+    [SerializeField]
+    Camera myCam;
     [HideInInspector]
     public GameObject vazio;
     public GameObject pauseMenu;
-    Camera myCam;
 
     public GameObject activeInterface;
-    
+
     [SerializeField] Text moedasTxt;
     [SerializeField] Text quantiaEsqueletos;
 
@@ -94,21 +95,21 @@ public class GameManager : MonoBehaviour
 
     public void Pause()
     {
-        if(Time.timeScale == 1f)
+        if (Time.timeScale == 1f)
         {
             Time.timeScale = 0f;
             UpdateActiveInterface(pauseMenu);
         }
-        else if(Time.timeScale == 0)
+        else if (Time.timeScale == 0)
         {
             Time.timeScale = 1f;
             UpdateActiveInterface(vazio);
         }
     }
 
-    public void SwitchScreen()
+    public void GoToScene(string scene)
     {
-
+        SceneManager.LoadScene(scene);
     }
 
     public void UpdateActiveInterface(GameObject newInterface)

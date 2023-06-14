@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/HudMissoes/TelaDerrota.unity
     guid: 5767e9a3125a90a49a6484f05c744dcb
+  - enabled: 1
+    path: Assets/Scenes/Fases/Fase1.unity
+    guid: 468c6942571148f4eb771e0e455cbc1d
   m_configObjects: {}

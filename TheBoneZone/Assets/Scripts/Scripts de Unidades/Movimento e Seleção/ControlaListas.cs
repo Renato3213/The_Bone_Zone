@@ -18,19 +18,11 @@ public class ControlaListas : MonoBehaviour
     public List<UnderConstruction> beingConstructedList = new List<UnderConstruction>();
     public List<FarmingSpot> farmingSpotList = new List<FarmingSpot>();
 
-
-
-    void Start()
+    private void Start()
     {
-        if(instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        instance = this;
     }
+
+
 
 }

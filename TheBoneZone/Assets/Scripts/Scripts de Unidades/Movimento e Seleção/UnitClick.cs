@@ -2,14 +2,11 @@ using UnityEngine;
 
 public class UnitClick : MonoBehaviour
 {
+    [SerializeField]
     Camera myCam;
 
     public LayerMask clickable;
     public LayerMask ground;
-    void Start()
-    {
-        myCam = Camera.main; 
-    }
 
     void Update()
     {

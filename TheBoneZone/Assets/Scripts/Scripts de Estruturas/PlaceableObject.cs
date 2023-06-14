@@ -64,7 +64,7 @@ public class PlaceableObject : MonoBehaviour
     {
         if (other.CompareTag("Obstacle"))
         {
-            if (GameManager.instance.resourceManager.calcium > custo)
+            if (GameManager.instance.resourceManager.resourceFlyweight.calcium > custo)
             {
                 canBePlaced = true;
                 phantomMat.color = new Color32(180, 255, 0, 180);

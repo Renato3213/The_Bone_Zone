@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -5,72 +6,117 @@ using UnityEngine;
 
 public class MyBase : MonoBehaviour
 {
+    public LevelRefference levelReference;
+    
     public static MyBase instance;
 
-    public MapNode baseNode;
-    public Material baseMaterial;
+    public GameObject nodeInterface;
 
-    public GameObject invadingInterface;
 
-    public NotConqueredNode targetNode;
+    public List<LevelNode> nodes = new List<LevelNode>();
+    public LevelNode targetNode;
 
     public TextMeshProUGUI goldRewardText;
 
-    public int skeletonAmount;
-    public TextMeshProUGUI skeletonAmountText;
-    public int skeletonCost;
-    public TextMeshProUGUI costText;
+    public GameObject[] difficultyStars;
+
+    public string targetFase;
 
     private void Start()
     {
-        instance = this;
-        //GameObject baseNodeObj = baseNode.transform.GetChild(0).gameObject;
-        //baseNodeObj.GetComponent<MeshRenderer>().material = baseMaterial;
+        instance= this;
+
     }
 
-    public void AddTroop()
+    public void StartBattle()
     {
-        skeletonCost += 1000;
-        skeletonAmount++;
+        levelReference.CurrentLevel = targetNode.fase;
+        GameManager.instance.GoToScene(targetNode.fase);
+    }
 
-        if (GameManager.instance.resourceManager.calcium < skeletonCost)
+    public void UpdateDifficultyStars(int difficultyLevel)
+    {
+        StopCoroutine(TweenStars(difficultyLevel));
+        StartCoroutine(TweenStars(difficultyLevel));
+    }
+
+    IEnumerator TweenStars(int difficultyLevel)
+    {
+        foreach (GameObject star in difficultyStars)
         {
-            skeletonCost -= 1000;
-            skeletonAmount -= 1;
+            star.SetActive(false);
+            star.transform.DOKill();
+            star.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
         }
-        costText.text = "Custo: " + skeletonCost.ToString();
-        skeletonAmountText.text = skeletonAmount.ToString();
-    }
-    public void RemoveTroop()
-    {
-        skeletonCost -= 1000;
-        skeletonAmount--;
-
-        if (skeletonAmount < 0)
+        for (int i = 0; i < difficultyLevel; i++)
         {
-            skeletonCost = 0;
-            skeletonAmount = 0;
+            difficultyStars[i].SetActive(true);
+            difficultyStars[i].transform.DOScale(new Vector3(1, 1, 1), 0.25f).SetEase(Ease.OutBack);
+            yield return null;
         }
-        costText.text = "Custo: " + skeletonCost.ToString();
-        skeletonAmountText.text = skeletonAmount.ToString();
     }
 
-    public void ResetTroops()
-    {
-        skeletonCost = 0;
-        skeletonAmount = 0;
-    
-        costText.text = "Custo: " + skeletonCost.ToString();
-        skeletonAmountText.text = skeletonAmount.ToString();
-    }
+    #region redacted
+    //public int skeletonAmount;
+    //public TextMeshProUGUI skeletonAmountText;
+    //public int skeletonCost;
+    //public TextMeshProUGUI costText;
 
-    public void initiateBattle()
-    {
-        if (skeletonAmount <= 0) return;
+    //private void Start()
+    //{
+    //    instance = this;
+    //    //GameObject baseNodeObj = baseNode.transform.GetChild(0).gameObject;
+    //    //baseNodeObj.GetComponent<MeshRenderer>().material = baseMaterial;
+    //}
 
-        targetNode.numberOfAllies = skeletonAmount;
-        GameManager.instance.UpdateCalcium(-MyBase.instance.skeletonCost);
-        targetNode.Battle();
-    }
+    //public void AddTroop()
+    //{
+    //    skeletonCost += 1000;
+    //    skeletonAmount++;
+
+    //    if (GameManager.instance.resourceManager.calcium < skeletonCost)
+    //    {
+    //        skeletonCost -= 1000;
+    //        skeletonAmount -= 1;
+    //    }
+    //    costText.text = "Custo: " + skeletonCost.ToString();
+    //    skeletonAmountText.text = skeletonAmount.ToString();
+    //}
+    //public void RemoveTroop()
+    //{
+    //    skeletonCost -= 1000;
+    //    skeletonAmount--;
+
+    //    if (skeletonAmount < 0)
+    //    {
+    //        skeletonCost = 0;
+    //        skeletonAmount = 0;
+    //    }
+    //    costText.text = "Custo: " + skeletonCost.ToString();
+    //    skeletonAmountText.text = skeletonAmount.ToString();
+    //}
+
+    //public void ResetTroops()
+    //{
+    //    skeletonCost = 0;
+    //    skeletonAmount = 0;
+
+    //    costText.text = "Custo: " + skeletonCost.ToString();
+    //    skeletonAmountText.text = skeletonAmount.ToString();
+    //}
+
+
+
+    //public void initiateBattle()
+    //{
+    //    if (skeletonAmount <= 0) return;
+
+    //    targetNode.numberOfAllies = skeletonAmount;
+    //    GameManager.instance.UpdateCalcium(-MyBase.instance.skeletonCost);
+    //    targetNode.Battle();
+    //}
+
+    #endregion
+
 
 }

@@ -16,7 +16,6 @@ public class MainBuilding : Interaction
         skeletonFactory = transform.GetComponent<SkeletonFactory>();
         GameManager.instance.maxSkeletons += 10;
         GameManager.instance.UpdateSkeletonCount();
-        GameManager.instance.UpdateCalcium(2000);
     }
     void OnMouseOver()
     {
