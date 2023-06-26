@@ -262,7 +262,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Sele\xE7ao em massa de esqueletos com clique direito do mouse."
+  m_Text: Clique esquerdo nos esqueletos para selecionar, clique direito para dar
+    ordens
 --- !u!222 &586669902
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -541,7 +542,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Concluir a\xE7oes com clique esquerdo do mouse."
+  m_Text: Conquiste todas as areas do mapa
 --- !u!222 &996511357
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -777,7 +778,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Teclas A, W, S, D\t para movimetar a camera."
+  m_Text: Mova o mouse para os cantos da tela para movimentar a camera.
 --- !u!222 &1359799404
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -857,7 +858,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Pressione a tecla "P" para pausar o jogo.
+  m_Text: Pressione a tecla ESC para pausar o jogo.
 --- !u!222 &1586672177
 CanvasRenderer:
   m_ObjectHideFlags: 0
