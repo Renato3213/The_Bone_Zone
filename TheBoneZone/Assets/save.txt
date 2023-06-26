@@ -1,114 +1,11 @@
 {
     "resourceData": {
-        "calcium": 2200,
+        "calcium": 5000,
         "gold": 500
     },
-    "skeletons": [
-        {
-            "position": {
-                "x": 59.900001525878909,
-                "y": 0.0,
-                "z": 96.4000015258789
-            },
-            "rotation": {
-                "x": 0.0,
-                "y": 1.0214779376983643,
-                "z": 0.0
-            },
-            "energy": 0.7143540382385254,
-            "tirednessCoefficient": 0.5,
-            "efficiency": 1.0,
-            "goldPocket": 0.0,
-            "amountInBag": 0.0,
-            "walking": false,
-            "isAgentEnabled": false,
-            "farmingSpotID": 0,
-            "pubID": 0,
-            "grinderID": 0,
-            "spawned": true,
-            "isFarming": false,
-            "isDelivering": false,
-            "isGrinding": true,
-            "isBuilding": false,
-            "isResting": false,
-            "reseted": false
-        },
-        {
-            "position": {
-                "x": 0.8680280447006226,
-                "y": 0.08333349227905274,
-                "z": -7.858888149261475
-            },
-            "rotation": {
-                "x": 0.0,
-                "y": 156.60577392578126,
-                "z": 0.0
-            },
-            "energy": 0.8946743011474609,
-            "tirednessCoefficient": 0.5,
-            "efficiency": 1.0,
-            "goldPocket": 0.0,
-            "amountInBag": 31.60008430480957,
-            "walking": false,
-            "isAgentEnabled": true,
-            "farmingSpotID": 0,
-            "pubID": 0,
-            "grinderID": 0,
-            "spawned": true,
-            "isFarming": true,
-            "isDelivering": false,
-            "isGrinding": false,
-            "isBuilding": false,
-            "isResting": false,
-            "reseted": false
-        }
-    ],
+    "skeletons": [],
     "houses": [],
-    "pubs": [
-        {
-            "position": {
-                "x": 6.125,
-                "y": 0.0,
-                "z": -9.625
-            },
-            "rotation": {
-                "x": 0.0,
-                "y": 225.0,
-                "z": 0.0
-            },
-            "myId": 0
-        }
-    ],
-    "grinders": [
-        {
-            "position": {
-                "x": 4.375,
-                "y": 0.0,
-                "z": -4.375
-            },
-            "rotation": {
-                "x": 0.0,
-                "y": 225.0,
-                "z": 0.0
-            },
-            "bonesStored": 0.0,
-            "workingHere": 0,
-            "myId": 0
-        }
-    ],
-    "farmingSpots": [
-        {
-            "position": {
-                "x": 0.875,
-                "y": 0.0,
-                "z": -7.875
-            },
-            "rotation": {
-                "x": 0.0,
-                "y": 225.0,
-                "z": 0.0
-            },
-            "myId": 0
-        }
-    ]
+    "pubs": [],
+    "grinders": [],
+    "farmingSpots": []
 }

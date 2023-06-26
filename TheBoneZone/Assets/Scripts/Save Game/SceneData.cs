@@ -31,6 +31,8 @@ public class SceneData
         grinders.Clear();
         farmingSpots = new List<FarmingSpotData>();
         farmingSpots.Clear();
+        levelNodes = new List<LevelNodeData>();
+        levelNodes.Clear();
     }
 
 }
