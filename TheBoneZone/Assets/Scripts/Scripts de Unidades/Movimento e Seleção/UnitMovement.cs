@@ -83,7 +83,13 @@ public class UnitMovement : MonoBehaviour
     {
         foreach(Skeleton skeleton in UnitSelection.Instance.unitsSelected)
         {
-            skeleton.ResetSkeleton();
+            skeleton.isBuilding= false;
+            skeleton.isDelivering= false;
+            skeleton.isFarming= false;
+            skeleton.isGrinding= false;
+            skeleton.isResting = false;
+            skeleton.reseted = true;
+            //skeleton.ResetSkeleton();
         }
     }
 

@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class UnitStateMachine : MonoBehaviour
 {
-    IUnitState currentState;
+    public IUnitState currentState;
 
     Dictionary<Type, List<Transition>> transitions = new Dictionary<Type, List<Transition>>();
     List<Transition> currentTransitions = new List<Transition>();

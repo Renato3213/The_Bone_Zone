@@ -1,25 +1,49 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Bares : MonoBehaviour
+[Serializable]
+public class PubData
+{
+    public Vector3 position;
+    public Vector3 rotation;
+}
+
+public class PubAdapter : PubData
+{
+    public PubAdapter(Bares pub)
+    {
+        position = pub.transform.position;
+        rotation = pub.transform.rotation.eulerAngles;
+    }
+}
+
+public class Bares : MonoBehaviour, IDataPersistance
 {
     public TextMeshProUGUI slots;
-    List<Skeleton> descansandoAqui = new List<Skeleton>();
+    public List<Skeleton> descansandoAqui = new List<Skeleton>();
     public Transform entrada, saida;
     public int limiteEsqueletos = 5;
 
     [SerializeField]
     StructureFlyweight myStats;
 
+    public GameObject myInterface;
+
     public float multiplier = 5;
+
+    public int myId;
     void Awake()
     {
-        ControlaListas.instance.pubsLivres.Add(this);
-        GameManager.instance.maxSkeletons += limiteEsqueletos;
-        GameManager.instance.UpdateSkeletonCount();
+        ControlaListas.instance.pubsList.Add(this);
+        myId = ControlaListas.instance.pubsList.IndexOf(this);
+    }
+    void Start()
+    {
+        SaveGame.instance.persistentObjects.Add(this);
     }
 
     void OnMouseOver()
@@ -29,6 +53,12 @@ public class Bares : MonoBehaviour
         {
             ChamarEsqueletos();
         }
+    }
+
+    void OnMouseDown()
+    {
+        GameManager.instance.UpdateActiveInterface(myInterface);
+        AtualizaInterface();
     }
 
     void ChamarEsqueletos()
@@ -52,13 +82,12 @@ public class Bares : MonoBehaviour
         skeleton.MoveTo(entrada.position);
         skeleton.pubTarget = this;
         skeleton.doingTask = true;
-        skeleton.ChangeState(skeleton.myStats.restingState);
+        skeleton.isResting = true;
         UnitSelection.Instance.Deselect(skeleton);
-        descansandoAqui.Add(skeleton);
     }
 
 
-    void AtualizaInterface()
+    public void AtualizaInterface()
     {
         slots.text = "" + descansandoAqui.Count + "/" + limiteEsqueletos;
     }
@@ -68,6 +97,11 @@ public class Bares : MonoBehaviour
         descansandoAqui[0].transform.position = saida.position;
         descansandoAqui[0].ResetSkeleton();
         descansandoAqui.RemoveAt(0);
+        AtualizaInterface();
     }
 
+    public void SaveData(ref SceneData data)
+    {
+        data.pubs.Add(new PubAdapter(this));
+    }
 }

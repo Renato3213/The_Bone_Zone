@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1441221815500828539}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2.4, y: 0.1, z: 2.4}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -197,6 +197,7 @@ GameObject:
   - component: {fileID: 5070682747698338080}
   - component: {fileID: 2329848744611593532}
   - component: {fileID: 7053646789556557991}
+  - component: {fileID: 4205118476702498402}
   m_Layer: 10
   m_Name: Farming Spot OBJ
   m_TagString: Untagged
@@ -212,7 +213,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8639540067827602849}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2.4, y: 0.1, z: 2.4}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -281,3 +282,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7a577aecd77d8a46962dbe55532e904, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myId: 0
+--- !u!65 &4205118476702498402
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8639540067827602849}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0000002, y: 1, z: 1.0000002}
+  m_Center: {x: -0.000000029802322, y: 0, z: 0}

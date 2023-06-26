@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class CombatUnitSelection : MonoBehaviour , ICombatObserver
 {
     Camera myCam;
     [SerializeField]
-    SkeletonWarrior unitSelected;
+    CombatUnit unitSelected;
     public GameObject selectionVisual;
 
     public GameObject grayscale;
@@ -39,16 +40,23 @@ public class CombatUnitSelection : MonoBehaviour , ICombatObserver
 
         if (Physics.Raycast(ray, out hit, Mathf.Infinity))
         {
-            SkeletonWarrior unit;
-            Enemy enemyUnit;
-            if (hit.transform.TryGetComponent<SkeletonWarrior>(out unit))
+            CombatUnit unit;
+            //Enemy enemyUnit;
+            if (hit.transform.TryGetComponent<CombatUnit>(out unit))
             {
-                ClickSelect(unit);
+                if (CombatManager.instance.blueTeam.Contains(unit))
+                {
+                    ClickSelect(unit);
+                }
+                else
+                {
+                    TryAddTarget(unit);
+                }
             }
-            else if (hit.transform.TryGetComponent<Enemy>(out enemyUnit))
-            {
-                TryAddTarget(enemyUnit);
-            }
+            //else if (hit.transform.TryGetComponent<Enemy>(out enemyUnit))
+            //{
+            //    TryAddTarget(enemyUnit);
+            //}
 
             else
             {
@@ -58,7 +66,7 @@ public class CombatUnitSelection : MonoBehaviour , ICombatObserver
         }
     }
 
-    void TryAddTarget(Enemy enemyToAdd)
+    void TryAddTarget(CombatUnit enemyToAdd)
     {
         if (unitSelected == null) return;
 
@@ -78,7 +86,7 @@ public class CombatUnitSelection : MonoBehaviour , ICombatObserver
     }
 
 
-    void ShowTargets(SkeletonWarrior skeleton)
+    void ShowTargets(CombatUnit skeleton)
     {
         if (skeleton.targetsList.Count == 0) return;
 
@@ -132,7 +140,7 @@ public class CombatUnitSelection : MonoBehaviour , ICombatObserver
         }
     }
 
-    void ClickSelect(SkeletonWarrior unit)
+    void ClickSelect(CombatUnit unit)
     {
         Deselect();
         unitSelected = unit;
@@ -165,9 +173,15 @@ public class CombatUnitSelection : MonoBehaviour , ICombatObserver
         foreach (Transform child in obj.transform)
         {
             child.gameObject.layer = LayerMask.NameToLayer(layerName);
+
+            Transform _HasChildren = child.GetComponentInChildren<Transform>();
+            if (_HasChildren != null)
+                ChangeLayerOfUnit(child.gameObject, layerName);
         }
 
     }
+
+
 
     public void NotifyStart()
     {

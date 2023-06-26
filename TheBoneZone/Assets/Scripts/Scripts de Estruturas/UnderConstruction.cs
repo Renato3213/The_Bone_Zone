@@ -31,7 +31,8 @@ public class UnderConstruction : MonoBehaviour
                 skeleton.MoveTo(RandomPointAroundBuilding());
                 skeleton.buildingTarget = this;
                 skeleton.doingTask = true;
-                skeleton.ChangeState(skeleton.myStats.buildingState);
+                skeleton.isBuilding= true;
+                //skeleton.ChangeState(skeleton.myStats.buildingState);
             }
         }
     }

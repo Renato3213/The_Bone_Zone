@@ -41,7 +41,6 @@ public class EmFila : MonoBehaviour
             MainBuilding.instance.skeletonFactory.skeletonList.SetActive(false);
         }
 
-
         Destroy(this.gameObject);
 
         yield break;

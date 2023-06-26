@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class CreateCombatUnit : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class CreateCombatUnit : MonoBehaviour
 
     public LayerMask layer;
 
+    public ResourceManager resources;
     private void Start()
     {
         myCam = Camera.main;
@@ -103,6 +105,13 @@ public class CreateCombatUnit : MonoBehaviour
 
         CombatUnit createdScript = obj.GetComponent<CombatUnit>();
         createdScript.myTile = selectedTile;
+        resources.UpdateCalcium(-createdScript.price);
+
+        NavMeshAgent agent = obj.GetComponent<NavMeshAgent>();
+        agent.enabled = false;
+
+        _collider = obj.GetComponent<CapsuleCollider>();
+        _collider.enabled = true;
 
     }
 

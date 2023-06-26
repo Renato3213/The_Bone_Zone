@@ -8,5 +8,13 @@ public class MeleeAttack : AttackBehaviours
     public override void Attack(CombatUnit attacker, CombatUnit target)
     {
         target?.TakeDamage(attacker.attackPower);
+        if(attacker.animator != null)
+        {
+            attacker.animator.Play("Attack");
+
+        }
     }
+
+
+
 }

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80f618bafcd440d4fb2f1fcf665cc79c, type: 3}
   m_Name: Resources
   m_EditorClassIdentifier: 
-  calcium: 9000
+  calcium: 4500
   gold: 500

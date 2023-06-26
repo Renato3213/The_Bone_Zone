@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class WalkWithinRange : IUnitState
@@ -27,10 +28,21 @@ public class WalkWithinRange : IUnitState
     {
         TimeStuck = 0f;
         unit.agent.isStopped = false;
+
+        if (unit.animator != null)
+        {
+            unit.animator.Play("Walk");
+
+        }
     }
 
     public void OnExit() 
-    { 
+    {
         unit.agent.isStopped = true;
+        //if (unit.animator != null)
+        //{
+        //    unit.animator.Play("Idle");
+
+        //}
     }
 }

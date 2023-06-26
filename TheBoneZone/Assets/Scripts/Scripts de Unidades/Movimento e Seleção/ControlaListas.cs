@@ -12,12 +12,15 @@ public class ControlaListas : MonoBehaviour
     public List<GameObject> listaPubs = new List<GameObject>();
 
     public List<GameObject> esqueletosLivres = new List<GameObject>();
-    public List<Casas> casasLivres = new List<Casas>();
+    public List<Casas> housesList = new List<Casas>();
     public List<Fazendas> grindersList = new List<Fazendas>();
-    public List<Bares> pubsLivres = new List<Bares>();
+    public List<Bares> pubsList = new List<Bares>();
     public List<UnderConstruction> beingConstructedList = new List<UnderConstruction>();
     public List<FarmingSpot> farmingSpotList = new List<FarmingSpot>();
 
+    public List<Skeleton> skeletonsGrinding = new List<Skeleton>();
+
+    public List<LevelNode> levels = new List<LevelNode>();
     private void Start()
     {
         instance = this;
